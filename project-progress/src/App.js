@@ -1,11 +1,19 @@
 import React from 'react';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import Navbar from './components/layout/navbar';
+import Dashboard from './components/dashboard/Dashboard';
 
 
 function App() {
   return (
-    <div className="App">
-      <h2 className = "badge badge-primary">SPPMS</h2>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Navbar />
+        <Switch>
+        <Route to='/' component={Dashboard}></Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
