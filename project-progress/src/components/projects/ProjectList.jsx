@@ -6,7 +6,7 @@ const ProjectList = () => {
         <div className="container section project-details">
 
                <ProjectSummary/>
-               
+
         </div>
      );
 }

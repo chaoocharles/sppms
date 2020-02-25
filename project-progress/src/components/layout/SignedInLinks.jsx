@@ -13,7 +13,7 @@ const SignedInLinks = () => {
 
  export const CreateProjectButton = () => {
     return ( 
-            <div className="btnStyle">
+            <div className="createProjectBtn">
                 <NavLink to='/createproject' className="btn cyan darken-2 z-depth-0">NEW PROJECT</NavLink>
             </div>
      );

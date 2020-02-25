@@ -4,7 +4,7 @@ import '../../index.css'
 const ProjectSummary = () => {
     return ( 
         <div>
-         <table className="tableStyle">
+         <table className="projectTable">
          <thead>
            <tr>
                <th colspan="2">Project Title</th>
