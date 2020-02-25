@@ -23,7 +23,7 @@ const ProjectSummary = () => {
             </div>
             </td>
             <td>
-            <button className="btn red darken-2 z-depth-0">DELETE</button>
+            <button className="btn red darken-2 z-depth-0">REMOVE</button>
             </td>
            </tr>
          </tbody>

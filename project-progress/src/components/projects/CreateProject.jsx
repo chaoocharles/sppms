@@ -41,7 +41,7 @@ class CreateProject extends Component {
                         <input type="text" id="projectDesc" onChange={this.handleChange}/>
                     </div>
                     <div className="input-field">
-                        <button className="btn cyan darken-2 z-depth-0">CREATE</button>
+                        <button className="btn cyan darken-2 z-depth-0">ADD</button>
                     </div>
                 </form>
             </div>
