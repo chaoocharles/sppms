@@ -12,7 +12,7 @@ const ProjectSummary = () => {
            </tr>
          </thead>
          <tbody>
-           <tr>
+           <tr className="content">
              <td colspan="3"><p class= "left">Some Content Goes Here. Tables are a nice way to organize a lot of data. We provide a few utility classes to help you style your table as easily as possible. In addition, to improve mobile experience, all tables on mobile-screen widths are centered automatically.</p></td>
            </tr>
            <tr>

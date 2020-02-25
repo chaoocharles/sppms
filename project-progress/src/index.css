@@ -32,3 +32,7 @@ form button, form h5 {
   box-shadow: -5px -5px 5px #888888;
 }
 
+.content{
+  background-color: rgb(255, 255, 255);
+}
+
