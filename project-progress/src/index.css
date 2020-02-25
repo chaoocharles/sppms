@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.btnStyle{
+  margin-top: 20px;
+}
+
+.tableStyle{
+  border: 1px solid rgb(109, 108, 108);
+  margin-bottom: 50px;
+}
