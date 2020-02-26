@@ -1,24 +1,24 @@
 import React from 'react';
 import '../../index.css'
 
-const ProjectSummary = () => {
+const ProjectSummary = ({project}) => {
     return ( 
         <div>
          <table className="projectTable">
          <thead>
            <tr>
-               <th colspan="2">Project Title</th>
-               <th><span class="badge blue white-text left">In Progress</span></th>
+               <th colSpan="2">{project.projectTitle}</th>
+               <th><span className="badge blue white-text left">In Progress</span></th>
            </tr>
          </thead>
          <tbody>
            <tr className="content">
-             <td colspan="3"><p class= "left">Some Content Goes Here. Tables are a nice way to organize a lot of data. We provide a few utility classes to help you style your table as easily as possible. In addition, to improve mobile experience, all tables on mobile-screen widths are centered automatically.</p></td>
+             <td colSpan="3"><p className= "left">{project.projectDesc}</p></td>
            </tr>
            <tr>
              <td colSpan="2">
              <div className = 'gret lighten-4 grey-text'>
-            <div>Posted by Chaoo Charles</div>
+            <div>Posted by: {project.regNumber}</div>
             <div>Date: Feb 2020</div>
             </div>
             </td>
