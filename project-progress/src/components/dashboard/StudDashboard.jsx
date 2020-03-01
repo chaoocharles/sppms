@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ProjectList from '../projects/ProjectList';
 import { CreateProjectButton } from '../layout/SignedInLinks';
 import {connect} from 'react-redux';
+import {firestoreConnect} from 'react-redux-firebase';
+import {compose} from 'redux';
 
 class StudDashboard extends Component {
     
@@ -24,8 +26,13 @@ class StudDashboard extends Component {
 
 const mapStateToProps = (state) =>{
     return {
-        projects: state.project.projects
+        projects: state.firestore.ordered.projects
     }
 }
 
-export default connect(mapStateToProps)(StudDashboard);
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([
+        { collection: 'projects'}
+    ])
+    )(StudDashboard);
