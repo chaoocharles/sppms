@@ -1,11 +1,13 @@
 import React from 'react';
 import {NavLink, Link} from 'react-router-dom';
 import '../../index.css';
+import { connect } from 'react-redux';
+import { signOut } from '../../store/actions/authActions';
 
-const SignedInLinks = () => {
+const SignedInLinks = ({signOut}) => {
     return ( 
         <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li><NavLink to='/'>Log Out</NavLink></li>
+            <li><a onClick = {signOut}>Log Out</a></li>
             <li><NavLink to='/' className='btn btn-floating cyan darken-2'>CC</NavLink></li>
         </ul>
      );
@@ -18,5 +20,11 @@ const SignedInLinks = () => {
             </div>
      );
  }
+
+ const mapDispatchToProps = (dispatch) => {
+     return {
+         signOut : () => dispatch(signOut())
+     }
+ }
  
-export default SignedInLinks;
+export default connect(null, mapDispatchToProps)(SignedInLinks);
