@@ -1,5 +1,6 @@
 import React from 'react';
-import '../../index.css'
+import '../../index.css';
+import { Link } from 'react-router-dom';
 
 const ProjectSummary = ({project}) => {
     return ( 
@@ -7,7 +8,9 @@ const ProjectSummary = ({project}) => {
          <table className="projectTable">
          <thead>
            <tr>
-               <th colSpan="2">{project.projectTitle}</th>
+               <th colSpan="2">
+                 <Link to = {'/project/' + project.id}>{project.projectTitle}</Link>
+                 </th>
                <th><span className="badge blue white-text left">In Progress</span></th>
            </tr>
          </thead>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 import '../../index.css';
 
 const SignedInLinks = () => {
@@ -14,7 +14,7 @@ const SignedInLinks = () => {
  export const CreateProjectButton = () => {
     return ( 
             <div className="createProjectBtn">
-                <NavLink to='/createproject' className="btn cyan darken-2 z-depth-0">ADD PROJECT</NavLink>
+                <Link to='/createproject' className="btn cyan darken-2 z-depth-0">ADD PROJECT</Link>
             </div>
      );
  }
