@@ -7,7 +7,7 @@ import { signOut } from '../../store/actions/authActions';
 const SignedInLinks = ({signOut}) => {
     return ( 
         <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li><a onClick = {signOut}>Log Out</a></li>
+            <li><Link to = "/signin" onClick = {signOut}>Log Out</Link></li>
             <li><NavLink to='/' className='btn btn-floating cyan darken-2'>CC</NavLink></li>
         </ul>
      );

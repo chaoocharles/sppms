@@ -13,6 +13,8 @@ import thunk from 'redux-thunk';
 import firebase from 'firebase/app';
 import fbConfig from './config/fbConfig';
 
+import { useSelector } from 'react-redux';
+import { isLoaded } from 'react-redux-firebase';
 
 
 const rrfConfig = {
@@ -35,10 +37,18 @@ const rrfConfig = {
         createFirestoreInstance
     }
 
+    function AuthIsLoaded({ children }) {
+        const auth = useSelector(state => state.firebase.auth)
+        if (!isLoaded(auth)) return <div>Loading...</div>;
+        return children
+      }
+
 ReactDOM.render(<Provider store = {store}>
-    <ReactReduxFirebaseProvider {...rrfProps}>
-    <App />
-    </ReactReduxFirebaseProvider>
+        <ReactReduxFirebaseProvider {...rrfProps}>
+            <AuthIsLoaded>
+                <App />
+            </AuthIsLoaded>
+        </ReactReduxFirebaseProvider>
     </Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
