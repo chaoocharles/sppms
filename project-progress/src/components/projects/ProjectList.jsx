@@ -3,7 +3,8 @@ import ProjectSummary from './ProjectSummary';
 
 const ProjectList = ({projects}) => {
 
-    if(projects) return (
+    if(projects) {
+        return (
         <div className="container section project-details">
 
                {projects && projects.map(project=>{
@@ -14,12 +15,13 @@ const ProjectList = ({projects}) => {
 
         </div>
     )
-
-    return ( 
-        <div className='container center cyan-text'>
-                    <p>Loading...</p>
-                </div>
-     );
+}else {
+        return ( 
+            <div className='container center cyan-text'>
+                        <p>Loading...</p>
+                    </div>
+         );
+    }
 }
  
 export default ProjectList;

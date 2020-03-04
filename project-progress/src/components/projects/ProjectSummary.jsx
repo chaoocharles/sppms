@@ -8,7 +8,7 @@ const ProjectSummary = ({project}) => {
          <table className="projectTable">
          <thead>
            <tr>
-               <th colSpan="2">
+               <th colSpan="3">
                  <Link to = {'/project/' + project.id}>{project.projectTitle}</Link>
                  </th>
                <th><span className="badge blue white-text left">In Progress</span></th>
@@ -16,12 +16,12 @@ const ProjectSummary = ({project}) => {
          </thead>
          <tbody>
            <tr className="content">
-             <td colSpan="3"><p className= "left">{project.projectDesc}</p></td>
+             <td colSpan="4"><p className= "left">{project.projectDesc}</p></td>
            </tr>
            <tr>
-             <td colSpan="2">
+             <td colSpan="3">
              <div className = 'gret lighten-4 grey-text'>
-            <div>Posted by: {project.regNumber}</div>
+            <div>{project.authorFirstName}  {project.authorLastName} {project.regNumber}</div>
             <div>Date: Feb 2020</div>
             </div>
             </td>

@@ -4,11 +4,11 @@ import '../../index.css';
 import { connect } from 'react-redux';
 import { signOut } from '../../store/actions/authActions';
 
-const SignedInLinks = ({signOut}) => {
+const SignedInLinks = ({signOut, profile}) => {
     return ( 
         <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li><Link to = "/signin" onClick = {signOut}>Log Out</Link></li>
-            <li><NavLink to='/' className='btn btn-floating cyan darken-2'>CC</NavLink></li>
+            <li><NavLink to='/' className='btn btn-floating cyan darken-2'>{profile.initials}</NavLink></li>
         </ul>
      );
 }
