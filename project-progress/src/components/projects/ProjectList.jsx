@@ -3,7 +3,7 @@ import ProjectSummary from './ProjectSummary';
 
 const ProjectList = ({projects}) => {
 
-    return ( 
+    if(projects) return (
         <div className="container section project-details">
 
                {projects && projects.map(project=>{
@@ -13,6 +13,12 @@ const ProjectList = ({projects}) => {
                }) }
 
         </div>
+    )
+
+    return ( 
+        <div className='container center cyan-text'>
+                    <p>Loading...</p>
+                </div>
      );
 }
  

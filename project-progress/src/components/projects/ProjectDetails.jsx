@@ -26,7 +26,7 @@ const ProjectDetails = (props) => {
         )
     } else {
         return ( 
-                <div className='container center'>
+                <div className='container center cyan-text'>
                     <p>Loading...</p>
                 </div>
             );
