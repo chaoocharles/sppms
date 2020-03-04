@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../index.css';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 const ProjectSummary = ({project}) => {
     return ( 
@@ -22,7 +23,7 @@ const ProjectSummary = ({project}) => {
              <td colSpan="3">
              <div className = 'gret lighten-4 grey-text'>
             <div>{project.authorFirstName}  {project.authorLastName} {project.regNumber}</div>
-            <div>Date: Feb 2020</div>
+            <div>{moment(project.createdAt.toDate()).calendar()}</div>
             </div>
             </td>
             <td>
