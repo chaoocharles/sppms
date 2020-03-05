@@ -10,7 +10,7 @@ const ProjectDetails = (props) => {
 
     if (!auth.uid) return <Redirect to = '/signin' />
     
-    if (project) {
+    if (project && auth.uid === project.authorId) {
         return (
             <div className="container section project-details">
                 <div className="card z-depth-o">

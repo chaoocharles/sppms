@@ -2,8 +2,19 @@ import React from 'react';
 import '../../index.css';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import { connect } from 'react-redux';
+import { deleteProject } from '../../store/actions/projectActions';
 
-const ProjectSummary = ({project}) => {
+
+const ProjectSummary = ({project, uid, deleteProject}) => {
+      
+ const handleDelete = (project) => {
+  if (window.confirm('Are you sure you want to remove this project?'))
+    deleteProject(project);
+  }
+
+
+  if(uid === project.authorId){
     return ( 
         <div>
          <table className="projectTable">
@@ -27,13 +38,26 @@ const ProjectSummary = ({project}) => {
             </div>
             </td>
             <td>
-            <button className="btn red darken-2 z-depth-0">REMOVE</button>
+            <button onClick = {() => handleDelete(project)} className="btn red darken-2 z-depth-0">REMOVE</button>
             </td>
            </tr>
          </tbody>
        </table>
        </div>
      );
+    }else return null
+}
+
+const mapStateToProps = (state) =>{
+  return {
+      uid: state.firebase.auth.uid
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteProject: (project) => dispatch(deleteProject(project))
+  }
 }
  
-export default ProjectSummary;
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectSummary);
