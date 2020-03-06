@@ -4,6 +4,8 @@ import { firestoreConnect }  from 'react-redux-firebase';
 import { compose } from 'redux';
 import { Redirect } from 'react-router-dom';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
+import '../../index.css';
 
 const ProjectDetails = (props) => {
     const { project, auth } = props;
@@ -18,8 +20,11 @@ const ProjectDetails = (props) => {
                 <span className="card-title">{project.projectTitle}</span>
                 <p>{project.projectDesc}</p>
                 </div>
+                <div className="createMilestoneBtn">
+                <Link to='/createmilestone' className="btn cyan darken-2 z-depth-0">ADD MILESTONE</Link>
+                </div>
                 <div className="card-action gret lighten-4 grey-text">
-                    <div>{project.authorFirstName}  {project.authorLastName} {project.regNumber}</div>
+                    <div>{project.authorFirstName}  {project.authorLastName} {project.regNumber} {project.course}</div>
                 <div>{moment(project.createdAt.toDate()).calendar()}</div>
                 </div>
             </div>
