@@ -1,19 +1,20 @@
 import React from 'react';
-import ProjectSummary from './ProjectSummary';
+import MilestoneSummary from './MilestoneSummary';
 
-const MilestoneList = ({}) => {
+const MilestoneList = ({milestones, projectId}) => {
 
     return (
         <div className="container section project-details">
 
-               {projects && projects.map(project=>{
+               {milestones && milestones.map(milestone=>{
                    return (
-                       <ProjectSummary project={project} key={project.id}/>
+                       <MilestoneSummary milestone={milestone} projectId={projectId} key={milestone.id}/>
                    )
                }) }
 
         </div>
     )
 }
- 
-export default MilestoneList;
+
+
+export default MilestoneList

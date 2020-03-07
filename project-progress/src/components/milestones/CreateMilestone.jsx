@@ -6,11 +6,9 @@ import '../../index.css';
 
 class CreateMilestone extends Component {
     state = { 
-        milestones : {
         milestoneTitle: '',
         milestoneDesc: '',
         projectId: this.props.projectId
-        }
      }
 
     handleChange = (e) => {
@@ -26,7 +24,7 @@ class CreateMilestone extends Component {
     }
 
     render() { 
-        const { auth, waitError } = this.props;
+        const { auth} = this.props;
         if(!auth.uid) return <Redirect to = '/signin' />
 
         return ( 
@@ -34,18 +32,15 @@ class CreateMilestone extends Component {
                 <form onSubmit={this.handleSubmit} className ="white createMilestone">
                     <h5 className="grey-text text-darken-3">Add New Milestone</h5>
                     <div className='input-field'>
-                        <label htmlFor="projectTitle">Milestone Title</label>
-                        <input type="text" id='projectTitle' onChange={this.handleChange}/>
+                        <label htmlFor="milestoneTitle">Milestone Title</label>
+                        <input type="text" id='milestoneTitle' onChange={this.handleChange}/>
                     </div>
                     <div className="input-field">
-                        <label htmlFor="projectDesc">Milestone Description</label>
-                        <input type="text" id="projectDesc" onChange={this.handleChange}/>
+                        <label htmlFor="milestoneDesc">Milestone Description</label>
+                        <input type="text" id="milestoneDesc" onChange={this.handleChange}/>
                     </div>
                     <div className="input-field">
                         <button className="btn cyan darken-2 z-depth-0">ADD</button>
-                        <div className = 'red-text center'>
-                            { waitError ? <p>{ waitError }</p> : null }
-                            </div>
                     </div>
                 </form>
             </div>

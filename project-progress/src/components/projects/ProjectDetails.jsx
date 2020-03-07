@@ -6,9 +6,10 @@ import { Redirect } from 'react-router-dom';
 import moment from 'moment';
 import '../../index.css';
 import CreateMilestone from '../milestones/CreateMilestone';
+import MilestoneList from '../milestones/MilestoneList';
 
 const ProjectDetails = (props) => {
-    const { projectId, project, auth } = props;
+    const { projectId, project, auth, milestones } = props;
 
     if (!auth.uid) return <Redirect to = '/signin' />
     
@@ -20,11 +21,12 @@ const ProjectDetails = (props) => {
                 <span className="card-title">{project.projectTitle}</span>
                 <p>{project.projectDesc}</p>
                 </div>
-                <CreateMilestone projectId = {projectId}/>
                 <div className="card-action gret lighten-4 grey-text">
                     <div>{project.authorFirstName}  {project.authorLastName} {project.regNumber} {project.course}</div>
-                <div>Project Started On: {moment(project.createdAt.toDate()).calendar()}</div>
+                <div>Project Added On: {moment(project.createdAt.toDate()).calendar()}</div>
                 </div>
+                <CreateMilestone projectId = {projectId}/>
+                <MilestoneList milestones = {milestones} projectId = {projectId}/>
             </div>
             </div> 
         )
@@ -40,11 +42,13 @@ const ProjectDetails = (props) => {
 const mapStateToProps = (state, ownProps) =>{
     const id = ownProps.match.params.id;
     const projects = state.firestore.data.projects;
+    const milestones = state.firestore.ordered.milestones;
     const project = projects ? projects[id] : null;
     return {
         projectId: id,
         project: project,
-        auth: state.firebase.auth
+        auth: state.firebase.auth,
+        milestones: milestones
     }
 }
  

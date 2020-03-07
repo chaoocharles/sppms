@@ -32,7 +32,7 @@ const ProjectSummary = ({ project, uid, deleteProject }) => {
                <td colSpan="2">
                <div className = 'gret lighten-4 grey-text'>
               <div>{project.authorFirstName}  {project.authorLastName} {project.regNumber} {project.course}</div>
-              <div>{moment(project.createdAt.toDate()).calendar()}</div>
+              <div>Project Added On: {moment(project.createdAt.toDate()).calendar()}</div>
               </div>
               </td>
               <td>
