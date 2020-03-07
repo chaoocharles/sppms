@@ -1,8 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import '../../index.css';
 import moment from 'moment';
+import { deleteMilestone } from '../../store/actions/milestoneActions';
 
-const MilestoneSummary = ({ milestone, projectId }) => {
+const MilestoneSummary = ({ milestone, projectId, deleteMilestone}) => {
+
+  const handleDelete = (milestone) => {
+    if (window.confirm('Are you sure you want to remove this milestone?'))
+      deleteMilestone(milestone);
+    }
   
       if(projectId === milestone.projectId){
       return ( 
@@ -27,7 +34,7 @@ const MilestoneSummary = ({ milestone, projectId }) => {
               </div>
               </td>
               <td>
-              <button className="btn red darken-2 z-depth-0">REMOVE</button>
+              <button onClick = {() => handleDelete(milestone)} className="btn red darken-2 z-depth-0">REMOVE</button>
               </td>
              </tr>
            </tbody>
@@ -37,4 +44,10 @@ const MilestoneSummary = ({ milestone, projectId }) => {
       }else return null
 }
 
-export default MilestoneSummary;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteMilestone: (milestone) => dispatch(deleteMilestone(milestone)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(MilestoneSummary);
