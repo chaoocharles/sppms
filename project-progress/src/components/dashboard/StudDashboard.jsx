@@ -27,7 +27,7 @@ class StudDashboard extends Component {
     }
 }
 
-const mapStateToProps = (state) =>{
+const mapStateToProps = (state) =>{ 
     return {
         projects: state.firestore.ordered.projects,
         auth: state.firebase.auth
@@ -37,6 +37,8 @@ const mapStateToProps = (state) =>{
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-        { collection: 'projects'}
+        { 
+        collection: 'projects',
+    }
     ])
     )(StudDashboard);

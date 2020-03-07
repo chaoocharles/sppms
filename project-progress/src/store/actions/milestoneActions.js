@@ -1,18 +1,17 @@
-export const createMilestone = (projectId) =>{
+export const createMilestone = (milestone, projectId) =>{
     return (dispatch, getState, {getFirebase, getFirestore} ) => {
         // make asynch call
         const firestore = getFirestore();
         const authorId = getState().firebase.auth.uid;
 
-        firestore.collection('projects').add({
-           
-            project: projectId,
-            authorId: authorId,
-            createdAt: new Date()
+        firestore.collection('projects').doc(projectId).collection('milestones').add({
+        ...milestone,
+        authorId: authorId,
+        createdAt: new Date()
         }).then(() => {
             dispatch({
                 type: 'ADD_MILESTONE',
-                
+                milestone
             })
         }).catch((err) => {
             dispatch({
@@ -20,9 +19,6 @@ export const createMilestone = (projectId) =>{
                 err
             })
         })
+ 
     }
-}
-
-export const addProjectId = (projectId) => {
-    return { type: 'ADD_PROJECTID', projectId }
 }

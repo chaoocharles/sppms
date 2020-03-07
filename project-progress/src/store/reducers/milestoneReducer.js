@@ -1,16 +1,18 @@
 const initState = {}
 
-const projectReducer = (state = initState, action) =>{
+const milestoneReducer = (state = initState, action) =>{
     switch(action.type){
-        case 'ADD_PROJECTID':
-            console.log(action.projectId)
-            return{
+        case 'ADD_MILESTONE':
+            return state
+        case 'ADD_MILESTONE_ERROR':
+            return {
                 ...state,
-                projectId:action.projectId
+                addMilestoneError: action.type.message
             }
+
         default:
             return state;
     }
 }
 
-export default projectReducer;
+export default milestoneReducer;

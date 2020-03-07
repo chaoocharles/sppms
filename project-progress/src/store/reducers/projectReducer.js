@@ -9,7 +9,7 @@ const projectReducer = (state = initState, action) =>{
         case 'REMOVE_PROJECT':
             return state;
         case 'REMOVE_PROJECT_ERROR':
-            return{
+            return {
                 ...state,
                 removeError: action.type.message
             }

@@ -4,28 +4,26 @@ import { firestoreConnect }  from 'react-redux-firebase';
 import { compose } from 'redux';
 import { Redirect } from 'react-router-dom';
 import moment from 'moment';
-import { Link } from 'react-router-dom';
 import '../../index.css';
+import CreateMilestone from '../milestones/CreateMilestone';
 
 const ProjectDetails = (props) => {
-    const { project, auth } = props;
+    const { projectId, project, auth } = props;
 
     if (!auth.uid) return <Redirect to = '/signin' />
     
     if (project && auth.uid === project.authorId) {
         return (
             <div className="container section project-details">
-                <div className="card z-depth-o">
+                <div className="card z-depth-o grey lighten-3">
                 <div className="card-content">
                 <span className="card-title">{project.projectTitle}</span>
                 <p>{project.projectDesc}</p>
                 </div>
-                <div className="createMilestoneBtn">
-                <Link to='/createmilestone' className="btn cyan darken-2 z-depth-0">ADD MILESTONE</Link>
-                </div>
+                <CreateMilestone projectId = {projectId}/>
                 <div className="card-action gret lighten-4 grey-text">
                     <div>{project.authorFirstName}  {project.authorLastName} {project.regNumber} {project.course}</div>
-                <div>{moment(project.createdAt.toDate()).calendar()}</div>
+                <div>Project Started On: {moment(project.createdAt.toDate()).calendar()}</div>
                 </div>
             </div>
             </div> 
@@ -44,6 +42,7 @@ const mapStateToProps = (state, ownProps) =>{
     const projects = state.firestore.data.projects;
     const project = projects ? projects[id] : null;
     return {
+        projectId: id,
         project: project,
         auth: state.firebase.auth
     }
@@ -51,7 +50,11 @@ const mapStateToProps = (state, ownProps) =>{
  
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect([
-            { collection: 'projects'}
-        ])
+    firestoreConnect((ownProps) => [ "projects", {
+        collection: "projects",
+        doc: ownProps.match.params.id,
+        subcollections: [{ collection: "milestones" }],
+        storeAs: "milestones"
+      }
+ ])
 )(ProjectDetails);

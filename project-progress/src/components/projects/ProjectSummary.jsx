@@ -1,39 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../../index.css';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { deleteProject } from '../../store/actions/projectActions';
-import { addProjectId } from '../../store/actions/milestoneActions';
 
-
-class ProjectSummary extends Component {
+const ProjectSummary = ({ project, uid, deleteProject }) => {
   
- handleDelete = (project) => {
+ const handleDelete = (project) => {
   if (window.confirm('Are you sure you want to remove this project?'))
-    this.props.deleteProject(project);
+    deleteProject(project);
   }
 
-handleAddProjectId = (project) =>{
-this.props.addProjectId(project.id)
-}
-
-  render(){
-    const {project, uid} = this.props
-    if(uid === project.authorId){
+      if(uid === project.authorId){
       return ( 
           <div>
            <table className="projectTable">
            <thead>
              <tr>
-                 <th onClick = {() => this.handleAddProjectId(project)}  colSpan="2">
+                 <th colSpan="2">
                    <Link to = {'/project/' + project.id}>{project.projectTitle}</Link>
                    </th>
                  <th><span className="custom-badge blue white-text left">In Progress</span></th>
              </tr>
            </thead>
            <tbody>
-             <tr className="content">
+             <tr className="white">
                <td colSpan="3"><p className= "left">{project.projectDesc}</p></td>
              </tr>
              <tr>
@@ -44,7 +36,7 @@ this.props.addProjectId(project.id)
               </div>
               </td>
               <td>
-              <button onClick = {() => this.handleDelete(project)} className="btn red darken-2 z-depth-0">REMOVE</button>
+              <button onClick = {() => handleDelete(project)} className="btn red darken-2 z-depth-0">REMOVE</button>
               </td>
              </tr>
            </tbody>
@@ -52,11 +44,9 @@ this.props.addProjectId(project.id)
          </div>
        );
       }else return null
-  }
 }
 
 const mapStateToProps = (state) =>{
-  console.log(state)
   return {
       uid: state.firebase.auth.uid
   }
@@ -65,7 +55,6 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch) => {
   return {
     deleteProject: (project) => dispatch(deleteProject(project)),
-    addProjectId: (projectId) => dispatch(addProjectId(projectId))
   }
 }
  
