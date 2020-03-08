@@ -3,8 +3,21 @@ import { connect } from 'react-redux';
 import '../../index.css';
 import moment from 'moment';
 import { deleteMilestone } from '../../store/actions/milestoneActions';
+import { toggleMilestoneStatus } from '../../store/actions/milestoneActions';
+import Status from '../common/Status';
+import Approve from '../common/Approve';
 
-const MilestoneSummary = ({ milestone, projectId, deleteMilestone}) => {
+
+const MilestoneSummary = ({ milestone, projectId, deleteMilestone, toggleMilestoneStatus}) => {
+
+  const handleApprove = (milestone) => {
+    if (milestone.status === true ){
+    if (window.confirm('Are you sure you want to mark this milestone as incomplete?'))
+    toggleMilestoneStatus(milestone);
+    }else{
+      toggleMilestoneStatus(milestone);
+    }
+  }
 
   const handleDelete = (milestone) => {
     if (window.confirm('Are you sure you want to remove this milestone?'))
@@ -18,20 +31,37 @@ const MilestoneSummary = ({ milestone, projectId, deleteMilestone}) => {
            <thead>
              <tr>
                  <th colSpan="2">
-                   {milestone.milestoneTitle}
+                   {milestone.milestoneTitle}/{milestone.id}
                    </th>
-                 <th><span className="custom-badge blue white-text left">In Progress</span></th>
+                 <th><Status status ={milestone.status}/></th>
              </tr>
            </thead>
            <tbody>
              <tr className="white">
                <td colSpan="3"><p className= "left">{milestone.milestoneDesc}</p></td>
              </tr>
-             <tr>
+             <tr className="white">
+               <td colSpan="3"><p className= "left">Remarks Goes here</p></td>
+             </tr>
+             <tr className="white">
                <td colSpan="2">
+                  <div className="input-field">
+                        <label htmlFor="milestoneRemarks">Enter Remarks</label>
+                        <input type="text" id="milestoneRemarks"/>
+                  </div>
+               </td>
+               <td>
+              <button className="btn cyan darken-2 z-depth-0">SEND</button>
+              </td>
+             </tr>
+             <tr>
+               <td>
                <div className = 'gret lighten-4 grey-text'>
               <div>Milestone Added On: {moment(milestone.createdAt.toDate()).calendar()}</div>
               </div>
+              </td>
+              <td>
+                <Approve onClick = {() => handleApprove(milestone)} status = {milestone.status}/>
               </td>
               <td>
               <button onClick = {() => handleDelete(milestone)} className="btn red darken-2 z-depth-0">REMOVE</button>
@@ -47,6 +77,7 @@ const MilestoneSummary = ({ milestone, projectId, deleteMilestone}) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     deleteMilestone: (milestone) => dispatch(deleteMilestone(milestone)),
+    toggleMilestoneStatus: (milestone) => dispatch(toggleMilestoneStatus(milestone))
   }
 }
 

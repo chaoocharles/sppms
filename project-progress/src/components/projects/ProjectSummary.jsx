@@ -12,7 +12,7 @@ const ProjectSummary = ({ project, uid, deleteProject }) => {
     deleteProject(project);
   }
 
-      if(uid === project.authorId){
+      if(uid === project.authorId){      
       return ( 
           <div>
            <table className="projectTable">

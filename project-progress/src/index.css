@@ -47,7 +47,10 @@ form {
 }
 
 .custom-badge{
-  padding: 3px;
+  padding-left: 9px;
+  padding-right: 9px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   border-radius: 9px;
 }
 

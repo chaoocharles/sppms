@@ -10,12 +10,16 @@ const milestoneReducer = (state = initState, action) =>{
                 addMilestoneError: action.type.message
             }
         case 'REMOVE_MILESTONE':
-        return state;
+            return state;
         case 'REMOVE_MILESTONE_ERROR':
             return {
                 ...state,
                 removeError: action.type.message
             }
+        case 'TOGGLE_MILESTONE_STATUS':
+            return state;
+        case 'TOGGLE_MILESTONE_STATUS_ERROR':
+            return state
         default:
             return state;
     }

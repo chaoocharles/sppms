@@ -23,6 +23,28 @@ export const createMilestone = (milestone, projectId) =>{
     }
 }
 
+export const toggleMilestoneStatus = (milestone) => {
+    return (dispatch, getState, {getFirebase, getFirestore}) => {
+        const firestore = getFirestore();
+
+        firestore.collection('projects').doc(milestone.projectId).collection('milestones').doc(milestone.id).set({
+            ...milestone,
+            status: !milestone.status
+        }, { merge: true }).then(() => {
+            dispatch({
+                type: 'TOGGLE_MILESTONE_STATUS',
+                milestone
+            })
+        }).catch((err) => {
+            dispatch({
+                type: 'TOGGLE_MILESTONE_STATUS_ERROR',
+                err
+            })
+        })
+ 
+    }
+}
+
 export const deleteMilestone = (milestone) => {
 
     return (dispatch, getState, {getFirebase, getFirestore}) => {
