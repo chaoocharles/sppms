@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { firestoreConnect }  from 'react-redux-firebase';
 import { compose } from 'redux';
 import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import '../../index.css';
 import CreateMilestone from '../milestones/CreateMilestone';
@@ -53,6 +54,9 @@ const ProjectDetails = (props) => {
                 <table>
                     <tbody>
                         <tr>
+                            <td>
+                            <Link to = '/'><i class="material-icons">arrow_back</i></Link>
+                            </td>
                             <td>
                             <Status status ={project.status}/>
                             </td>
