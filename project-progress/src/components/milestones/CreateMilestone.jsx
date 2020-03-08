@@ -9,7 +9,7 @@ class CreateMilestone extends Component {
         milestoneTitle: '',
         milestoneDesc: '',
         projectId: this.props.projectId,
-        status: 'false'
+        status: ''
      }
 
     handleChange = (e) => {

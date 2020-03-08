@@ -13,6 +13,10 @@ const projectReducer = (state = initState, action) =>{
                 ...state,
                 removeError: action.type.message
             }
+        case 'TOGGLE_PROJECT_STATUS':
+            return state;
+        case 'TOGGLE_PROJECT_STATUS_ERROR':
+            return state
         default:
             return state;
     }

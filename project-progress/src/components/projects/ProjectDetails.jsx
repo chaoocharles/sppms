@@ -7,9 +7,40 @@ import moment from 'moment';
 import '../../index.css';
 import CreateMilestone from '../milestones/CreateMilestone';
 import MilestoneList from '../milestones/MilestoneList';
+import Remove from '../common/Remove';
+import Approve from '../common/Approve';
+import Status from '../common/Status';
+import { toggleProjectStatus } from '../../store/actions/projectActions';
+import { deleteProject } from '../../store/actions/projectActions';
+
 
 const ProjectDetails = (props) => {
-    const { projectId, project, auth, milestones } = props;
+    const { projectId, project, auth, milestones, deleteProject, toggleProjectStatus } = props;
+
+    const handleApprove = (project, projectId) => {
+        if (project.status === true ){
+        if (window.confirm('Are you sure you want to mark this project as incomplete?'))
+        toggleProjectStatus(project, projectId);
+        }else {
+          if (window.confirm('Make sure that all milestones are complete before approving this project.'))
+          toggleProjectStatus(project, projectId);
+        }
+      }
+
+    const handleDelete = (projectId, milestones) => {
+        milestones.map(milestone=>{
+            if (projectId === milestone.projectId){
+                alert("Sorry! You can't remove a project that contain milestones.")
+                }
+                return null
+            })
+            if(milestones.length === 0){
+                if (window.confirm('Are you sure you want to remove this project?')){
+                    deleteProject(projectId);
+                    props.history.push('/');
+                }
+            } 
+        }
 
     if (!auth.uid) return <Redirect to = '/signin' />
     
@@ -19,6 +50,21 @@ const ProjectDetails = (props) => {
                 <div className="card z-depth-o grey lighten-3">
                 <div className="card-content">
                 <span className="card-title">{project.projectTitle}</span>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                            <Status status ={project.status}/>
+                            </td>
+                            <td>
+                            <Approve onClick = {() => handleApprove(project, projectId)} status = {project.status}/>
+                            </td>
+                            <td>
+                            <Remove onClick = {() => handleDelete(projectId, milestones)} />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 <p>{project.projectDesc}</p>
                 </div>
                 <div className="card-action gret lighten-4 grey-text">
@@ -39,6 +85,13 @@ const ProjectDetails = (props) => {
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+      deleteProject: (project, projectId) => dispatch(deleteProject(project, projectId)),
+      toggleProjectStatus: (project, projectId) => dispatch(toggleProjectStatus(project, projectId))
+    }
+  }
+
 const mapStateToProps = (state, ownProps) =>{
     const id = ownProps.match.params.id;
     const projects = state.firestore.data.projects;
@@ -53,7 +106,7 @@ const mapStateToProps = (state, ownProps) =>{
 }
  
 export default compose(
-    connect(mapStateToProps),
+    connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect((ownProps) => [ "projects", {
         collection: "projects",
         doc: ownProps.match.params.id,

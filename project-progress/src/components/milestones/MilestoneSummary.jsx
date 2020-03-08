@@ -6,6 +6,7 @@ import { deleteMilestone } from '../../store/actions/milestoneActions';
 import { toggleMilestoneStatus } from '../../store/actions/milestoneActions';
 import Status from '../common/Status';
 import Approve from '../common/Approve';
+import Remove from '../common/Remove';
 
 
 const MilestoneSummary = ({ milestone, projectId, deleteMilestone, toggleMilestoneStatus}) => {
@@ -64,7 +65,7 @@ const MilestoneSummary = ({ milestone, projectId, deleteMilestone, toggleMilesto
                 <Approve onClick = {() => handleApprove(milestone)} status = {milestone.status}/>
               </td>
               <td>
-              <button onClick = {() => handleDelete(milestone)} className="btn red darken-2 z-depth-0">REMOVE</button>
+                <Remove onClick = {() => handleDelete(milestone)} />
               </td>
              </tr>
            </tbody>
