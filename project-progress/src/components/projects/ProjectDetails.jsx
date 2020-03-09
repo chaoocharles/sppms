@@ -20,23 +20,23 @@ const ProjectDetails = (props) => {
 
     const handleApprove = (project, projectId) => {
         if (project.status === true ){
-        if (window.confirm('Are you sure you want to mark this project as InProgress?'))
+        if (window.confirm('Mark this project as InProgress?'))
         toggleProjectStatus(project, projectId);
         }else {
-          if (window.confirm('Make sure that all milestones are complete before approving this project.'))
+          if (window.confirm('Approve if all milestones are complete.'))
           toggleProjectStatus(project, projectId);
         }
       }
 
     const handleDelete = (projectId, milestones) => {
-        milestones.map(milestone=>{
+        milestones && milestones.map(milestone=>{
             if (projectId === milestone.projectId){
                 alert("Sorry! You can't remove a project that has milestones. Remove the milestones and try again.")
                 }
                 return null
             })
             if(milestones.length === 0){
-                if (window.confirm('Are you sure you want to remove this project?')){
+                if (window.confirm('Remove this project?')){
                     deleteProject(projectId);
                     props.history.push('/');
                 }

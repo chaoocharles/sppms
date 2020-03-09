@@ -16,16 +16,25 @@ const MilestoneDetails = ({ remarks, milestone, projectId, deleteMilestone, togg
 
   const handleApprove = (milestone) => {
     if (milestone.status === true ){
-    if (window.confirm('Are you sure you want to mark this milestone as InProgress?'))
+    if (window.confirm('Mark this milestone as InProgress?'))
     toggleMilestoneStatus(milestone);
     }else{
       toggleMilestoneStatus(milestone);
     }
   }
 
-  const handleDelete = (milestone) => {
-    if (window.confirm('Are you sure you want to remove this milestone?'))
-      deleteMilestone(milestone);
+  const handleDelete = (milestone, remarks) => {
+    remarks && remarks.map(remark=>{
+        if (milestone.id === remark.milestoneId){
+            alert("Sorry! You can't remove a milestone that has remarks.")
+            }
+            return null
+        })
+        if(remarks.length === 0){
+            if (window.confirm('Remove this milestone?')){
+                deleteMilestone(milestone);
+            }
+        } 
     }
   
       if(projectId === milestone.projectId){
@@ -65,7 +74,7 @@ const MilestoneDetails = ({ remarks, milestone, projectId, deleteMilestone, togg
                 <Approve onClick = {() => handleApprove(milestone)} status = {milestone.status}/>
               </td>
               <td>
-                <Remove onClick = {() => handleDelete(milestone)} />
+                <Remove onClick = {() => handleDelete(milestone, remarks)} />
               </td>
              </tr>
            </tbody>

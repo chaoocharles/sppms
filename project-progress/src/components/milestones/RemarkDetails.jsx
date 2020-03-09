@@ -5,6 +5,7 @@ import { deleteRemark } from '../../store/actions/milestoneActions';
 const RemarkDetails = ({remark, milestoneId, deleteRemark}) => {
 
     const handleDelete = (remark) => {
+        if (window.confirm('Remove this remark?'))
         deleteRemark(remark)
     }
 
