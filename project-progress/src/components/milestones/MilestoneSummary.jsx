@@ -7,13 +7,15 @@ import { toggleMilestoneStatus } from '../../store/actions/milestoneActions';
 import Status from '../common/Status';
 import Approve from '../common/Approve';
 import Remove from '../common/Remove';
+import AddRemarks from './AddRemarks';
 
 
 const MilestoneSummary = ({ milestone, projectId, deleteMilestone, toggleMilestoneStatus}) => {
 
+
   const handleApprove = (milestone) => {
     if (milestone.status === true ){
-    if (window.confirm('Are you sure you want to mark this milestone as incomplete?'))
+    if (window.confirm('Are you sure you want to mark this milestone as InProgress?'))
     toggleMilestoneStatus(milestone);
     }else{
       toggleMilestoneStatus(milestone);
@@ -45,15 +47,7 @@ const MilestoneSummary = ({ milestone, projectId, deleteMilestone, toggleMilesto
                <td colSpan="3"><p className= "left">Remarks Goes here</p></td>
              </tr>
              <tr className="white">
-               <td colSpan="2">
-                  <div className="input-field">
-                        <label htmlFor="milestoneRemarks">Enter Remarks</label>
-                        <input type="text" id="milestoneRemarks"/>
-                  </div>
-               </td>
-               <td>
-              <button className="btn cyan darken-2 z-depth-0">SEND</button>
-              </td>
+               <AddRemarks milestone = {milestone} />
              </tr>
              <tr>
                <td>

@@ -14,7 +14,7 @@ const ProjectSummary = ({ project, uid }) => {
            <thead>
              <tr>
                  <th colSpan="3">
-                   <Link to = {'/project/' + project.id}>{project.projectTitle}</Link>
+                   {project.projectTitle}
                    </th>
                  <th><Status status ={project.status}/></th>
              </tr>
@@ -25,10 +25,13 @@ const ProjectSummary = ({ project, uid }) => {
              </tr>
              <tr>
                <td colSpan="3">
-               <div className = 'gret lighten-4 grey-text'>
-              <div>{project.authorFirstName}  {project.authorLastName} {project.regNumber} {project.course}</div>
-              <div>Project Added On: {moment(project.createdAt.toDate()).calendar()}</div>
-              </div>
+                  <div className = 'gret lighten-4 grey-text'>
+                  <div>{project.authorFirstName}  {project.authorLastName} {project.regNumber} {project.course}</div>
+                  <div>Project Added On: {moment(project.createdAt.toDate()).calendar()}</div>
+                  </div>
+              </td>
+              <td>
+                <Link to = {'/project/' + project.id}><i className="small material-icons">arrow_forward</i></Link>
               </td>
              </tr>
            </tbody>

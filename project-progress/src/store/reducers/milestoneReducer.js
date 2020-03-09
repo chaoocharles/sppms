@@ -14,12 +14,19 @@ const milestoneReducer = (state = initState, action) =>{
         case 'REMOVE_MILESTONE_ERROR':
             return {
                 ...state,
-                removeError: action.type.message
+                removeMilestoneError: action.type.message
             }
         case 'TOGGLE_MILESTONE_STATUS':
             return state;
         case 'TOGGLE_MILESTONE_STATUS_ERROR':
             return state
+        case 'ADD_REMARK':
+            return state;
+        case 'ADD_REMARK_ERROR':
+            return {
+                ...state,
+                addRemarkError: action.type.message
+            }
         default:
             return state;
     }

@@ -61,3 +61,31 @@ export const deleteMilestone = (milestone) => {
         })
     }
 }
+
+export const addRemark = (remark, projectId) =>{
+    return (dispatch, getState, {getFirebase, getFirestore} ) => {
+        // make asynch call
+        const firestore = getFirestore();
+        const profile = getState().firebase.profile;
+        const authorId = getState().firebase.auth.uid;
+
+        firestore.collection('projects').doc(projectId).collection('remarks').add({
+        ...remark,
+        authorId: authorId,
+        authorFirstName: profile.firstName,
+        authorLastName: profile.lastName,
+        createdAt: new Date()
+        }).then(() => {
+            dispatch({
+                type: 'ADD_REMARK',
+                remark
+            })
+        }).catch((err) => {
+            dispatch({
+                type: 'ADD_REMARK_ERROR',
+                err
+            })
+        })
+ 
+    }
+}
