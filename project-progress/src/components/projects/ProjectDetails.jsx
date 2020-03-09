@@ -16,7 +16,7 @@ import { deleteProject } from '../../store/actions/projectActions';
 
 
 const ProjectDetails = (props) => {
-    const { projectId, project, auth, milestones, deleteProject, toggleProjectStatus } = props;
+    const { projectId, project, auth, milestones, remarks, deleteProject, toggleProjectStatus } = props;
 
     const handleApprove = (project, projectId) => {
         if (project.status === true ){
@@ -76,7 +76,7 @@ const ProjectDetails = (props) => {
                 <div>Project Added On: {moment(project.createdAt.toDate()).calendar()}</div>
                 </div>
                 <CreateMilestone projectId = {projectId}/>
-                <MilestoneList milestones = {milestones} projectId = {projectId}/>
+                <MilestoneList milestones = {milestones} projectId = {projectId} remarks = {remarks}/>
             </div>
             </div> 
         )
@@ -100,12 +100,14 @@ const mapStateToProps = (state, ownProps) =>{
     const id = ownProps.match.params.id;
     const projects = state.firestore.data.projects;
     const milestones = state.firestore.ordered.milestones;
+    const remarks = state.firestore.ordered.remarks;
     const project = projects ? projects[id] : null;
     return {
         projectId: id,
         project: project,
         auth: state.firebase.auth,
-        milestones: milestones
+        milestones: milestones,
+        remarks: remarks
     }
 }
  
@@ -116,6 +118,11 @@ export default compose(
         doc: ownProps.match.params.id,
         subcollections: [{ collection: "milestones" }],
         storeAs: "milestones"
+      }, {
+        collection: "projects",
+        doc: ownProps.match.params.id,
+        subcollections: [{ collection: "remarks" }],
+        storeAs: "remarks"
       }
  ])
 )(ProjectDetails);

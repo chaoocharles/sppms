@@ -8,9 +8,10 @@ import Status from '../common/Status';
 import Approve from '../common/Approve';
 import Remove from '../common/Remove';
 import AddRemarks from './AddRemarks';
+import RemarkList from './RemarkList';
 
 
-const MilestoneDetails = ({ milestone, projectId, deleteMilestone, toggleMilestoneStatus}) => {
+const MilestoneDetails = ({ remarks, milestone, projectId, deleteMilestone, toggleMilestoneStatus}) => {
 
 
   const handleApprove = (milestone) => {
@@ -44,7 +45,12 @@ const MilestoneDetails = ({ milestone, projectId, deleteMilestone, toggleMilesto
                <td colSpan="3"><p className= "left">{milestone.milestoneDesc}</p></td>
              </tr>
              <tr className="white">
-               <td colSpan="3"><p className= "left">Remarks Goes here</p></td>
+              <td colSpan="3">
+                <ul className="collection with-header">
+                <li className="collection-header"><h6>REMARKS</h6></li>
+                  <RemarkList milestoneId = {milestone.id} remarks = {remarks} projectId = {projectId} />
+                </ul>
+              </td>
              </tr>
              <tr className="white">
                <AddRemarks milestone = {milestone} />

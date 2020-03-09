@@ -2,11 +2,9 @@ export const createMilestone = (milestone, projectId) =>{
     return (dispatch, getState, {getFirebase, getFirestore} ) => {
         // make asynch call
         const firestore = getFirestore();
-        const authorId = getState().firebase.auth.uid;
 
         firestore.collection('projects').doc(projectId).collection('milestones').add({
         ...milestone,
-        authorId: authorId,
         createdAt: new Date()
         }).then(() => {
             dispatch({
@@ -89,5 +87,22 @@ export const addRemark = (remark, projectId) =>{
             })
         })
  
+    }
+}
+
+export const deleteRemark = (remark) => {
+
+    return (dispatch, getState, {getFirebase, getFirestore}) => {
+        const firestore = getFirestore();
+
+        firestore.collection('projects').doc(remark.projectId).collection('remarks').doc(remark.id).delete().then(() => {
+            dispatch({
+                type: 'REMOVE_REMARK'
+            })
+        }).catch((err) => {
+            dispatch({
+                type: 'REMOVE_REMARK_ERROR', err
+            })
+        })
     }
 }

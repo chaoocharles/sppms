@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 class AddRemarks extends Component {
     state = { 
         comment: '',
-        milestoneId: this.props.milestone.id
+        milestoneId: this.props.milestone.id,
+        projectId: this.props.milestone.projectId
      }
     
      handleChange = (e) => {

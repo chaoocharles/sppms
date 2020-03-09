@@ -25,7 +25,14 @@ const milestoneReducer = (state = initState, action) =>{
         case 'ADD_REMARK_ERROR':
             return {
                 ...state,
-                addRemarkError: action.type.message
+                removeRemarkError: action.type.message
+            }
+        case 'REMOVE_REMARK':
+            return state;
+        case 'REMOVE_REMARK_ERROR':
+            return {
+                ...state,
+                removeRemarkError: action.type.message
             }
         default:
             return state;

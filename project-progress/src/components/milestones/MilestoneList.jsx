@@ -1,14 +1,13 @@
 import React from 'react';
 import MilestoneDetails from './MilestoneDetails';
 
-const MilestoneList = ({milestones, projectId}) => {
+const MilestoneList = ({milestones, projectId, remarks}) => {
 
     return (
-        <div className="container section project-details">
-
+        <div>
                {milestones && milestones.map(milestone=>{
                    return (
-                       <MilestoneDetails milestone={milestone} projectId={projectId} key={milestone.id} />
+                       <MilestoneDetails milestone={milestone} projectId={projectId} remarks = {remarks} key={milestone.id} />
                    )
                }) }
 
