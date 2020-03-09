@@ -10,7 +10,7 @@ import Remove from '../common/Remove';
 import AddRemarks from './AddRemarks';
 
 
-const MilestoneSummary = ({ milestone, projectId, deleteMilestone, toggleMilestoneStatus}) => {
+const MilestoneDetails = ({ milestone, projectId, deleteMilestone, toggleMilestoneStatus}) => {
 
 
   const handleApprove = (milestone) => {
@@ -76,4 +76,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(MilestoneSummary);
+export default connect(null, mapDispatchToProps)(MilestoneDetails);

@@ -1,5 +1,5 @@
 import React from 'react';
-import MilestoneSummary from './MilestoneSummary';
+import MilestoneDetails from './MilestoneDetails';
 
 const MilestoneList = ({milestones, projectId}) => {
 
@@ -8,7 +8,7 @@ const MilestoneList = ({milestones, projectId}) => {
 
                {milestones && milestones.map(milestone=>{
                    return (
-                       <MilestoneSummary milestone={milestone} projectId={projectId} key={milestone.id}/>
+                       <MilestoneDetails milestone={milestone} projectId={projectId} key={milestone.id} />
                    )
                }) }
 

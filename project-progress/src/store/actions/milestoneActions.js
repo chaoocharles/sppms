@@ -26,9 +26,11 @@ export const createMilestone = (milestone, projectId) =>{
 export const toggleMilestoneStatus = (milestone) => {
     return (dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
+        const authorId = getState().firebase.auth.uid;
 
         firestore.collection('projects').doc(milestone.projectId).collection('milestones').doc(milestone.id).set({
             ...milestone,
+            authorId: authorId,
             status: !milestone.status
         }, { merge: true }).then(() => {
             dispatch({

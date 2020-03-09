@@ -7,6 +7,7 @@ import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import CreateProject from './components/projects/CreateProject';
 import CreateMilestone from './components/milestones/CreateMilestone';
+import MilestoneDetails from './components/milestones/MilestoneDetails';
 
 
 
@@ -18,6 +19,7 @@ function App() {
         <Switch>
         <Route exact path='/' component={Dashboard} />
         <Route path='/project/:id' component={ProjectDetails} />
+        <Route path='/milestone/:id' component={MilestoneDetails}/>
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
         <Route path="/createproject" component={CreateProject} />
