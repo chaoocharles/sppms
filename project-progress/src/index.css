@@ -61,3 +61,15 @@ form {
   padding-top: 5px;
   padding-bottom: 5px;
 }
+
+.remark{
+  border-left-style: solid;
+  border-left-color: rgb(1, 167, 167);
+  border-left-width: 5px;
+}
+
+.remark:hover{
+  border-left-style: solid;
+  border-left-color: rgb(167, 1, 51);
+  border-left-width: 5px;
+}

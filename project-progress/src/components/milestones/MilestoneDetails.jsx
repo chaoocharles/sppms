@@ -24,11 +24,11 @@ const MilestoneDetails = ({ remarks, milestone, projectId, deleteMilestone, togg
   }
 
   const handleDelete = (milestone, remarks) => {
-        remarks.map(remark=>{
+        remarks && remarks.map(remark=>{
         if (milestone.id === remark.milestoneId){
             alert("Sorry! You can't remove a milestone that has remarks.")
             } 
-            if(remark && milestone.id != remark.milestoneId){
+            if(remark && milestone.id !== remark.milestoneId){
               if (window.confirm('Remove this milestone?')){
                   deleteMilestone(milestone);
               }
