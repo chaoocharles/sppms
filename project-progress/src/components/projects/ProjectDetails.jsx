@@ -23,7 +23,7 @@ const ProjectDetails = (props) => {
         if (window.confirm('Mark this project as InProgress?'))
         toggleProjectStatus(project, projectId);
         }else {
-          if (window.confirm('Approve if all milestones are complete.'))
+          if (window.confirm('Approve if this project is complete.'))
           toggleProjectStatus(project, projectId);
         }
       }

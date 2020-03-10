@@ -24,10 +24,15 @@ const MilestoneDetails = ({ remarks, milestone, projectId, deleteMilestone, togg
   }
 
   const handleDelete = (milestone, remarks) => {
-    remarks && remarks.map(remark=>{
+        remarks.map(remark=>{
         if (milestone.id === remark.milestoneId){
             alert("Sorry! You can't remove a milestone that has remarks.")
-            }
+            } 
+            if(remark && milestone.id != remark.milestoneId){
+              if (window.confirm('Remove this milestone?')){
+                  deleteMilestone(milestone);
+              }
+          } 
             return null
         })
         if(remarks.length === 0){
@@ -55,10 +60,7 @@ const MilestoneDetails = ({ remarks, milestone, projectId, deleteMilestone, togg
              </tr>
              <tr className="white">
               <td colSpan="3">
-                <ul className="collection with-header">
-                <li className="collection-header"><h6>REMARKS</h6></li>
                   <RemarkList milestoneId = {milestone.id} remarks = {remarks} projectId = {projectId} />
-                </ul>
               </td>
              </tr>
              <tr className="white">
