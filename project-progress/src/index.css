@@ -73,3 +73,7 @@ form {
   border-left-color: rgb(167, 1, 51);
   border-left-width: 5px;
 }
+
+.custom-font-caps{
+  font-variant: small-caps;
+}

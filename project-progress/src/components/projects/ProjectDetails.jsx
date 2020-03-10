@@ -71,7 +71,7 @@ const ProjectDetails = (props) => {
                 </table>
                 <p>{project.projectDesc}</p>
                 </div>
-                <div className="card-action gret lighten-4 grey-text">
+                <div className="card-action gret lighten-4 grey-text custom-font-caps">
                     <div>{project.authorFirstName}  {project.authorLastName} {project.regNumber} {project.course}</div>
                 <div>Project Added On: {moment(project.createdAt.toDate()).calendar()}</div>
                 </div>

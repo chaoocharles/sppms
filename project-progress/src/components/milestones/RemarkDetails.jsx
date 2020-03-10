@@ -14,7 +14,7 @@ const RemarkDetails = ({remark, milestoneId, deleteRemark}) => {
     if (remark && remark.milestoneId === milestoneId){
     return (
         <ul className="collection with-header remark">
-        <li className="collection-header"><i>{remark.authorFirstName} {remark.authorLastName} : {moment(remark.createdAt.toDate()).calendar()} </i></li>
+        <li className="collection-header custom-font-caps"><p>{remark.authorFirstName} {remark.authorLastName} : {moment(remark.createdAt.toDate()).calendar()} </p></li>
         <li className="collection-item"><div>{remark.comment}
             <i className="yellow-text text-darken-4 secondary-content">
                 <i onClick = {() => handleDelete(remark)} style = {{ cursor: "pointer"}} className="material-icons">delete</i>

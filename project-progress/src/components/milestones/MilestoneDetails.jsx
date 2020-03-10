@@ -68,7 +68,7 @@ const MilestoneDetails = ({ remarks, milestone, projectId, deleteMilestone, togg
              </tr>
              <tr>
                <td>
-               <div className = 'gret lighten-4 grey-text'>
+               <div className = 'gret lighten-4 grey-text custom-font-caps'>
               <div>Milestone Added On: {moment(milestone.createdAt.toDate()).calendar()}</div>
               </div>
               </td>
