@@ -27,7 +27,7 @@ const MilestoneDetails = ({ remarks, auth, milestone, milestoneId, deleteMilesto
   }
 
   const handleDelete = (milestoneId, remarks) => {
-    if (remarks && remarks.length !==0 ){
+    if ((remarks && remarks.length !==0) ){
         alert("Sorry! You can't remove a milestone that has remarks. Remove the remarks and try again.")
         }
     if((remarks && remarks.length === 0) || remarks === null){
@@ -37,7 +37,6 @@ const MilestoneDetails = ({ remarks, auth, milestone, milestoneId, deleteMilesto
         }
     } 
 }
-  
 
 const goBack = () => {
   history.goBack();
@@ -45,53 +44,45 @@ const goBack = () => {
 
     if (milestone && auth.uid === milestone.authorId) {
       return ( 
-          <div className = "container">
-            <i onClick = {goBack} className="small material-icons custom-link">arrow_back</i>
-           <table className="projectTable">
-           <thead>
-             <tr>
-                 <th colSpan="2">
-                   {milestone.milestoneTitle}
-                   </th>
-                 <th><Status status ={milestone.status}/></th>
-             </tr>
-           </thead>
-           <tbody>
-             <tr className="white">
-               <td colSpan="3"><p className= "left">{milestone.milestoneDesc}</p></td>
-             </tr>
-             <tr className="white">
-              <td colSpan="3">
-                  <RemarkList milestoneId = {milestoneId} remarks = {remarks} />
-              </td>
-             </tr>
-             <tr className="white">
-               <AddRemarks milestoneId = {milestoneId} />
-             </tr>
-             <tr>
-               <td>
-               <div className = 'gret lighten-4 grey-text custom-font-caps'>
-              <div>Milestone Added On: {moment(milestone.createdAt.toDate()).calendar()}</div>
-              </div>
-              </td>
-              <td>
-                <Approve onClick = {() => handleApprove(milestone, milestoneId)} status = {milestone.status}/>
-              </td>
-              <td>
-                <Remove onClick = {() => handleDelete(milestoneId, remarks)} />
-              </td>
-             </tr>
-           </tbody>
-         </table>
-         </div>
+                <div className="container section">
+                <div className="card z-depth-o grey lighten-3">
+                <div className="card-content">
+                <span className="card-title">{milestone.milestoneTitle}</span>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                            <i onClick = {goBack} className="small material-icons custom-link">arrow_back</i>
+                            </td>
+                            <td>
+                            <Status status ={milestone.status}/>
+                            </td>
+                            <td>
+                            <Approve onClick = {() => handleApprove(milestone, milestoneId)} status = {milestone.status}/>
+                            </td>
+                            <td>
+                            <Remove onClick = {() => handleDelete(milestoneId, remarks)} />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>{milestone.milestoneDesc}</p>
+                </div>
+                <div className="card-action gret lighten-4 grey-text custom-font-caps">
+                   Milestone Added On: {moment(milestone.createdAt.toDate()).calendar()}
+                </div>
+                <AddRemarks milestoneId = {milestoneId} />
+                <RemarkList milestoneId = {milestoneId} remarks = {remarks} />
+            </div>
+            </div> 
        );
     } else return null
 }
 
 const mapStateToProps = (state, ownProps) =>{
   const id = ownProps.match.params.id;
-  const milestones = state.firestore.data.milestones;
   const remarks = state.firestore.ordered.remarks;
+  const milestones = state.firestore.data.milestones;
   const milestone = milestones ? milestones[id] : null;
   return {
       milestoneId: id,

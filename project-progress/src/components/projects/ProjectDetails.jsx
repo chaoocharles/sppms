@@ -29,22 +29,43 @@ const ProjectDetails = (props) => {
       }
 
     const handleDelete = (projectId, milestones) => {
-            if (milestones && milestones.length !==0 ){
-                alert("Sorry! You can't remove a project that has milestones. Remove the milestones and try again.")
+
+        let BreakException = {}
+
+        try{
+        milestones.forEach((item, index, object) => {
+            if(projectId === item.projectId){
+                alert("Sorry! You can't remove a project that has milestones.")
+            } throw BreakException;
+        })
+        }catch (e) {
+            if (e !== BreakException) throw e;
+            }
+
+            milestones.forEach((item, index, object) => {
+                if(projectId !== item.projectId){
+                    if (window.confirm('Remove this project?')){
+                        deleteProject(projectId);
+                        props.history.push('/');
+                    }
                 }
+            })
+
+
             if((milestones && milestones.length === 0) || milestones === null){
                 if (window.confirm('Remove this project?')){
                     deleteProject(projectId);
                     props.history.push('/');
                 }
             } 
-        }
+    }
+
 
     if (!auth.uid) return <Redirect to = '/signin' />
     
     if (project && auth.uid === project.authorId) {
         return (
-            <div className="container section project-details">
+            <div className="container section">
                 <div className="card z-depth-o grey lighten-3">
                 <div className="card-content">
                 <span className="card-title">{project.projectTitle}</span>
@@ -95,9 +116,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state, ownProps) =>{
     const id = ownProps.match.params.id;
-    const projects = state.firestore.data.projects;
-    console.log(ownProps)
     const milestones = state.firestore.ordered.milestones;
+    const projects = state.firestore.data.projects;
     const project = projects ? projects[id] : null;
     return {
         projectId: id,

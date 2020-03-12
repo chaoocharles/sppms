@@ -22,15 +22,21 @@ class AddRemarks extends Component {
         const { milestoneId } = this.props
         return ( 
             <React.Fragment>
-                <td colSpan="2">
-                    <div className="input-field">
-                        <label htmlFor="comment">Enter Remarks</label>
-                        <input type="text" id="comment" onChange={this.handleChange}/>
-                    </div>
-                </td>
-                <td>
-                    <button onClick = {() => this.handleAddRemark(milestoneId)} className="btn cyan darken-2 z-depth-0"><i className="material-icons">send</i></button>
-                </td>
+                <table className="white">
+                    <tbody>
+                        <tr>
+                            <td colSpan="2">
+                                <div className="input-field">
+                                    <label htmlFor="comment">Enter Remarks</label>
+                                    <input type="text" id="comment" onChange={this.handleChange}/>
+                                </div>
+                            </td>
+                            <td>
+                                <button onClick = {() => this.handleAddRemark(milestoneId)} className="btn cyan darken-2 z-depth-0"><i className="material-icons">send</i></button>
+                            </td>
+                        </tr>
+                </tbody>
+                </table>
             </React.Fragment>
          );
     }
