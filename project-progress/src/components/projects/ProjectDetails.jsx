@@ -16,7 +16,7 @@ import { deleteProject } from '../../store/actions/projectActions';
 
 
 const ProjectDetails = (props) => {
-    const { projectId, project, auth, milestones, remarks, deleteProject, toggleProjectStatus } = props;
+    const { projectId, project, auth, milestones, deleteProject, toggleProjectStatus } = props;
 
     const handleApprove = (project, projectId) => {
         if (project.status === true ){
@@ -29,13 +29,10 @@ const ProjectDetails = (props) => {
       }
 
     const handleDelete = (projectId, milestones) => {
-        milestones && milestones.map(milestone=>{
-            if (projectId === milestone.projectId){
+            if (milestones && milestones.length !==0 ){
                 alert("Sorry! You can't remove a project that has milestones. Remove the milestones and try again.")
                 }
-                return null
-            })
-            if(milestones.length === 0){
+            if((milestones && milestones.length === 0) || milestones === null){
                 if (window.confirm('Remove this project?')){
                     deleteProject(projectId);
                     props.history.push('/');
@@ -55,7 +52,7 @@ const ProjectDetails = (props) => {
                     <tbody>
                         <tr>
                             <td>
-                            <Link to = '/'><i className="material-icons">arrow_back</i></Link>
+                            <Link to = '/'><i className="small material-icons">arrow_back</i></Link>
                             </td>
                             <td>
                             <Status status ={project.status}/>
@@ -76,7 +73,7 @@ const ProjectDetails = (props) => {
                 <div>Project Added On: {moment(project.createdAt.toDate()).calendar()}</div>
                 </div>
                 <CreateMilestone projectId = {projectId}/>
-                <MilestoneList milestones = {milestones} projectId = {projectId} remarks = {remarks}/>
+                <MilestoneList milestones = {milestones} projectId = {projectId} />
             </div>
             </div> 
         )
@@ -99,30 +96,18 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state, ownProps) =>{
     const id = ownProps.match.params.id;
     const projects = state.firestore.data.projects;
+    console.log(ownProps)
     const milestones = state.firestore.ordered.milestones;
-    const remarks = state.firestore.ordered.remarks;
     const project = projects ? projects[id] : null;
     return {
         projectId: id,
         project: project,
         auth: state.firebase.auth,
         milestones: milestones,
-        remarks: remarks
     }
 }
  
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
-    firestoreConnect((ownProps) => [ "projects", {
-        collection: "projects",
-        doc: ownProps.match.params.id,
-        subcollections: [{ collection: "milestones" }],
-        storeAs: "milestones"
-      }, {
-        collection: "projects",
-        doc: ownProps.match.params.id,
-        subcollections: [{ collection: "remarks" }],
-        storeAs: "remarks"
-      }
- ])
+    firestoreConnect(() => [ "projects", "milestones" ])
 )(ProjectDetails);

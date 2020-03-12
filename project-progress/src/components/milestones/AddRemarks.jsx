@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 class AddRemarks extends Component {
     state = { 
         comment: '',
-        milestoneId: this.props.milestone.id,
-        projectId: this.props.milestone.projectId
+        milestoneId: this.props.milestoneId
      }
     
      handleChange = (e) => {
@@ -15,13 +14,12 @@ class AddRemarks extends Component {
         })
     }
 
-    handleAddRemark = (milestone) => {
-        const projectId = milestone.projectId;
-        this.props.addRemark(this.state, projectId);
+    handleAddRemark = (milestoneId) => {
+        this.props.addRemark(this.state, milestoneId);
     }
 
     render() { 
-        const { milestone } = this.props
+        const { milestoneId } = this.props
         return ( 
             <React.Fragment>
                 <td colSpan="2">
@@ -31,7 +29,7 @@ class AddRemarks extends Component {
                     </div>
                 </td>
                 <td>
-                    <button onClick = {() => this.handleAddRemark(milestone)} className="btn cyan darken-2 z-depth-0"><i className="material-icons">send</i></button>
+                    <button onClick = {() => this.handleAddRemark(milestoneId)} className="btn cyan darken-2 z-depth-0"><i className="material-icons">send</i></button>
                 </td>
             </React.Fragment>
          );
@@ -40,7 +38,7 @@ class AddRemarks extends Component {
  
 const mapDispatchToProps = (dispatch) => {
     return {
-        addRemark: (remark, projectId) => dispatch(addRemark(remark, projectId))
+        addRemark: (remark, milestoneId) => dispatch(addRemark(remark, milestoneId))
     }
 }
 

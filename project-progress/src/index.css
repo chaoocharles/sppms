@@ -77,3 +77,9 @@ form {
 .custom-font-caps{
   font-variant: small-caps;
 }
+
+.custom-link{
+  margin-top: 20px;
+  cursor: pointer;
+  color: #2196F3;
+}

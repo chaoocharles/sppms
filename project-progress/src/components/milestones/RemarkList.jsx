@@ -1,13 +1,13 @@
 import React from 'react';
 import RemarkDetails from './RemarkDetails';
 
-const RemarkList = ({remarks, milestoneId, projectId}) => {
+const RemarkList = ({remarks, milestoneId}) => {
 
     return (
         <React.Fragment>
                {remarks && remarks.map(remark=>{
                    return (
-                       <RemarkDetails remark={remark} milestoneId={milestoneId} projectId={projectId} key={remark.id} />
+                       <RemarkDetails remark={remark} milestoneId={milestoneId} key={remark.id} />
                    )
                }) }
 
