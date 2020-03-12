@@ -30,34 +30,45 @@ const ProjectDetails = (props) => {
 
     const handleDelete = (projectId, milestones) => {
 
-        let BreakException = {}
-
-        try{
-        milestones.forEach((item, index, object) => {
-            if(projectId === item.projectId){
-                alert("Sorry! You can't remove a project that has milestones.")
-            } throw BreakException;
-        })
-        }catch (e) {
-            if (e !== BreakException) throw e;
+        if ((milestones && milestones.length !==0) ){
+            alert("Sorry! You can't remove a project that has milestones. Remove the milestones and try again.")
             }
+            
+        if((milestones && milestones.length === 0) || milestones === null){
+            if (window.confirm('Remove this milestone?')){
+                deleteProject(projectId);
+                props.history.push('/');
+            }
+        } 
 
-            milestones.forEach((item, index, object) => {
-                if(projectId !== item.projectId){
-                    if (window.confirm('Remove this project?')){
-                        deleteProject(projectId);
-                        props.history.push('/');
-                    }
-                }
-            })
+        // let BreakException = {}
+
+        // try{
+        // milestones.forEach((item, index, object) => {
+        //     if(projectId === item.projectId){
+        //         alert("Sorry! You can't remove a project that has milestones.")
+        //     } throw BreakException;
+        // })
+        // }catch (e) {
+        //     if (e !== BreakException) throw e;
+        //     }
+
+        //     milestones.forEach((item, index, object) => {
+        //         if(projectId !== item.projectId){
+        //             if (window.confirm('Remove this project?')){
+        //                 deleteProject(projectId);
+        //                 props.history.push('/');
+        //             }
+        //         }
+        //     })
 
 
-            if((milestones && milestones.length === 0) || milestones === null){
-                if (window.confirm('Remove this project?')){
-                    deleteProject(projectId);
-                    props.history.push('/');
-                }
-            } 
+        //     if((milestones && milestones.length === 0) || milestones === null){
+        //         if (window.confirm('Remove this project?')){
+        //             deleteProject(projectId);
+        //             props.history.push('/');
+        //         } 
+        //         } 
     }
 
 
