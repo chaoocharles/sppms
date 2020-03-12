@@ -30,16 +30,22 @@ const ProjectDetails = (props) => {
 
     const handleDelete = (projectId, milestones) => {
 
-        if ((milestones && milestones.length !==0) ){
-            alert("Sorry! You can't remove a project that has milestones. Remove the milestones and try again.")
-            }
-            
-        if((milestones && milestones.length === 0) || milestones === null){
-            if (window.confirm('Remove this milestone?')){
+
+        if (window.confirm('Remove this project?')){
                 deleteProject(projectId);
                 props.history.push('/');
-            }
-        } 
+        }
+
+        // if ((milestones && milestones.length !==0) ){
+        //     alert("Sorry! You can't remove a project that has milestones. Remove the milestones and try again.")
+        //     }
+            
+        // if((milestones && milestones.length === 0) || milestones === null){
+        //     if (window.confirm('Remove this project?')){
+        //         deleteProject(projectId);
+        //         props.history.push('/');
+        //     }
+        // } 
 
         // let BreakException = {}
 
