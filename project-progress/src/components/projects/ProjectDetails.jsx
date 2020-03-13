@@ -30,52 +30,29 @@ const ProjectDetails = (props) => {
 
     const handleDelete = (projectId, milestones) => {
 
-
         if (window.confirm('Remove this project?')){
-                deleteProject(projectId);
-                props.history.push('/');
+            deleteProject(projectId);
+            props.history.push('/');
         }
 
-        // if ((milestones && milestones.length !==0) ){
-        //     alert("Sorry! You can't remove a project that has milestones. Remove the milestones and try again.")
-        //     }
-            
-        // if((milestones && milestones.length === 0) || milestones === null){
-        //     if (window.confirm('Remove this project?')){
-        //         deleteProject(projectId);
-        //         props.history.push('/');
-        //     }
-        // } 
+        //     let BreakException = {}
 
-        // let BreakException = {}
-
-        // try{
-        // milestones.forEach((item, index, object) => {
-        //     if(projectId === item.projectId){
-        //         alert("Sorry! You can't remove a project that has milestones.")
-        //     } throw BreakException;
-        // })
-        // }catch (e) {
-        //     if (e !== BreakException) throw e;
-        //     }
-
+        //     try{
         //     milestones.forEach((item, index, object) => {
-        //         if(projectId !== item.projectId){
+        //         if(projectId === item.projectId){
+        //             alert("Sorry! You can't remove a project that has milestones.")
+        //             throw BreakException;
+        //         } else {
         //             if (window.confirm('Remove this project?')){
         //                 deleteProject(projectId);
         //                 props.history.push('/');
         //             }
         //         }
         //     })
-
-
-        //     if((milestones && milestones.length === 0) || milestones === null){
-        //         if (window.confirm('Remove this project?')){
-        //             deleteProject(projectId);
-        //             props.history.push('/');
-        //         } 
-        //         } 
-    }
+        //     }catch (e) {
+        //         if (e !== BreakException) throw e;
+        //         }
+        }
 
 
     if (!auth.uid) return <Redirect to = '/signin' />
@@ -146,5 +123,5 @@ const mapStateToProps = (state, ownProps) =>{
  
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
-    firestoreConnect(() => [ "projects", "milestones" ])
+    firestoreConnect(() => [ { collection: "projects"}, { collection: "milestones", orderBy:[ 'createdAt', 'desc']} ])
 )(ProjectDetails);

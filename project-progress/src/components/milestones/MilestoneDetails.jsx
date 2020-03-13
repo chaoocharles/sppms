@@ -104,7 +104,7 @@ export default compose(
   firestoreConnect((ownProps) => [ "milestones", {
       collection: "milestones",
       doc: ownProps.match.params.id,
-      subcollections: [{ collection: "remarks" }],
+      subcollections: [{ collection: "remarks", orderBy:[ 'createdAt', 'desc'] }],
       storeAs: "remarks"
     }
 ]), withRouter
