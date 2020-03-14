@@ -34,24 +34,6 @@ const ProjectDetails = (props) => {
             deleteProject(projectId);
             props.history.push('/');
         }
-
-        //     let BreakException = {}
-
-        //     try{
-        //     milestones.forEach((item, index, object) => {
-        //         if(projectId === item.projectId){
-        //             alert("Sorry! You can't remove a project that has milestones.")
-        //             throw BreakException;
-        //         } else {
-        //             if (window.confirm('Remove this project?')){
-        //                 deleteProject(projectId);
-        //                 props.history.push('/');
-        //             }
-        //         }
-        //     })
-        //     }catch (e) {
-        //         if (e !== BreakException) throw e;
-        //         }
         }
 
 
@@ -63,24 +45,20 @@ const ProjectDetails = (props) => {
                 <div className="card z-depth-o grey lighten-3">
                 <div className="card-content">
                 <span className="card-title">{project.projectTitle}</span>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                            <Link to = '/'><i className="small material-icons">arrow_back</i></Link>
-                            </td>
-                            <td>
-                            <Status status ={project.status}/>
-                            </td>
-                            <td>
-                            <Approve onClick = {() => handleApprove(project, projectId)} status = {project.status}/>
-                            </td>
-                            <td>
-                            <Remove onClick = {() => handleDelete(projectId, milestones)} />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div className="flex-container">
+                    <div>
+                        <Link to = '/'><i className="small material-icons">arrow_back</i></Link>
+                    </div>
+                    <div>
+                        <Status status ={project.status}/>
+                    </div>
+                    <div>
+                        <Approve onClick = {() => handleApprove(project, projectId)} status = {project.status}/>
+                    </div>
+                    <div>
+                        <Remove onClick = {() => handleDelete(projectId, milestones)} /> 
+                    </div>
+                </div>
                 <p>{project.projectDesc}</p>
                 </div>
                 <div className="card-action gret lighten-4 grey-text custom-font-caps">

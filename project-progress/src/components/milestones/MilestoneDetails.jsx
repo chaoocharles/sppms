@@ -48,24 +48,20 @@ const goBack = () => {
                 <div className="card z-depth-o grey lighten-3">
                 <div className="card-content">
                 <span className="card-title">{milestone.milestoneTitle}</span>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                            <i onClick = {goBack} className="small material-icons custom-link">arrow_back</i>
-                            </td>
-                            <td>
-                            <Status status ={milestone.status}/>
-                            </td>
-                            <td>
-                            <Approve onClick = {() => handleApprove(milestone, milestoneId)} status = {milestone.status}/>
-                            </td>
-                            <td>
-                            <Remove onClick = {() => handleDelete(milestoneId, remarks)} />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div className="flex-container">
+                    <div>
+                    <i onClick = {goBack} className="small material-icons custom-link">arrow_back</i>
+                    </div>
+                    <div>
+                    <Status status ={milestone.status}/>
+                    </div>
+                    <div>
+                    <Approve onClick = {() => handleApprove(milestone, milestoneId)} status = {milestone.status}/>
+                    </div>
+                    <div>
+                    <Remove onClick = {() => handleDelete(milestoneId, remarks)} />
+                    </div>
+                </div>
                 <p>{milestone.milestoneDesc}</p>
                 </div>
                 <div className="card-action gret lighten-4 grey-text custom-font-caps">
