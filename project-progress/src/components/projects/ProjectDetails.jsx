@@ -30,7 +30,8 @@ const ProjectDetails = (props) => {
 
     const handleDelete = (projectId, milestones) => {
 
-        if (window.confirm('Remove this project?')){
+        alert ("Remove all the milestones before removing this project.")
+        if (window.confirm('Remove this project? \n\nThis action is irreversible!')){
             deleteProject(projectId);
             props.history.push('/');
         }

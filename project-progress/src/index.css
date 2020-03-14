@@ -13,6 +13,12 @@ code {
     monospace;
 }
 
+.logo {
+  width: 165px;
+  height: 65px;
+  margin-top: 5px;
+}
+
 form {
     padding: 20px;
     margin-top: 50px;
