@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/analytics';
+import 'firebase/functions';
  
  // Web app's Firebase configuration
  var firebaseConfig = {
@@ -18,4 +19,5 @@ import 'firebase/analytics';
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
   firebase.firestore();
+  firebase.functions();
   export default firebase;
