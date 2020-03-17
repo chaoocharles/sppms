@@ -14,6 +14,11 @@ const authReducer = (state = initState, action) => {
         ...state,
         authError: null
       };
+    case "IS_ADMIN":
+      return {
+        ...state,
+        admin: action.idTokenResult.claims.admin
+      };
     case "SIGNOUT_SUCCESS":
       return state;
     case "SIGNUP_SUCCESS":

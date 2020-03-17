@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
@@ -13,88 +13,85 @@ import Approve from "../common/Approve";
 import Status from "../common/Status";
 import { toggleProjectStatus } from "../../store/actions/projectActions";
 import { deleteProject } from "../../store/actions/projectActions";
+import firebase from "firebase/app";
 
-const ProjectDetails = props => {
-  const {
-    projectId,
-    project,
-    auth,
-    milestones,
-    deleteProject,
-    toggleProjectStatus
-  } = props;
-
-  const handleApprove = (project, projectId) => {
+class ProjectDetails extends Component {
+  handleApprove = (project, projectId) => {
     if (project.status === true) {
       if (window.confirm("Mark this project as InProgress?"))
-        toggleProjectStatus(project, projectId);
+        this.toggleProjectStatus(project, projectId);
     } else {
       if (window.confirm("Approve this project?"))
-        toggleProjectStatus(project, projectId);
+        this.toggleProjectStatus(project, projectId);
     }
   };
 
-  const handleDelete = (projectId, milestones) => {
+  handleDelete = projectId => {
     alert("Remove all the milestones before removing this project.");
     if (
       window.confirm("Remove this project? \n\nThis action is irreversible!")
     ) {
-      deleteProject(projectId);
+      this.deleteProject(projectId);
       props.history.push("/");
     }
   };
 
-  if (!auth.uid) return <Redirect to="/signin" />;
+  render() {
+    const { projectId, project, auth, milestones } = this.props;
 
-  if (project && auth.uid === project.authorId) {
-    return (
-      <div className="container section">
-        <div className="card z-depth-o grey lighten-3">
-          <div className="card-content">
-            <span className="card-title">{project.projectTitle}</span>
-            <div className="flex-container">
+    if (!auth.uid) return <Redirect to="/signin" />;
+
+    if (project && auth.uid === project.authorId) {
+      return (
+        <div className="container section">
+          <div className="card z-depth-o grey lighten-3">
+            <div className="card-content">
+              <span className="card-title">{project.projectTitle}</span>
+              <div className="flex-container">
+                <div>
+                  <Link to="/">
+                    <i className="small material-icons">arrow_back</i>
+                  </Link>
+                </div>
+                <div>
+                  <Status status={project.status} />
+                </div>
+                <div>
+                  <Approve
+                    onClick={() => this.handleApprove(project, projectId)}
+                    status={project.status}
+                  />
+                </div>
+                <div>
+                  <Remove onClick={() => this.handleDelete(projectId)} />
+                </div>
+              </div>
+              <p>{project.projectDesc}</p>
+            </div>
+            <div className="card-action gret lighten-4 grey-text custom-font-caps">
               <div>
-                <Link to="/">
-                  <i className="small material-icons">arrow_back</i>
-                </Link>
+                {project.authorFirstName} {project.authorLastName}{" "}
+                {project.regNumber} {project.course}
               </div>
               <div>
-                <Status status={project.status} />
-              </div>
-              <div>
-                <Approve
-                  onClick={() => handleApprove(project, projectId)}
-                  status={project.status}
-                />
-              </div>
-              <div>
-                <Remove onClick={() => handleDelete(projectId, milestones)} />
+                Project Added On:{" "}
+                {moment(project.createdAt.toDate()).calendar()}
               </div>
             </div>
-            <p>{project.projectDesc}</p>
+            <CreateMilestone projectId={projectId} />
+            <MilestoneList milestones={milestones} projectId={projectId} />
           </div>
-          <div className="card-action gret lighten-4 grey-text custom-font-caps">
-            <div>
-              {project.authorFirstName} {project.authorLastName}{" "}
-              {project.regNumber} {project.course}
-            </div>
-            <div>
-              Project Added On: {moment(project.createdAt.toDate()).calendar()}
-            </div>
-          </div>
-          <CreateMilestone projectId={projectId} />
-          <MilestoneList milestones={milestones} projectId={projectId} />
         </div>
-      </div>
-    );
-  } else {
-    return (
-      <div className="container center cyan-text">
-        <p>Loading...</p>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="container center cyan-text">
+          <p>Loading...</p>
+        </div>
+      );
+    }
   }
-};
+}
 
 const mapDispatchToProps = dispatch => {
   return {

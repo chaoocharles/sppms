@@ -17,7 +17,8 @@ class AddAdminRole extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.addAdminRole(this.state);
+    const userEmail = this.state.userEmail;
+    this.props.addAdminRole(userEmail);
   };
 
   render() {
@@ -36,6 +37,12 @@ class AddAdminRole extends Component {
             <button className="btn cyan darken-2 z-depth-0">
               MAKE SUPERVISOR
             </button>
+            <div className="center">
+              {this.props.addAdminMessage ? (
+                <p className="green-text">{this.props.addAdminMessage}</p>
+              ) : null}
+            </div>
+            <input type="reset" defaultValue="Reset Field" />
           </div>
         </form>
       </div>
@@ -45,7 +52,8 @@ class AddAdminRole extends Component {
 
 const mapStateToProps = state => {
   return {
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    addAdminMessage: state.admin.addAdminMessage
   };
 };
 

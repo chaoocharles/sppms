@@ -8,6 +8,28 @@ export const signIn = credentials => {
       .then(() => {
         dispatch({ type: "LOGIN_SUCCESS" });
       })
+      .then(() => {
+        firebase.auth().onAuthStateChanged(user => {
+          if (user) {
+            user.getIdTokenResult().then(idTokenResult => {
+              user.admin = idTokenResult.claims.admin;
+              //setupUI(user);
+            });
+          } else {
+            // setupUI();
+          }
+        });
+
+        firebase
+          .auth()
+          .currentUser.getIdTokenResult()
+          .then(idTokenResult => {
+            dispatch({ type: "IS_ADMIN", idTokenResult });
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      })
       .catch(err => {
         dispatch({ type: "LOGIN_ERROR", err });
       });

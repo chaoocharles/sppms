@@ -6,9 +6,7 @@ export const addAdminRole = userEmail => {
     addAdmin({ email: userEmail })
       .then(result => {
         console.log(result);
-      })
-      .then(() => {
-        dispatch({ type: "ADD_ADMIN_SUCESS" });
+        dispatch({ type: "ADD_ADMIN_SUCESS", result });
       })
       .catch(err => {
         dispatch({ type: "ADD_ADMIN_ERROR", err });
