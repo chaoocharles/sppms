@@ -16,6 +16,10 @@ import { deleteProject } from "../../store/actions/projectActions";
 import firebase from "firebase/app";
 
 class ProjectDetails extends Component {
+  state = {
+    admin: ""
+  };
+
   handleApprove = (project, projectId) => {
     if (project.status === true) {
       if (window.confirm("Mark this project as InProgress?"))
@@ -32,16 +36,82 @@ class ProjectDetails extends Component {
       window.confirm("Remove this project? \n\nThis action is irreversible!")
     ) {
       this.deleteProject(projectId);
-      props.history.push("/");
+      this.props.history.push("/");
     }
   };
 
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        user.getIdTokenResult().then(idTokenResult => {
+          user.admin = idTokenResult.claims.admin;
+          this.setState({
+            admin: user.admin
+          });
+          console.log(this.state);
+        });
+      } else {
+        this.setState = {
+          admin: ""
+        };
+      }
+    });
+  }
+
   render() {
     const { projectId, project, auth, milestones } = this.props;
+    if (this.state.admin) {
+      if (!auth.uid) return <Redirect to="/signin" />;
 
-    if (!auth.uid) return <Redirect to="/signin" />;
-
-    if (project && auth.uid === project.authorId) {
+      if (project) {
+        return (
+          <div className="container section">
+            <div className="card z-depth-o grey lighten-3">
+              <div className="card-content">
+                <span className="card-title">{project.projectTitle}</span>
+                <div className="flex-container">
+                  <div>
+                    <Link to="/">
+                      <i className="small material-icons">arrow_back</i>
+                    </Link>
+                  </div>
+                  <div>
+                    <Status status={project.status} />
+                  </div>
+                  <div>
+                    <Approve
+                      onClick={() => this.handleApprove(project, projectId)}
+                      status={project.status}
+                    />
+                  </div>
+                  <div>
+                    <Remove onClick={() => this.handleDelete(projectId)} />
+                  </div>
+                </div>
+                <p>{project.projectDesc}</p>
+              </div>
+              <div className="card-action gret lighten-4 grey-text custom-font-caps">
+                <div>
+                  {project.authorFirstName} {project.authorLastName}{" "}
+                  {project.regNumber} {project.course}
+                </div>
+                <div>
+                  Project Added On:{" "}
+                  {moment(project.createdAt.toDate()).calendar()}
+                </div>
+              </div>
+              <MilestoneList milestones={milestones} projectId={projectId} />
+            </div>
+          </div>
+        );
+      } else {
+        return (
+          <div className="container center cyan-text">
+            <p>Loading...</p>
+          </div>
+        );
+      }
+    } else if (project && auth.uid === project.authorId) {
       return (
         <div className="container section">
           <div className="card z-depth-o grey lighten-3">
@@ -55,15 +125,6 @@ class ProjectDetails extends Component {
                 </div>
                 <div>
                   <Status status={project.status} />
-                </div>
-                <div>
-                  <Approve
-                    onClick={() => this.handleApprove(project, projectId)}
-                    status={project.status}
-                  />
-                </div>
-                <div>
-                  <Remove onClick={() => this.handleDelete(projectId)} />
                 </div>
               </div>
               <p>{project.projectDesc}</p>

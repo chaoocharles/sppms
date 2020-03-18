@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -9,7 +9,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -20,27 +20,27 @@ code {
 }
 
 form {
-    padding: 20px;
-    margin-top: 50px;
+  padding: 20px;
+  margin-top: 50px;
 }
 
-  form h5 {
+form h5 {
   margin: 20px 0;
 }
 
-.createProjectBtn{
+.createProjectBtn {
   margin-top: 30px;
   margin-left: 30px;
   margin-bottom: 30px;
 }
 
-.createMilestoneBtn{
+.createMilestoneBtn {
   margin-top: 9px;
   margin-left: 30px;
   margin-bottom: 20px;
 }
 
-.projectTable{
+.projectTable {
   margin-top: 20px;
   margin-bottom: 30px;
   box-shadow: -5px -5px 5px #888888;
@@ -48,12 +48,12 @@ form {
   cursor: default;
 }
 
-.projectTable:hover{
+.projectTable:hover {
   box-shadow: -7px -7px 7px #747474;
   background-color: rgb(250, 250, 250);
 }
 
-.custom-badge{
+.custom-badge {
   padding-left: 9px;
   padding-right: 9px;
   padding-top: 5px;
@@ -61,7 +61,7 @@ form {
   border-radius: 9px;
 }
 
-.createMilestone{
+.createMilestone {
   margin-top: 0px;
   padding-left: 20px;
   padding-right: 20px;
@@ -69,25 +69,25 @@ form {
   padding-bottom: 5px;
 }
 
-.remark{
+.remark {
   border-left-style: solid;
   border-left-color: rgb(1, 167, 167);
   border-left-width: 5px;
 }
 
-.remark:hover{
+.remark:hover {
   border-left-style: solid;
   border-left-color: rgb(167, 1, 51);
   border-left-width: 5px;
 }
 
-.custom-font-caps{
+.custom-font-caps {
   font-variant: small-caps;
 }
 
-.custom-link{
+.custom-link {
   cursor: pointer;
-  color: #2196F3;
+  color: #2196f3;
 }
 
 .flex-container > div {
@@ -97,6 +97,5 @@ form {
 
 .flex-container {
   display: flex;
-  justify-content: space-evenly;
   flex-wrap: wrap;
 }
