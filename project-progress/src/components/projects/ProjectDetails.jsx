@@ -17,16 +17,16 @@ import firebase from "firebase/app";
 
 class ProjectDetails extends Component {
   state = {
-    admin: ""
+    admin: true
   };
 
   handleApprove = (project, projectId) => {
     if (project.status === true) {
       if (window.confirm("Mark this project as InProgress?"))
-        this.toggleProjectStatus(project, projectId);
+        this.props.toggleProjectStatus(project, projectId);
     } else {
       if (window.confirm("Approve this project?"))
-        this.toggleProjectStatus(project, projectId);
+        this.props.toggleProjectStatus(project, projectId);
     }
   };
 
@@ -35,7 +35,7 @@ class ProjectDetails extends Component {
     if (
       window.confirm("Remove this project? \n\nThis action is irreversible!")
     ) {
-      this.deleteProject(projectId);
+      this.props.deleteProject(projectId);
       this.props.history.push("/");
     }
   };
@@ -44,9 +44,8 @@ class ProjectDetails extends Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         user.getIdTokenResult().then(idTokenResult => {
-          user.admin = idTokenResult.claims.admin;
           this.setState({
-            admin: user.admin
+            admin: idTokenResult.claims.admin
           });
           console.log(this.state);
         });
