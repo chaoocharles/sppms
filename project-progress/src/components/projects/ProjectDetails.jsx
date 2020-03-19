@@ -50,9 +50,9 @@ class ProjectDetails extends Component {
           console.log(this.state);
         });
       } else {
-        this.setState = {
+        this.setState({
           admin: ""
-        };
+        });
       }
     });
   }
