@@ -23,6 +23,9 @@ export const signOut = () => {
       .signOut()
       .then(() => {
         dispatch({ type: "SIGNOUT_SUCCESS" });
+      })
+      .then(() => {
+        window.location.reload();
       });
   };
 };

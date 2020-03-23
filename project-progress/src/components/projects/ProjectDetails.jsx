@@ -16,8 +16,9 @@ import { deleteProject } from "../../store/actions/projectActions";
 import firebase from "firebase/app";
 
 class ProjectDetails extends Component {
+  _isMounted = false;
   state = {
-    admin: true
+    admin: ""
   };
 
   handleApprove = (project, projectId) => {
@@ -41,20 +42,31 @@ class ProjectDetails extends Component {
   };
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => {
+    this._isMounted = true;
+    this.fireBaseListener = firebase.auth().onAuthStateChanged(user => {
       if (user) {
         user.getIdTokenResult().then(idTokenResult => {
-          this.setState({
-            admin: idTokenResult.claims.admin
-          });
-          console.log(this.state);
+          if (this._isMounted) {
+            this.setState({
+              admin: idTokenResult.claims.admin
+            });
+            console.log(this.state);
+          }
         });
       } else {
-        this.setState({
-          admin: ""
-        });
+        if (this._isMounted) {
+          this.setState({
+            admin: ""
+          });
+        }
       }
     });
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+    //    this.fireBaseListener && this.fireBaseListener();
+    //    this.authListener = undefined;
   }
 
   render() {
