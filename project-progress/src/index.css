@@ -62,7 +62,7 @@ form h5 {
 }
 
 .createMilestone {
-  margin-top: 0px;
+  margin-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 5px;
@@ -88,6 +88,10 @@ form h5 {
 .custom-link {
   cursor: pointer;
   color: #2196f3;
+}
+
+.custom-link:hover {
+  background-color: black;
 }
 
 .flex-container > div {

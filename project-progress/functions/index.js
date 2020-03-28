@@ -22,6 +22,26 @@ exports.addAdminRole = functions.https.onCall((data, context) => {
     });
 });
 
+exports.addSuperAdminRole = functions.https.onCall((data, context) => {
+  //get the user and add cutom claim (admin)
+  return admin
+    .auth()
+    .getUserByEmail(data.email)
+    .then(user => {
+      return admin.auth().setCustomUserClaims(user.uid, {
+        superAdmin: true
+      });
+    })
+    .then(() => {
+      return {
+        message: `Success! ${data.email} has been made a co-ordinator.`
+      };
+    })
+    .catch(err => {
+      return err;
+    });
+});
+
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //

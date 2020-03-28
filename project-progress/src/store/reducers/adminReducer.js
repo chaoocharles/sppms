@@ -1,5 +1,5 @@
 const initState = {
-  addAdminError: null
+  addSuperAdminError: null
 };
 
 const adminReducer = (state = initState, action) => {
@@ -13,6 +13,16 @@ const adminReducer = (state = initState, action) => {
       return {
         ...state,
         addAdminError: action.err.message
+      };
+    case "ADD_SUPER_ADMIN_SUCESS":
+      return {
+        ...state,
+        addSuperAdminMessage: action.result.data.message
+      };
+    case "ADD_SUPER_ADMIN_ERROR":
+      return {
+        ...state,
+        addSuperAdminError: action.err.message
       };
     default:
       return state;

@@ -7,6 +7,7 @@ import { compose } from "redux";
 import { Redirect } from "react-router-dom";
 import AddAdminRole from "../admin/AddAdminRole";
 import firebase from "firebase/app";
+import AddSuperAdminRole from "../admin/AddSuperAdminRole";
 
 class Dashboard extends Component {
   _isMounted = false;
@@ -55,6 +56,7 @@ class Dashboard extends Component {
           <div className="col s12 m4 offset-m1">
             <CreateProjectButton />
             <AddAdminRole />
+            <AddSuperAdminRole />
           </div>
         </div>
       </div>
