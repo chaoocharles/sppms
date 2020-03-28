@@ -18,7 +18,8 @@ import firebase from "firebase/app";
 class ProjectDetails extends Component {
   _isMounted = false;
   state = {
-    admin: ""
+    admin: "",
+    superAdmin: ""
   };
 
   handleApprove = (project, projectId) => {
@@ -48,7 +49,8 @@ class ProjectDetails extends Component {
         user.getIdTokenResult().then(idTokenResult => {
           if (this._isMounted) {
             this.setState({
-              admin: idTokenResult.claims.admin
+              admin: idTokenResult.claims.admin,
+              superAdmin: idTokenResult.claims.superAdmin
             });
             console.log(this.state);
           }
@@ -56,7 +58,8 @@ class ProjectDetails extends Component {
       } else {
         if (this._isMounted) {
           this.setState({
-            admin: ""
+            admin: "",
+            superAdmin: ""
           });
         }
       }
@@ -71,12 +74,65 @@ class ProjectDetails extends Component {
 
   render() {
     const { projectId, project, auth, milestones } = this.props;
-    if (this.state.admin) {
+    if (this.state.superAdmin) {
       if (!auth.uid) return <Redirect to="/signin" />;
 
       if (project) {
         return (
           <div className="container section">
+            Logged in as Co-ordinator...
+            <div className="card z-depth-o grey lighten-3">
+              <div className="card-content">
+                <span className="card-title">{project.projectTitle}</span>
+                <div className="flex-container">
+                  <div>
+                    <Link to="/">
+                      <i className="small material-icons">arrow_back</i>
+                    </Link>
+                  </div>
+                  <div>
+                    <Status status={project.status} />
+                  </div>
+                  <div>
+                    <Approve
+                      onClick={() => this.handleApprove(project, projectId)}
+                      status={project.status}
+                    />
+                  </div>
+                  <div>
+                    <Remove onClick={() => this.handleDelete(projectId)} />
+                  </div>
+                </div>
+                <p>{project.projectDesc}</p>
+              </div>
+              <div className="card-action gret lighten-4 grey-text custom-font-caps">
+                <div>
+                  {project.authorFirstName} {project.authorLastName}{" "}
+                  {project.regNumber} {project.course}
+                </div>
+                <div>
+                  Project Added On:{" "}
+                  {moment(project.createdAt.toDate()).calendar()}
+                </div>
+              </div>
+              <MilestoneList milestones={milestones} projectId={projectId} />
+            </div>
+          </div>
+        );
+      } else {
+        return (
+          <div className="container center cyan-text">
+            <p>Loading...</p>
+          </div>
+        );
+      }
+    } else if (this.state.admin) {
+      if (!auth.uid) return <Redirect to="/signin" />;
+
+      if (project) {
+        return (
+          <div className="container section">
+            Logged in as Supervisor...
             <div className="card z-depth-o grey lighten-3">
               <div className="card-content">
                 <span className="card-title">{project.projectTitle}</span>
@@ -125,6 +181,7 @@ class ProjectDetails extends Component {
     } else if (project && auth.uid === project.authorId) {
       return (
         <div className="container section">
+          Logged in as Student...
           <div className="card z-depth-o grey lighten-3">
             <div className="card-content">
               <span className="card-title">{project.projectTitle}</span>

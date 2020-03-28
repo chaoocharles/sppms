@@ -12,7 +12,8 @@ import AddSuperAdminRole from "../admin/AddSuperAdminRole";
 class Dashboard extends Component {
   _isMounted = false;
   state = {
-    admin: ""
+    admin: "",
+    superAdmin: ""
   };
 
   componentDidMount() {
@@ -22,7 +23,8 @@ class Dashboard extends Component {
         user.getIdTokenResult().then(idTokenResult => {
           if (this._isMounted) {
             this.setState({
-              admin: idTokenResult.claims.admin
+              admin: idTokenResult.claims.admin,
+              superAdmin: idTokenResult.claims.superAdmin
             });
             console.log(this.state);
           }

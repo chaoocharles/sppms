@@ -17,7 +17,8 @@ import firebase from "firebase/app";
 class MilestoneDetails extends Component {
   _isMounted = false;
   state = {
-    admin: ""
+    admin: "",
+    superAdmin: ""
   };
 
   handleApprove = (milestone, milestoneId) => {
@@ -54,7 +55,8 @@ class MilestoneDetails extends Component {
         user.getIdTokenResult().then(idTokenResult => {
           if (this._isMounted) {
             this.setState({
-              admin: idTokenResult.claims.admin
+              admin: idTokenResult.claims.admin,
+              superAdmin: idTokenResult.claims.superAdmin
             });
             console.log(this.state);
           }
@@ -62,7 +64,8 @@ class MilestoneDetails extends Component {
       } else {
         if (this._isMounted) {
           this.setState({
-            admin: ""
+            admin: "",
+            superAdmin: ""
           });
         }
       }
@@ -77,10 +80,55 @@ class MilestoneDetails extends Component {
 
   render() {
     const { remarks, auth, milestone, milestoneId } = this.props;
-    if (this.state.admin) {
+    if (this.state.superAdmin) {
       if (milestone && auth.uid === milestone.authorId) {
         return (
           <div className="container section">
+            Logged in as Co-ordinator...
+            <div className="card z-depth-o grey lighten-3">
+              <div className="card-content">
+                <span className="card-title">{milestone.milestoneTitle}</span>
+                <div className="flex-container">
+                  <div>
+                    <i
+                      onClick={this.goBack}
+                      className="small material-icons custom-link"
+                    >
+                      arrow_back
+                    </i>
+                  </div>
+                  <div>
+                    <Status status={milestone.status} />
+                  </div>
+                  <div>
+                    <Approve
+                      onClick={() => this.handleApprove(milestone, milestoneId)}
+                      status={milestone.status}
+                    />
+                  </div>
+                  <div>
+                    <Remove
+                      onClick={() => this.handleDelete(milestoneId, remarks)}
+                    />
+                  </div>
+                </div>
+                <p>{milestone.milestoneDesc}</p>
+              </div>
+              <div className="card-action gret lighten-4 grey-text custom-font-caps">
+                Milestone Added On:{" "}
+                {moment(milestone.createdAt.toDate()).calendar()}
+              </div>
+              <AddRemarks milestoneId={milestoneId} />
+              <RemarkList milestoneId={milestoneId} remarks={remarks} />
+            </div>
+          </div>
+        );
+      } else return null;
+    } else if (this.state.admin) {
+      if (milestone && auth.uid === milestone.authorId) {
+        return (
+          <div className="container section">
+            Logged in as Supervisor...
             <div className="card z-depth-o grey lighten-3">
               <div className="card-content">
                 <span className="card-title">{milestone.milestoneTitle}</span>
@@ -123,6 +171,7 @@ class MilestoneDetails extends Component {
     } else if (milestone && auth.uid === milestone.authorId) {
       return (
         <div className="container section">
+          Logged in as Student...
           <div className="card z-depth-o grey lighten-3">
             <div className="card-content">
               <span className="card-title">{milestone.milestoneTitle}</span>
