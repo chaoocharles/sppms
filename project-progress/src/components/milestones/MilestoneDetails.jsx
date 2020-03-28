@@ -119,7 +119,13 @@ class MilestoneDetails extends Component {
                 {moment(milestone.createdAt.toDate()).calendar()}
               </div>
               <AddRemarks milestoneId={milestoneId} />
-              <RemarkList milestoneId={milestoneId} remarks={remarks} />
+              <RemarkList
+                milestoneId={milestoneId}
+                remarks={remarks}
+                admin={this.state.admin}
+                superAdmin={this.state.superAdmin}
+                auth={auth}
+              />
             </div>
           </div>
         );
@@ -163,7 +169,13 @@ class MilestoneDetails extends Component {
                 {moment(milestone.createdAt.toDate()).calendar()}
               </div>
               <AddRemarks milestoneId={milestoneId} />
-              <RemarkList milestoneId={milestoneId} remarks={remarks} />
+              <RemarkList
+                milestoneId={milestoneId}
+                remarks={remarks}
+                admin={this.state.admin}
+                superAdmin={this.state.superAdmin}
+                auth={auth}
+              />
             </div>
           </div>
         );
@@ -199,7 +211,13 @@ class MilestoneDetails extends Component {
               Milestone Added On:{" "}
               {moment(milestone.createdAt.toDate()).calendar()}
             </div>
-            <RemarkList milestoneId={milestoneId} remarks={remarks} />
+            <RemarkList
+              milestoneId={milestoneId}
+              remarks={remarks}
+              admin={this.state.admin}
+              superAdmin={this.state.superAdmin}
+              auth={auth}
+            />
           </div>
         </div>
       );
