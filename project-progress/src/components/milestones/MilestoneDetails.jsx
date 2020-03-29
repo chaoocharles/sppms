@@ -51,7 +51,7 @@ class MilestoneDetails extends Component {
       superAdmin
     } = this.props;
     if (superAdmin) {
-      if (milestone && auth.uid === milestone.authorId) {
+      if (milestone) {
         return (
           <div className="container section">
             <div className="card z-depth-o grey lighten-3">
@@ -100,7 +100,7 @@ class MilestoneDetails extends Component {
         );
       } else return null;
     } else if (admin) {
-      if (milestone && auth.uid === milestone.authorId) {
+      if (milestone) {
         return (
           <div className="container section">
             <div className="card z-depth-o grey lighten-3">
