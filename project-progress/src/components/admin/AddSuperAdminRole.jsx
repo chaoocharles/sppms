@@ -42,7 +42,6 @@ class AddSuperAdminRole extends Component {
                 <p className="green-text">{this.props.addSuperAdminMessage}</p>
               ) : null}
             </div>
-            <input type="reset" defaultValue="Reset Field" />
           </div>
         </form>
       </div>

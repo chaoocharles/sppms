@@ -12,15 +12,8 @@ import Remove from "../common/Remove";
 import AddRemarks from "./AddRemarks";
 import RemarkList from "./RemarkList";
 import { withRouter } from "react-router-dom";
-import firebase from "firebase/app";
 
 class MilestoneDetails extends Component {
-  _isMounted = false;
-  state = {
-    admin: "",
-    superAdmin: ""
-  };
-
   handleApprove = (milestone, milestoneId) => {
     if (milestone.status === true) {
       if (window.confirm("Mark this milestone as InProgress?"))
@@ -48,43 +41,19 @@ class MilestoneDetails extends Component {
     this.props.history.goBack();
   };
 
-  componentDidMount() {
-    this._isMounted = true;
-    this.fireBaseListener = firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        user.getIdTokenResult().then(idTokenResult => {
-          if (this._isMounted) {
-            this.setState({
-              admin: idTokenResult.claims.admin,
-              superAdmin: idTokenResult.claims.superAdmin
-            });
-            console.log(this.state);
-          }
-        });
-      } else {
-        if (this._isMounted) {
-          this.setState({
-            admin: "",
-            superAdmin: ""
-          });
-        }
-      }
-    });
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
-    //    this.fireBaseListener && this.fireBaseListener();
-    //    this.authListener = undefined;
-  }
-
   render() {
-    const { remarks, auth, milestone, milestoneId } = this.props;
-    if (this.state.superAdmin) {
+    const {
+      remarks,
+      auth,
+      milestone,
+      milestoneId,
+      admin,
+      superAdmin
+    } = this.props;
+    if (superAdmin) {
       if (milestone && auth.uid === milestone.authorId) {
         return (
           <div className="container section">
-            Logged in as Co-ordinator...
             <div className="card z-depth-o grey lighten-3">
               <div className="card-content">
                 <span className="card-title">{milestone.milestoneTitle}</span>
@@ -122,19 +91,18 @@ class MilestoneDetails extends Component {
               <RemarkList
                 milestoneId={milestoneId}
                 remarks={remarks}
-                admin={this.state.admin}
-                superAdmin={this.state.superAdmin}
+                admin={admin}
+                superAdmin={superAdmin}
                 auth={auth}
               />
             </div>
           </div>
         );
       } else return null;
-    } else if (this.state.admin) {
+    } else if (admin) {
       if (milestone && auth.uid === milestone.authorId) {
         return (
           <div className="container section">
-            Logged in as Supervisor...
             <div className="card z-depth-o grey lighten-3">
               <div className="card-content">
                 <span className="card-title">{milestone.milestoneTitle}</span>
@@ -183,7 +151,6 @@ class MilestoneDetails extends Component {
     } else if (milestone && auth.uid === milestone.authorId) {
       return (
         <div className="container section">
-          Logged in as Student...
           <div className="card z-depth-o grey lighten-3">
             <div className="card-content">
               <span className="card-title">{milestone.milestoneTitle}</span>
@@ -234,7 +201,9 @@ const mapStateToProps = (state, ownProps) => {
     milestoneId: id,
     auth: state.firebase.auth,
     milestone: milestone,
-    remarks: remarks
+    remarks: remarks,
+    admin: state.admin.admin,
+    superAdmin: state.admin.superAdmin
   };
 };
 

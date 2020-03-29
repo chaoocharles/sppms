@@ -42,7 +42,6 @@ class AddAdminRole extends Component {
                 <p className="green-text">{this.props.addAdminMessage}</p>
               ) : null}
             </div>
-            <input type="reset" defaultValue="Reset Field" />
           </div>
         </form>
       </div>

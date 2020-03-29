@@ -20,7 +20,6 @@ const RemarkDetails = ({
     if (remark && remark.milestoneId === milestoneId) {
       return (
         <ul className="collection with-header remark">
-          super
           <li className="collection-header custom-font-caps">
             <p>
               {remark.authorFirstName} {remark.authorLastName} :{" "}

@@ -24,6 +24,12 @@ const adminReducer = (state = initState, action) => {
         ...state,
         addSuperAdminError: action.err.message
       };
+    case "ADD_ROLE_TO_STATE":
+      return {
+        ...state,
+        admin: action.role.admin,
+        superAdmin: action.role.superAdmin
+      };
     default:
       return state;
   }

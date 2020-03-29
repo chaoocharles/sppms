@@ -13,15 +13,8 @@ import Approve from "../common/Approve";
 import Status from "../common/Status";
 import { toggleProjectStatus } from "../../store/actions/projectActions";
 import { deleteProject } from "../../store/actions/projectActions";
-import firebase from "firebase/app";
 
 class ProjectDetails extends Component {
-  _isMounted = false;
-  state = {
-    admin: "",
-    superAdmin: ""
-  };
-
   handleApprove = (project, projectId) => {
     if (project.status === true) {
       if (window.confirm("Mark this project as InProgress?"))
@@ -42,45 +35,21 @@ class ProjectDetails extends Component {
     }
   };
 
-  componentDidMount() {
-    this._isMounted = true;
-    this.fireBaseListener = firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        user.getIdTokenResult().then(idTokenResult => {
-          if (this._isMounted) {
-            this.setState({
-              admin: idTokenResult.claims.admin,
-              superAdmin: idTokenResult.claims.superAdmin
-            });
-            console.log(this.state);
-          }
-        });
-      } else {
-        if (this._isMounted) {
-          this.setState({
-            admin: "",
-            superAdmin: ""
-          });
-        }
-      }
-    });
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
-    //    this.fireBaseListener && this.fireBaseListener();
-    //    this.authListener = undefined;
-  }
-
   render() {
-    const { projectId, project, auth, milestones } = this.props;
-    if (this.state.superAdmin) {
+    const {
+      projectId,
+      project,
+      auth,
+      milestones,
+      admin,
+      superAdmin
+    } = this.props;
+    if (superAdmin) {
       if (!auth.uid) return <Redirect to="/signin" />;
 
       if (project) {
         return (
           <div className="container section">
-            Logged in as Co-ordinator...
             <div className="card z-depth-o grey lighten-3">
               <div className="card-content">
                 <span className="card-title">{project.projectTitle}</span>
@@ -126,13 +95,12 @@ class ProjectDetails extends Component {
           </div>
         );
       }
-    } else if (this.state.admin) {
+    } else if (admin) {
       if (!auth.uid) return <Redirect to="/signin" />;
 
       if (project) {
         return (
           <div className="container section">
-            Logged in as Supervisor...
             <div className="card z-depth-o grey lighten-3">
               <div className="card-content">
                 <span className="card-title">{project.projectTitle}</span>
@@ -181,7 +149,6 @@ class ProjectDetails extends Component {
     } else if (project && auth.uid === project.authorId) {
       return (
         <div className="container section">
-          Logged in as Student...
           <div className="card z-depth-o grey lighten-3">
             <div className="card-content">
               <span className="card-title">{project.projectTitle}</span>
@@ -242,7 +209,9 @@ const mapStateToProps = (state, ownProps) => {
     projectId: id,
     project: project,
     auth: state.firebase.auth,
-    milestones: milestones
+    milestones: milestones,
+    admin: state.admin.admin,
+    superAdmin: state.admin.superAdmin
   };
 };
 

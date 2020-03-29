@@ -5,7 +5,6 @@ export const addAdminRole = userEmail => {
 
     addAdmin({ email: userEmail })
       .then(result => {
-        console.log(result);
         dispatch({ type: "ADD_ADMIN_SUCESS", result });
       })
       .catch(err => {
@@ -21,11 +20,17 @@ export const addSuperAdminRole = adminEmail => {
 
     addSuperAdmin({ email: adminEmail })
       .then(result => {
-        console.log(result);
         dispatch({ type: "ADD_SUPER_ADMIN_SUCESS", result });
       })
       .catch(err => {
         dispatch({ type: "ADD_SUPER_ADMIN_ERROR", err });
       });
+  };
+};
+
+export const addRoleStateToStore = role => {
+  return {
+    type: "ADD_ROLE_TO_STATE",
+    role
   };
 };
