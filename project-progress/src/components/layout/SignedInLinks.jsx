@@ -8,7 +8,7 @@ const SignedInLinks = ({ signOut, profile, admin, superAdmin }) => {
   if (superAdmin) {
     return (
       <ul id="nav-mobile" className="right hide-on-med-and-down">
-        <li className="green-text">Logged in as Co-ordinator</li>
+        <li className="yellow-text">Logged in as Co-ordinator</li>
         <li>
           <Link to="/signin" onClick={signOut}>
             Log Out
@@ -24,7 +24,7 @@ const SignedInLinks = ({ signOut, profile, admin, superAdmin }) => {
   } else if (admin) {
     return (
       <ul id="nav-mobile" className="right hide-on-med-and-down">
-        <li className="green-text">Logged in as Supervisor</li>
+        <li className="yellow-text">Logged in as Supervisor</li>
         <li>
           <Link to="/signin" onClick={signOut}>
             Log Out
@@ -40,7 +40,7 @@ const SignedInLinks = ({ signOut, profile, admin, superAdmin }) => {
   } else {
     return (
       <ul id="nav-mobile" className="right hide-on-med-and-down">
-        <li className="green-text">Logged in as Student</li>
+        <li className="yellow-text">Logged in as Student</li>
         <li>
           <Link to="/signin" onClick={signOut}>
             Log Out

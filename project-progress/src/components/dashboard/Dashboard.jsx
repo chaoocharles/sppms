@@ -60,7 +60,7 @@ const mapStateToProps = state => {
     projects: state.firestore.ordered.projects,
     auth: state.firebase.auth,
     admin: state.admin.admin,
-    super: state.admin.superAdmin
+    superAdmin: state.admin.superAdmin
   };
 };
 

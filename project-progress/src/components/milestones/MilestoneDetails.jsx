@@ -140,8 +140,8 @@ class MilestoneDetails extends Component {
               <RemarkList
                 milestoneId={milestoneId}
                 remarks={remarks}
-                admin={this.state.admin}
-                superAdmin={this.state.superAdmin}
+                admin={admin}
+                superAdmin={superAdmin}
                 auth={auth}
               />
             </div>
@@ -181,8 +181,8 @@ class MilestoneDetails extends Component {
             <RemarkList
               milestoneId={milestoneId}
               remarks={remarks}
-              admin={this.state.admin}
-              superAdmin={this.state.superAdmin}
+              admin={admin}
+              superAdmin={superAdmin}
               auth={auth}
             />
           </div>

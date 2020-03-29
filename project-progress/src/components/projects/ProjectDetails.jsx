@@ -56,7 +56,9 @@ class ProjectDetails extends Component {
                 <div className="flex-container">
                   <div>
                     <Link to="/">
-                      <i className="small material-icons">arrow_back</i>
+                      <i className="small material-icons custom-link">
+                        arrow_back
+                      </i>
                     </Link>
                   </div>
                   <div>
@@ -107,7 +109,9 @@ class ProjectDetails extends Component {
                 <div className="flex-container">
                   <div>
                     <Link to="/">
-                      <i className="small material-icons">arrow_back</i>
+                      <i className="small material-icons custom-link">
+                        arrow_back
+                      </i>
                     </Link>
                   </div>
                   <div>
