@@ -7,6 +7,7 @@ import logo from "../../logo-white.png";
 import "../../index.css";
 import firebase from "firebase/app";
 import { addRoleStateToStore } from "../../store/actions/adminActions";
+import SideBarToggle from "./SideBarToggle";
 
 class Navbar extends Component {
   _isMounted = false;
@@ -62,6 +63,7 @@ class Navbar extends Component {
           </Link>
         </div>
         {links}
+        <SideBarToggle />
       </nav>
     );
   }

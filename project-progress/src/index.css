@@ -103,3 +103,10 @@ form h5 {
   display: flex;
   flex-wrap: wrap;
 }
+
+.custom-toggle-button {
+  width: 30px;
+  text-align: center;
+  margin-left: 20px;
+  cursor: pointer;
+}
