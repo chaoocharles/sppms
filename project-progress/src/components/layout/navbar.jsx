@@ -47,7 +47,13 @@ class Navbar extends Component {
   }
 
   render() {
-    const { auth, profile, admin, superAdmin } = this.props;
+    const {
+      auth,
+      profile,
+      admin,
+      superAdmin,
+      handleSideBarToggle
+    } = this.props;
 
     const links = auth.uid ? (
       <SignedInLinks profile={profile} admin={admin} superAdmin={superAdmin} />
@@ -63,7 +69,7 @@ class Navbar extends Component {
           </Link>
         </div>
         {links}
-        <SideBarToggle />
+        <SideBarToggle click={handleSideBarToggle} />
       </nav>
     );
   }

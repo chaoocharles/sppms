@@ -2,9 +2,9 @@ import React from "react";
 
 import "../../index.css";
 
-const SideBarToggle = () => {
+const SideBarToggle = ({click}) => {
   return (
-    <div className="custom-toggle-button">
+    <div className="custom-toggle-button" onClick = {click} >
       <i className="material-icons white-text">menu</i>
     </div>
   );
