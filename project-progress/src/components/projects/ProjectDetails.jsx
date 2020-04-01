@@ -50,7 +50,7 @@ class ProjectDetails extends Component {
       if (project) {
         return (
           <div className="container section">
-            <div className="card z-depth-o grey lighten-3">
+            <div className="card z-depth-o grey lighten-3 custom-content-top-margin">
               <div className="card-content">
                 <span className="card-title">{project.projectTitle}</span>
                 <div className="flex-container">
@@ -103,7 +103,7 @@ class ProjectDetails extends Component {
       if (project) {
         return (
           <div className="container section">
-            <div className="card z-depth-o grey lighten-3">
+            <div className="card z-depth-o grey lighten-3 custom-content-top-margin">
               <div className="card-content">
                 <span className="card-title">{project.projectTitle}</span>
                 <div className="flex-container">
@@ -153,7 +153,7 @@ class ProjectDetails extends Component {
     } else if (project && auth.uid === project.authorId) {
       return (
         <div className="container section">
-          <div className="card z-depth-o grey lighten-3">
+          <div className="card z-depth-o grey lighten-3 custom-content-top-margin">
             <div className="card-content">
               <span className="card-title">{project.projectTitle}</span>
               <div className="flex-container">

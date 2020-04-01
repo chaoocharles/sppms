@@ -62,7 +62,7 @@ class Navbar extends Component {
     );
 
     return (
-      <nav className="nav-wrapper grey darken-2">
+      <nav className="nav-wrapper grey darken-2 custom-fixed">
         <div className="container">
           <Link to="/">
             <img src={logo} alt="SPPMS" className="brand-logo logo" />

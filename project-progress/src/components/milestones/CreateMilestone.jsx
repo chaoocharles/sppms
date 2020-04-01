@@ -22,6 +22,8 @@ class CreateMilestone extends Component {
         e.preventDefault();
         const projectId = this.props.projectId;
         this.props.createMilestone(this.state, projectId);
+        document.getElementById("create-milestone-form").reset();
+
     }
 
     render() { 
@@ -30,7 +32,7 @@ class CreateMilestone extends Component {
 
         return ( 
             <div>
-                <form onSubmit={this.handleSubmit} className ="white createMilestone">
+                <form id = "create-milestone-form" onSubmit={this.handleSubmit} className ="white createMilestone">
                     <h5 className="grey-text text-darken-3">Add New Milestone</h5>
                     <div className='input-field'>
                         <label htmlFor="milestoneTitle">Milestone Title</label>

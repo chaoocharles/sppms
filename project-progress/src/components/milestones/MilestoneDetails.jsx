@@ -54,7 +54,7 @@ class MilestoneDetails extends Component {
       if (milestone) {
         return (
           <div className="container section">
-            <div className="card z-depth-o grey lighten-3">
+            <div className="card z-depth-o grey lighten-3 custom-content-top-margin">
               <div className="card-content">
                 <span className="card-title">{milestone.milestoneTitle}</span>
                 <div className="flex-container">
@@ -103,7 +103,7 @@ class MilestoneDetails extends Component {
       if (milestone) {
         return (
           <div className="container section">
-            <div className="card z-depth-o grey lighten-3">
+            <div className="card z-depth-o grey lighten-3 custom-content-top-margin">
               <div className="card-content">
                 <span className="card-title">{milestone.milestoneTitle}</span>
                 <div className="flex-container">
@@ -151,7 +151,7 @@ class MilestoneDetails extends Component {
     } else if (milestone && auth.uid === milestone.authorId) {
       return (
         <div className="container section">
-          <div className="card z-depth-o grey lighten-3">
+          <div className="card z-depth-o grey lighten-3 custom-content-top-margin">
             <div className="card-content">
               <span className="card-title">{milestone.milestoneTitle}</span>
               <div className="flex-container">

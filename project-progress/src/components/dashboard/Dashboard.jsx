@@ -15,7 +15,7 @@ class Dashboard extends Component {
 
     if (superAdmin) {
       return (
-        <div className="dashboard">
+        <div className="dashboard custom-content-top-margin">
           <div className="row">
             <div className="col s12 m7">
               <ProjectList projects={projects} />
@@ -29,7 +29,7 @@ class Dashboard extends Component {
       );
     } else if (admin) {
       return (
-        <div className="dashboard">
+        <div className="dashboard custom-content-top-margin">
           <div className="row">
             <div className="col s12 m7">
               <ProjectList projects={projects} />
@@ -40,7 +40,7 @@ class Dashboard extends Component {
       );
     } else {
       return (
-        <div className="dashboard">
+        <div className="dashboard custom-content-top-margin">
           <div className="row">
             <div className="col s12 m7">
               <ProjectList projects={projects} />

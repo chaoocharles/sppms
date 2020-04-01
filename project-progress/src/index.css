@@ -125,7 +125,7 @@ form h5 {
   left: 0;
   width: 50%;
   max-width: 250px;
-  z-index: 200;
+  z-index: 300;
   transform: translateX(-100%);
   transition: transform 0.3s ease-out;
 }
@@ -146,16 +146,27 @@ form h5 {
   height: 100%;
   width: 100%;
   background: rgba(0, 0, 0, 0.3);
+  z-index: 200;
+  top: 0;
+  left: 0;
+}
+
+.custom-fixed {
+  position: fixed;
   z-index: 100;
   top: 0;
   left: 0;
 }
 
-/* @media (min-width: 992px) {
+.custom-content-top-margin {
+  margin-top: 70px;
+}
+
+@media (min-width: 992px) {
   .custom-sidebar {
     display: none;
   }
   .custom-toggle-button {
     display: none;
   }
-} */
+}

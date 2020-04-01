@@ -24,9 +24,9 @@ export const signOut = () => {
       .then(() => {
         dispatch({ type: "SIGNOUT_SUCCESS" });
       })
-      .then(() => {
-        window.location.reload();
-      });
+      // .then(() => {
+      //   window.location.reload();
+      // });
   };
 };
 

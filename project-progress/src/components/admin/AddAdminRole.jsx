@@ -19,6 +19,7 @@ class AddAdminRole extends Component {
     e.preventDefault();
     const userEmail = this.state.userEmail;
     this.props.addAdminRole(userEmail);
+    document.getElementById("add-admin-form").reset();
   };
 
   render() {
@@ -27,7 +28,11 @@ class AddAdminRole extends Component {
 
     return (
       <div className="admin-form">
-        <form onSubmit={this.handleSubmit} className="white createMilestone">
+        <form
+          id="add-admin-form"
+          onSubmit={this.handleSubmit}
+          className="white createMilestone"
+        >
           <h5 className="grey-text text-darken-3">Add Supervisor</h5>
           <div className="input-field">
             <label htmlFor="userEmail">User Email</label>

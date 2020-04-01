@@ -19,6 +19,7 @@ class AddSuperAdminRole extends Component {
     e.preventDefault();
     const adminEmail = this.state.adminEmail;
     this.props.addSuperAdminRole(adminEmail);
+    document.getElementById("add-superAdmin-form").reset();
   };
 
   render() {
@@ -27,15 +28,19 @@ class AddSuperAdminRole extends Component {
 
     return (
       <div className="admin-form">
-        <form onSubmit={this.handleSubmit} className="white createMilestone">
-          <h5 className="grey-text text-darken-3">Add Co-ordinator</h5>
+        <form
+          id="add-superAdmin-form"
+          onSubmit={this.handleSubmit}
+          className="white createMilestone"
+        >
+          <h5 className="grey-text text-darken-3">Add Coordinator</h5>
           <div className="input-field">
             <label htmlFor="adminEmail">User Email</label>
             <input type="email" id="adminEmail" onChange={this.handleChange} />
           </div>
           <div className="input-field">
             <button className="btn cyan darken-2 z-depth-0">
-              MAKE CO-ORDITOR
+              MAKE COORDITOR
             </button>
             <div className="center">
               {this.props.addSuperAdminMessage ? (
