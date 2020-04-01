@@ -4,17 +4,23 @@ import "../../index.css";
 import { connect } from "react-redux";
 import { signOut } from "../../store/actions/authActions";
 
-const SignedInLinks = ({ signOut, profile, admin, superAdmin }) => {
+const SignedInLinksSideBar = ({
+  signOut,
+  profile,
+  admin,
+  superAdmin,
+  click
+}) => {
   if (superAdmin) {
     return (
-      <ul id="nav-mobile" className="right hide-on-med-and-down">
+      <ul>
         <li className="yellow-text">Logged in as Coordinator</li>
         <li>
           <Link to="/signin" onClick={signOut}>
             Log Out
           </Link>
         </li>
-        <li>
+        <li onClick={click}>
           <NavLink to="/" className="btn btn-floating cyan darken-2">
             {profile.initials}
           </NavLink>
@@ -23,14 +29,14 @@ const SignedInLinks = ({ signOut, profile, admin, superAdmin }) => {
     );
   } else if (admin) {
     return (
-      <ul id="nav-mobile" className="right hide-on-med-and-down">
+      <ul>
         <li className="yellow-text">Logged in as Supervisor</li>
         <li>
           <Link to="/signin" onClick={signOut}>
             Log Out
           </Link>
         </li>
-        <li>
+        <li onClick={click}>
           <NavLink to="/" className="btn btn-floating cyan darken-2">
             {profile.initials}
           </NavLink>
@@ -39,14 +45,14 @@ const SignedInLinks = ({ signOut, profile, admin, superAdmin }) => {
     );
   } else {
     return (
-      <ul id="nav-mobile" className="right hide-on-med-and-down">
+      <ul>
         <li className="yellow-text">Logged in as Student</li>
         <li>
           <Link to="/signin" onClick={signOut}>
             Log Out
           </Link>
         </li>
-        <li>
+        <li onClick={click}>
           <NavLink to="/" className="btn btn-floating cyan darken-2">
             {profile.initials}
           </NavLink>
@@ -62,4 +68,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(SignedInLinks);
+export default connect(null, mapDispatchToProps)(SignedInLinksSideBar);
