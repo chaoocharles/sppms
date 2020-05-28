@@ -25,7 +25,7 @@ class ProjectDetails extends Component {
     }
   };
 
-  handleDelete = projectId => {
+  handleDelete = (projectId) => {
     alert("Remove all the milestones before removing this project.");
     if (
       window.confirm("Remove this project? \n\nThis action is irreversible!")
@@ -42,7 +42,7 @@ class ProjectDetails extends Component {
       auth,
       milestones,
       admin,
-      superAdmin
+      superAdmin,
     } = this.props;
     if (superAdmin) {
       if (!auth.uid) return <Redirect to="/signin" />;
@@ -195,12 +195,12 @@ class ProjectDetails extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     deleteProject: (project, projectId) =>
       dispatch(deleteProject(project, projectId)),
     toggleProjectStatus: (project, projectId) =>
-      dispatch(toggleProjectStatus(project, projectId))
+      dispatch(toggleProjectStatus(project, projectId)),
   };
 };
 
@@ -215,7 +215,7 @@ const mapStateToProps = (state, ownProps) => {
     auth: state.firebase.auth,
     milestones: milestones,
     admin: state.admin.admin,
-    superAdmin: state.admin.superAdmin
+    superAdmin: state.admin.superAdmin,
   };
 };
 
@@ -223,6 +223,6 @@ export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect(() => [
     { collection: "projects" },
-    { collection: "milestones", orderBy: ["createdAt", "desc"] }
+    { collection: "milestones", orderBy: ["createdAt", "desc"] },
   ])
 )(ProjectDetails);

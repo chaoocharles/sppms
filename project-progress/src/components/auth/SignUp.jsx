@@ -8,22 +8,22 @@ class SignUp extends Component {
     Email: "",
     Password: "",
     FirstName: "",
-    LastName: ""
+    LastName: "",
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.signUp(this.state);
   };
 
   render() {
-    const { auth, authError } = this.props;
+    const { auth } = this.props;
     if (auth.uid) return <Redirect to="/" />;
 
     return (
@@ -51,9 +51,6 @@ class SignUp extends Component {
           </div>
           <div className="input-field">
             <button className="btn cyan darken-2 z-depth-0">SIGN Up</button>
-            <div className="red-text center">
-              {authError ? <p>{authError}</p> : null}
-            </div>
           </div>
         </form>
       </div>
@@ -61,16 +58,15 @@ class SignUp extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    signUp: newUser => dispatch(signUp(newUser))
+    signUp: (newUser) => dispatch(signUp(newUser)),
   };
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
-    authError: state.auth.authError
   };
 };
 

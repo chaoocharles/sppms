@@ -6,16 +6,16 @@ import "../../index.css";
 
 class AddAdminRole extends Component {
   state = {
-    userEmail: ""
+    userEmail: "",
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     });
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     const userEmail = this.state.userEmail;
     this.props.addAdminRole(userEmail);
@@ -42,11 +42,6 @@ class AddAdminRole extends Component {
             <button className="btn cyan darken-2 z-depth-0">
               MAKE SUPERVISOR
             </button>
-            <div className="center">
-              {this.props.addAdminMessage ? (
-                <p className="green-text">{this.props.addAdminMessage}</p>
-              ) : null}
-            </div>
           </div>
         </form>
       </div>
@@ -54,16 +49,15 @@ class AddAdminRole extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth,
-    addAdminMessage: state.admin.addAdminMessage
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    addAdminRole: userEmail => dispatch(addAdminRole(userEmail))
+    addAdminRole: (userEmail) => dispatch(addAdminRole(userEmail)),
   };
 };
 

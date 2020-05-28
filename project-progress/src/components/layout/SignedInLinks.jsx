@@ -10,6 +10,9 @@ const SignedInLinks = ({ signOut, profile, admin, superAdmin }) => {
       <ul id="nav-mobile" className="right hide-on-med-and-down">
         <li className="yellow-text">Logged in as Coordinator</li>
         <li>
+          <Link to="/allocations">Allocations</Link>
+        </li>
+        <li>
           <Link to="/signin" onClick={signOut}>
             Log Out
           </Link>

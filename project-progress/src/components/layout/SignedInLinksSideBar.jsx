@@ -16,6 +16,11 @@ const SignedInLinksSideBar = ({
       <ul>
         <li className="yellow-text">Logged in as Coordinator</li>
         <li>
+          <Link to="/allocations" onClick={click}>
+            Allocations
+          </Link>
+        </li>
+        <li>
           <Link to="/signin" onClick={signOut}>
             Log Out
           </Link>

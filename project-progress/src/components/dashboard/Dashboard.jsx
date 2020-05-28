@@ -55,12 +55,12 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     projects: state.firestore.ordered.projects,
     auth: state.firebase.auth,
     admin: state.admin.admin,
-    superAdmin: state.admin.superAdmin
+    superAdmin: state.admin.superAdmin,
   };
 };
 
@@ -69,7 +69,11 @@ export default compose(
   firestoreConnect([
     {
       collection: "projects",
-      orderBy: ["createdAt", "desc"]
-    }
+      orderBy: ["createdAt", "desc"],
+    },
+    {
+      collection: "allocations",
+      orderBy: ["createdAt", "desc"],
+    },
   ])
 )(Dashboard);
