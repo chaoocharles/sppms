@@ -170,3 +170,16 @@ form h5 {
     display: none;
   }
 }
+
+.custom-user-ui {
+  display: flex;
+  align-items: center;
+  font-size: larger;
+  font-weight: 400;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.custom-user-ui span:hover {
+  color: rgb(18, 117, 117);
+}

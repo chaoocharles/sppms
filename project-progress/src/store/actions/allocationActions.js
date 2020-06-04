@@ -25,3 +25,29 @@ export const addAllocation = (allocationName) => {
       });
   };
 };
+
+export const addMember = (user, allocationId, allocation) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+
+    firestore
+      .collection("allocations")
+      .doc(allocationId)
+      .update({
+        ...allocation,
+        members: firestore.FieldValue.arrayUnion(user.email),
+      })
+      .then(() => {
+        dispatch({
+          type: "ADD_MEMBER",
+          user,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: "ADD_MEMBER_ERR",
+          err,
+        });
+      });
+  };
+};
