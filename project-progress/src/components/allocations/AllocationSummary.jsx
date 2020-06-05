@@ -11,7 +11,8 @@ class AllocationSummary extends Component {
         <table className="projectTable">
           <thead>
             <tr>
-              <th colSpan="3">{allocation.allocationName}</th>
+              <th colSpan="2">{allocation.allocationName}</th>
+              <th>5</th>
             </tr>
           </thead>
           <tbody>

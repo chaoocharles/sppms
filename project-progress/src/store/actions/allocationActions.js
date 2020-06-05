@@ -35,7 +35,11 @@ export const addMember = (user, allocationId, allocation) => {
       .doc(allocationId)
       .update({
         ...allocation,
-        members: firestore.FieldValue.arrayUnion(user.email),
+        members: firestore.FieldValue.arrayUnion({
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+        }),
       })
       .then(() => {
         dispatch({
@@ -46,6 +50,34 @@ export const addMember = (user, allocationId, allocation) => {
       .catch((err) => {
         dispatch({
           type: "ADD_MEMBER_ERR",
+          err,
+        });
+      });
+  };
+};
+
+export const removeMember = (member, allocationId, allocation) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+
+    firestore
+      .collection("allocations")
+      .doc(allocationId)
+      .update({
+        ...allocation,
+        members: firestore.FieldValue.arrayRemove({
+          ...member,
+        }),
+      })
+      .then(() => {
+        dispatch({
+          type: "REMOVE_MEMBER",
+          member,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: "REMOVE_MEMBER_ERR",
           err,
         });
       });

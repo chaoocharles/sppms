@@ -5,7 +5,7 @@ import { addMember } from "../../store/actions/allocationActions";
 class User extends Component {
   state = {};
 
-  handleClick = (user, allocationId, allocation) => {
+  handleAdd = (user, allocationId, allocation) => {
     this.props.addMember(user, allocationId, allocation);
     console.log(user);
   };
@@ -16,9 +16,11 @@ class User extends Component {
       <>
         <label
           className="custom-user-ui"
-          onClick={() => this.handleClick(user, allocationId, allocation)}
+          onClick={() => this.handleAdd(user, allocationId, allocation)}
         >
-          <i className="material-icons cyan-text">add_box</i>
+          <i className="material-icons custom-icon-margin cyan-text">
+            account_box
+          </i>
           <span>
             <span className="custom-font-caps">
               {user.firstName} {user.lastName}

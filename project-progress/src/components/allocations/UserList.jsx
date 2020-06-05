@@ -15,9 +15,7 @@ class UserList extends Component {
 
     return (
       <div>
-        <h6>
-          Click users from the list below to add them as members of this group
-        </h6>
+        <h6>Click users to add them in this group...</h6>
         <p>
           {users &&
             users.map((user) => {

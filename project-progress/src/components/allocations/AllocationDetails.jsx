@@ -5,8 +5,13 @@ import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { withRouter } from "react-router-dom";
 import UserList from "./UserList";
+import MemberList from "./MemberList";
 
 class AllocationDetails extends Component {
+  goBack = () => {
+    this.props.history.goBack();
+  };
+
   render() {
     const { allocation, allocationId } = this.props;
     if (allocation) {
@@ -15,6 +20,16 @@ class AllocationDetails extends Component {
           <div className="card z-depth-o grey lighten-3 custom-content-top-margin">
             <div className="card-content">
               <span className="card-title">{allocation.allocationName}</span>
+              <div>
+                <i
+                  onClick={this.goBack}
+                  className="small material-icons custom-link"
+                >
+                  arrow_back
+                </i>
+              </div>
+              <MemberList allocationId={allocationId} allocation={allocation} />
+              <hr />
               <UserList allocationId={allocationId} allocation={allocation} />
             </div>
           </div>

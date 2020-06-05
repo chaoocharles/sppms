@@ -171,6 +171,7 @@ form h5 {
   }
 }
 
+.custom-member-ui,
 .custom-user-ui {
   display: flex;
   align-items: center;
@@ -181,5 +182,13 @@ form h5 {
 }
 
 .custom-user-ui span:hover {
-  color: rgb(18, 117, 117);
+  color: rgb(0, 175, 175);
+}
+
+.custom-member-ui:hover {
+  color: rgb(212, 4, 4);
+}
+
+.custom-icon-margin {
+  margin-right: 5px;
 }
