@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addMember } from "../../store/actions/allocationActions";
+import { toggleAllocated } from "../../store/actions/allocationActions";
 
 class User extends Component {
   state = {};
 
   handleAdd = (user, allocationId, allocation) => {
     this.props.addMember(user, allocationId, allocation);
+    this.props.toggleAllocated(user);
     console.log(user);
   };
 
@@ -37,6 +39,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addMember: (user, allocationId, allocation) =>
       dispatch(addMember(user, allocationId, allocation)),
+    toggleAllocated: (user) => dispatch(toggleAllocated(user)),
   };
 };
 

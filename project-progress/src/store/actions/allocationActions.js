@@ -83,3 +83,26 @@ export const removeMember = (member, allocationId, allocation) => {
       });
   };
 };
+
+
+export const toggleAllocated = (user) => {
+  return (dispatch, getState, {getFirebase, getFirestore}) => {
+      const firestore = getFirestore();
+
+      firestore.collection('users').doc(user.id).set({
+          ...user,
+          allocated: !user.allocated
+      }, { merge: true }).then(() => {
+          dispatch({
+              type: 'TOGGLE_ALLOCATED',
+              user
+          })
+      }).catch((err) => {
+          dispatch({
+              type: 'TOGGLE_ALLOCATED_ERR',
+              err
+          })
+      })
+
+  }
+}
