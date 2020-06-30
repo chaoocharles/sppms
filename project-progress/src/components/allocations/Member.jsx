@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { removeMember } from "../../store/actions/allocationActions";
+import { _toggleAllocated } from "../../store/actions/allocationActions";
 
 class Member extends Component {
   state = {};
 
   handleRemove = (member, allocationId, allocation) => {
     this.props.removeMember(member, allocationId, allocation);
+    this.props._toggleAllocated(member)
     console.log(member);
   };
 
@@ -37,6 +39,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     removeMember: (member, allocationId, allocation) =>
       dispatch(removeMember(member, allocationId, allocation)),
+    _toggleAllocated: (user) => dispatch(_toggleAllocated(user)),
   };
 };
 

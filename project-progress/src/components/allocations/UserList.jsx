@@ -27,7 +27,7 @@ class UserList extends Component {
                   allocation={allocation}
                 />
               );
-            })}
+            })} 
         </p>
       </div>
     );

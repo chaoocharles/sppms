@@ -39,6 +39,7 @@ export const addMember = (user, allocationId, allocation) => {
           firstName: user.firstName,
           lastName: user.lastName,
           email: user.email,
+          id: user.id
         }),
       })
       .then(() => {
@@ -91,7 +92,7 @@ export const toggleAllocated = (user) => {
 
       firestore.collection('users').doc(user.id).set({
           ...user,
-          allocated: !user.allocated
+          allocated: true
       }, { merge: true }).then(() => {
           dispatch({
               type: 'TOGGLE_ALLOCATED',
@@ -100,6 +101,28 @@ export const toggleAllocated = (user) => {
       }).catch((err) => {
           dispatch({
               type: 'TOGGLE_ALLOCATED_ERR',
+              err
+          })
+      })
+
+  }
+}
+
+export const _toggleAllocated = (user) => {
+  return (dispatch, getState, {getFirebase, getFirestore}) => {
+      const firestore = getFirestore();
+
+      firestore.collection('users').doc(user.id).set({
+          ...user,
+          allocated: false
+      }, { merge: true }).then(() => {
+          dispatch({
+              type: '_TOGGLE_ALLOCATED',
+              user
+          })
+      }).catch((err) => {
+          dispatch({
+              type: '_TOGGLE_ALLOCATED_ERR',
               err
           })
       })
