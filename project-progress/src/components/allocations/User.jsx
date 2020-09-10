@@ -9,11 +9,11 @@ class User extends Component {
   handleAdd = (user, allocationId, allocation) => {
     this.props.addMember(user, allocationId, allocation);
     this.props.toggleAllocated(user);
-    console.log(user);
   };
 
   render() {
     const { user, allocationId, allocation } = this.props;
+    if (user.allocated) return null;
     return (
       <>
         <label

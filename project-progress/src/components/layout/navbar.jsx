@@ -42,8 +42,6 @@ class Navbar extends Component {
 
   componentWillUnmount() {
     this._isMounted = false;
-    //    this.fireBaseListener && this.fireBaseListener();
-    //    this.authListener = undefined;
   }
 
   render() {

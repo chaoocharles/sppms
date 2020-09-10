@@ -13,8 +13,14 @@ class MemberList extends Component {
 
     return (
       <div>
-        <h5>Members</h5>
-        <h6>Click members to remove them from this group...</h6>
+        <h5>{allocation.members && allocation.members.length} Members</h5>
+        <h6>
+          {allocation.members.length > 0 ? (
+            <span>Click members to remove them from this group... </span>
+          ) : (
+            <span>No members yet...</span>
+          )}
+        </h6>
         <p>
           {allocation.members &&
             allocation.members.map((member) => {

@@ -13,9 +13,17 @@ class UserList extends Component {
     const { auth, users, allocationId, allocation } = this.props;
     if (!auth.uid) return <Redirect to="/signin" />;
 
+    let allocated = users && users.some((user) => user.allocated === false);
+
     return (
       <div>
-        <h6>Click users to add them in this group...</h6>
+        <h6>
+          {allocated ? (
+            <p>Click users to add them in this group...</p>
+          ) : (
+            <p>All users in the system have been allocated...</p>
+          )}
+        </h6>
         <p>
           {users &&
             users.map((user) => {
@@ -27,7 +35,7 @@ class UserList extends Component {
                   allocation={allocation}
                 />
               );
-            })} 
+            })}
         </p>
       </div>
     );

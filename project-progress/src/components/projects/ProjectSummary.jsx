@@ -19,7 +19,7 @@ const ProjectSummary = ({ project, uid, admin, superAdmin }) => {
             </tr>
           </thead>
           <tbody>
-            <tr className="white">
+            <tr>
               <td colSpan="4">
                 <p className="left">{project.projectDesc}</p>
               </td>
@@ -62,7 +62,7 @@ const ProjectSummary = ({ project, uid, admin, superAdmin }) => {
             </tr>
           </thead>
           <tbody>
-            <tr className="white">
+            <tr>
               <td colSpan="4">
                 <p className="left">{project.projectDesc}</p>
               </td>
@@ -106,7 +106,7 @@ const ProjectSummary = ({ project, uid, admin, superAdmin }) => {
               </tr>
             </thead>
             <tbody>
-              <tr className="white">
+              <tr>
                 <td colSpan="4">
                   <p className="left">{project.projectDesc}</p>
                 </td>

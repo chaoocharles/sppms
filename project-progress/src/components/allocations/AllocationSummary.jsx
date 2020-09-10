@@ -12,7 +12,7 @@ class AllocationSummary extends Component {
           <thead>
             <tr>
               <th colSpan="2">{allocation.allocationName}</th>
-              <th>5</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>

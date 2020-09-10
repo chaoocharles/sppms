@@ -7,12 +7,13 @@ import { Redirect } from "react-router-dom";
 import AddAdminRole from "../admin/AddAdminRole";
 import AddSuperAdminRole from "../admin/AddSuperAdminRole";
 import { CreateProjectButton } from "../projects/CreateProjectButton";
+import ShowAllocation from "./ShowAllocation";
 
 class Dashboard extends Component {
-  render() {
-    const { projects, auth, admin, superAdmin } = this.props;
-    if (!auth.uid) return <Redirect to="/signin" />;
 
+  render() {
+    const { allocations, projects, auth, admin, superAdmin } = this.props;
+    if (!auth.uid) return <Redirect to="/signin" />;
     if (superAdmin) {
       return (
         <div className="dashboard custom-content-top-margin">
@@ -34,7 +35,9 @@ class Dashboard extends Component {
             <div className="col s12 m7">
               <ProjectList projects={projects} />
             </div>
-            <div className="col s12 m4 offset-m1"></div>
+            <div className="col s12 m4 offset-m1">
+            <ShowAllocation allocations = {allocations} auth={auth}/>
+            </div>
           </div>
         </div>
       );
@@ -47,6 +50,7 @@ class Dashboard extends Component {
             </div>
             <div className="col s12 m4 offset-m1">
               <CreateProjectButton />
+              <ShowAllocation allocations = {allocations} auth={auth}/>
             </div>
           </div>
         </div>
@@ -58,6 +62,7 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
   return {
     projects: state.firestore.ordered.projects,
+    allocations: state.firestore.ordered.allocations,
     auth: state.firebase.auth,
     admin: state.admin.admin,
     superAdmin: state.admin.superAdmin,

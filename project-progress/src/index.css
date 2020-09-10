@@ -1,15 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
 html {
   height: 100%;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-size: 15px;
+  cursor: default;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(238, 238, 238);
+  background-color: #fafafa;
+  color: #222;
   height: 100%;
 }
 
@@ -48,14 +61,27 @@ form h5 {
 .projectTable {
   margin-top: 20px;
   margin-bottom: 30px;
-  box-shadow: -5px -5px 5px #888888;
-  border-radius: 3px;
-  cursor: default;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.15);
 }
 
 .projectTable:hover {
-  box-shadow: -7px -7px 7px #747474;
-  background-color: rgb(250, 250, 250);
+  background: #fafafa;
+}
+
+.projectTable:hover .custom-link{
+  animation: bounce 0.5s ease infinite;
+}
+
+@keyframes bounce{
+  from{
+    transform: translateX(5px)
+  }
+
+  to{
+    transform: translateX(0px);
+  }
 }
 
 .custom-badge {
@@ -96,7 +122,8 @@ form h5 {
 }
 
 .custom-link:hover {
-  background-color: black;
+  transform: scale(1.2);
+  color: #008cff;
 }
 
 .flex-container > div {
@@ -162,26 +189,29 @@ form h5 {
   margin-top: 70px;
 }
 
-@media (min-width: 992px) {
-  .custom-sidebar {
-    display: none;
-  }
-  .custom-toggle-button {
-    display: none;
-  }
-}
-
 .custom-member-ui,
 .custom-user-ui {
   display: flex;
   align-items: center;
-  font-size: larger;
   font-weight: 400;
   margin: 10px;
   cursor: pointer;
+  font-size: 16px;
+  color: #222;
 }
 
-.custom-user-ui span:hover {
+.custom-user-ui span, .custom-member-ui span{
+  padding: 4px;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  background: rgb(0, 225, 255);
+}
+
+.custom-user-ui span{
+  background: rgb(0, 191, 216);
+}
+
+.custom-user-ui:hover{
   color: rgb(18, 117, 117);
 }
 
@@ -191,4 +221,41 @@ form h5 {
 
 .custom-icon-margin {
   margin-right: 5px;
+}
+
+/* Show Desktop Allocation */
+
+.show-allocation {
+  padding: 5px;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.15);
+}
+
+.show-allocation h4{
+  font-size: 24px;
+}
+
+.show-allocation h5{
+  font-size: 20px;
+}
+
+.show-allocation .member{
+  padding: 5px;
+  margin: 5px;
+  border-radius: 0.5rem;
+  background: rgb(0, 204, 231);
+  overflow-x: auto;
+  display: inline-block;
+}
+
+/* Responsive */
+
+@media (min-width: 992px) {
+  .custom-sidebar {
+    display: none;
+  }
+  .custom-toggle-button {
+    display: none;
+  }
 }

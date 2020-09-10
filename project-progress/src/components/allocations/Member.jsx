@@ -9,7 +9,6 @@ class Member extends Component {
   handleRemove = (member, allocationId, allocation) => {
     this.props.removeMember(member, allocationId, allocation);
     this.props._toggleAllocated(member)
-    console.log(member);
   };
 
   render() {

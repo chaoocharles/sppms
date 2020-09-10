@@ -23,7 +23,7 @@ exports.addAdminRole = functions.https.onCall((data, context) => {
 });
 
 exports.addSuperAdminRole = functions.https.onCall((data, context) => {
-  //get the user and add cutom claim (admin)
+  //get the user and add cutom claim (superAdmin)
   return admin
     .auth()
     .getUserByEmail(data.email)
@@ -41,10 +41,3 @@ exports.addSuperAdminRole = functions.https.onCall((data, context) => {
       return err;
     });
 });
-
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
