@@ -252,6 +252,12 @@ form h5 {
   overflow-x: auto;
 }
 
+/* PDF */
+
+.pdf-download-btn{
+
+}
+
 /* Responsive */
 
 @media (min-width: 992px) {

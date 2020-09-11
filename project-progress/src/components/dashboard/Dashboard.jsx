@@ -8,9 +8,10 @@ import AddAdminRole from "../admin/AddAdminRole";
 import AddSuperAdminRole from "../admin/AddSuperAdminRole";
 import { CreateProjectButton } from "../projects/CreateProjectButton";
 import ShowAllocation from "./ShowAllocation";
+import ProjectsDocument from "../pdf/ProjectsDocument";
+import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 
 class Dashboard extends Component {
-
   render() {
     const { allocations, projects, auth, admin, superAdmin } = this.props;
     if (!auth.uid) return <Redirect to="/signin" />;
@@ -19,6 +20,19 @@ class Dashboard extends Component {
         <div className="dashboard custom-content-top-margin">
           <div className="row">
             <div className="col s12 m7">
+              <button className="pdf-download-btn">
+                <PDFDownloadLink
+                  document={<ProjectsDocument projects={projects} />}
+                  fileName="projects.pdf"
+                >
+                  {({ blob, url, loading, error }) =>
+                    loading ? "Loading document..." : "Download Projects PDF"
+                  }
+                </PDFDownloadLink>
+              </button>
+                <PDFViewer>
+                  <ProjectsDocument projects = {projects}/>
+                </PDFViewer>
               <ProjectList projects={projects} />
             </div>
             <div className="col s12 m4 offset-m1">
@@ -36,7 +50,7 @@ class Dashboard extends Component {
               <ProjectList projects={projects} />
             </div>
             <div className="col s12 m4 offset-m1">
-            <ShowAllocation allocations = {allocations} auth={auth}/>
+              <ShowAllocation allocations={allocations} auth={auth} />
             </div>
           </div>
         </div>
@@ -50,7 +64,7 @@ class Dashboard extends Component {
             </div>
             <div className="col s12 m4 offset-m1">
               <CreateProjectButton />
-              <ShowAllocation allocations = {allocations} auth={auth}/>
+              <ShowAllocation allocations={allocations} auth={auth} />
             </div>
           </div>
         </div>
