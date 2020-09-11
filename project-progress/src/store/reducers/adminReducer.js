@@ -7,16 +7,24 @@ const initState = {
 const adminReducer = (state = initState, action) => {
   switch (action.type) {
     case "ADD_ADMIN_SUCESS":
-      toast.success(action.result.data.message);
+      toast.success(action.result.data.message, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
       return state;
     case "ADD_ADMIN_ERROR":
-      toast.error(action.err.message);
+      toast.error(action.err.message, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
       return state;
     case "ADD_SUPER_ADMIN_SUCESS":
-      toast.success(action.result.data.message);
+      toast.success(action.result.data.message, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
       return state;
     case "ADD_SUPER_ADMIN_ERROR":
-      toast.error(action.err.message);
+      toast.error(action.err.message, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
       return state;
     case "ADD_ROLE_TO_STATE":
       return {

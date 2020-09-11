@@ -18,7 +18,7 @@ const milestoneSummary = ({ milestone, projectId }) => {
             </tr>
           </thead>
           <tbody>
-            <tr className="white">
+            <tr>
               <td colSpan="4">
                 <p className="left">{milestone.milestoneDesc}</p>
               </td>
