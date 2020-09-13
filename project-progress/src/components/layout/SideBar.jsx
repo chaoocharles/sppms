@@ -26,7 +26,7 @@ const SideBar = ({ click, show, auth, profile, admin, superAdmin }) => {
         <li onClick={click}>
           <i
             className="material-icons white-text"
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer", fontSize:"35px"}}
           >
             close
           </i>

@@ -1,37 +1,12 @@
 import React from "react";
-import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import { Page, Text, View, Document } from "@react-pdf/renderer";
+import styles from "./pdfStyles";
 
-// Create styles
-const styles = StyleSheet.create({
-  page: {
-    flexDirection: "column",
-    backgroundColor: "#2e2e2e",
-    color:"#fafafa"
-  },
-  section: {
-    margin: 10,
-    padding: 10,
-    flexGrow: 1,
-  },
-  completeBg:{
-    backgroundColor:"green"
-  },
-  inProgressBg:{
-      backgroundColor:"blue"
-  }
-});
-
-const Status = ({status}) => {
+const ProjectStatus = ({ status }) => {
   if (status === true) {
-    return (
-      <Text style={styles.completeBg}>
-        Complete
-      </Text>
-    );
+    return <Text style={styles.completeBg}>Complete</Text>;
   } else {
-    return (
-      <Text style={styles.inProgressBg}>InProgress</Text>
-    );
+    return <Text style={styles.inProgressBg}>InProgress</Text>;
   }
 };
 
@@ -45,7 +20,8 @@ const ProjectsDocument = ({ projects }) => {
               return (
                 <Text key={project.id}>
                   {project.projectTitle} - {project.course} -
-                  {project.authorFirstName} - <Status status = {project.status}/>
+                  {project.authorFirstName} -{" "}
+                  <ProjectStatus status={project.status} />
                 </Text>
               );
             })}

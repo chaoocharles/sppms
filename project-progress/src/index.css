@@ -25,20 +25,21 @@ body {
   color: #222;
   height: 100%;
 }
+/* Menu */
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-.custom-details-padding{
+.custom-details-padding {
   padding: 50px;
 }
 
 .logo {
-  width: 150px;
-  height: 50px;
-  margin-top: 15px;
+  height: 45px;
+  vertical-align: middle;
+}
+
+.brand-logo{
+  margin-left: 15px;
+  margin-right: 15px;
+  position: relative;
 }
 
 form {
@@ -51,9 +52,8 @@ form h5 {
 }
 
 .createProjectBtn {
-  margin-top: 30px;
-  margin-left: 30px;
-  margin-bottom: 30px;
+  display: inline-block;
+  margin-bottom: 20px;
 }
 
 .createMilestoneBtn {
@@ -62,28 +62,32 @@ form h5 {
   margin-bottom: 20px;
 }
 
-.projectTable {
-  margin-top: 20px;
+.custom-table-style {
   margin-bottom: 30px;
   border-radius: 0.5rem;
   background-color: #ffffff;
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.15);
 }
 
-.projectTable:hover {
+.custom-table-style th,
+.custom-table-style td {
+  padding: 20px;
+}
+
+.custom-table-style:hover {
   background: #fafafa;
 }
 
-.projectTable:hover .custom-link{
+.custom-table-style:hover .custom-link {
   animation: bounce 0.5s ease infinite;
 }
 
-@keyframes bounce{
-  from{
-    transform: translateX(5px)
+@keyframes bounce {
+  from {
+    transform: translateX(5px);
   }
 
-  to{
+  to {
     transform: translateX(0px);
   }
 }
@@ -141,10 +145,16 @@ form h5 {
 }
 
 .custom-toggle-button {
-  width: 30px;
+  width: 50px;
   text-align: center;
-  margin-left: 20px;
+  margin-left: 15px;
   cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.custom-toggle-button .material-icons {
+  font-size: 35px;
 }
 
 .custom-sidebar {
@@ -154,11 +164,19 @@ form h5 {
   position: fixed;
   top: 0;
   left: 0;
-  width: 50%;
+  width: 70%;
   max-width: 250px;
   z-index: 300;
   transform: translateX(-100%);
   transition: transform 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.custom-sidebar * {
+  padding: 0;
+  margin: 0;
 }
 
 .custom-sidebar.open {
@@ -169,7 +187,9 @@ form h5 {
   list-style: none;
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 20px;
+  height: 99%;
 }
 
 .custom-backdrop {
@@ -185,12 +205,15 @@ form h5 {
 .custom-fixed {
   position: fixed;
   z-index: 100;
+  padding: 0px 6vw;
   top: 0;
   left: 0;
+  vertical-align: middle;
+  height: 70px;
 }
 
 .custom-content-top-margin {
-  margin-top: 70px;
+  margin-top: 90px;
 }
 
 .custom-member-ui,
@@ -204,18 +227,19 @@ form h5 {
   color: #222;
 }
 
-.custom-user-ui span, .custom-member-ui span{
+.custom-user-ui span,
+.custom-member-ui span {
   padding: 4px;
   border-radius: 0.5rem;
   overflow-x: auto;
   background: rgb(0, 225, 255);
 }
 
-.custom-user-ui span{
+.custom-user-ui span {
   background: rgb(0, 191, 216);
 }
 
-.custom-user-ui:hover{
+.custom-user-ui:hover {
   color: rgb(18, 117, 117);
 }
 
@@ -236,15 +260,15 @@ form h5 {
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.15);
 }
 
-.show-allocation h4{
+.show-allocation h4 {
   font-size: 24px;
 }
 
-.show-allocation h5{
+.show-allocation h5 {
   font-size: 20px;
 }
 
-.show-allocation .member{
+.show-allocation .member {
   padding: 5px;
   margin: 5px;
   border-radius: 0.5rem;
@@ -252,10 +276,10 @@ form h5 {
   overflow-x: auto;
 }
 
-/* PDF */
-
-.pdf-download-btn{
-
+.account-level {
+  background: rgb(220, 20, 60);
+  padding: 5px 9px;
+  border-radius: 9px;
 }
 
 /* Responsive */
@@ -264,7 +288,12 @@ form h5 {
   .custom-sidebar {
     display: none;
   }
+
+  .custom-fixed{
+    padding: 0 15vw;
+  }
   .custom-toggle-button {
     display: none;
   }
 }
+

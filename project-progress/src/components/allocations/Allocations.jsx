@@ -10,7 +10,7 @@ class Allocations extends Component {
   render() {
     const { allocations } = this.props;
     return (
-      <div className="custom-content-top-margin">
+      <div className="container custom-content-top-margin">
         <div className="row">
           <div className="col s12 m7">
             <AllocationList allocations={allocations} />

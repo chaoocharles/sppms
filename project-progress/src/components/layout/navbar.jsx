@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import SignedInLinks from "./SignedInLinks";
 import SignOutLinks from "./SignedOutLinks";
 import { connect } from "react-redux";
-import logo from "../../logo-white.png";
+import logo from "../../logo.png";
 import "../../index.css";
 import firebase from "firebase/app";
 import { addRoleStateToStore } from "../../store/actions/adminActions";
@@ -13,18 +13,18 @@ class Navbar extends Component {
   _isMounted = false;
   state = {
     admin: "",
-    superAdmin: ""
+    superAdmin: "",
   };
 
   componentDidMount() {
     this._isMounted = true;
-    this.fireBaseListener = firebase.auth().onAuthStateChanged(user => {
+    this.fireBaseListener = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        user.getIdTokenResult().then(idTokenResult => {
+        user.getIdTokenResult().then((idTokenResult) => {
           if (this._isMounted) {
             this.setState({
               admin: idTokenResult.claims.admin,
-              superAdmin: idTokenResult.claims.superAdmin
+              superAdmin: idTokenResult.claims.superAdmin,
             });
             this.props.addRoleStateToStore(this.state);
           }
@@ -33,7 +33,7 @@ class Navbar extends Component {
         if (this._isMounted) {
           this.setState({
             admin: "",
-            superAdmin: ""
+            superAdmin: "",
           });
         }
       }
@@ -50,7 +50,7 @@ class Navbar extends Component {
       profile,
       admin,
       superAdmin,
-      handleSideBarToggle
+      handleSideBarToggle,
     } = this.props;
 
     const links = auth.uid ? (
@@ -60,10 +60,12 @@ class Navbar extends Component {
     );
 
     return (
-      <nav className="nav-wrapper grey darken-3 custom-fixed">
-        <div className="container">
+      <nav className="grey darken-3 custom-fixed">
+        <div>
           <Link to="/">
-            <img src={logo} alt="SPPMS" className="brand-logo logo" />
+            <div className="brand-logo">
+              <img src={logo} alt="SPPMS" className = "logo" />
+            </div>
           </Link>
         </div>
         {links}
@@ -73,19 +75,19 @@ class Navbar extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   console.log(state);
   return {
     auth: state.firebase.auth,
     profile: state.firebase.profile,
     admin: state.admin.admin,
-    superAdmin: state.admin.superAdmin
+    superAdmin: state.admin.superAdmin,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    addRoleStateToStore: role => dispatch(addRoleStateToStore(role))
+    addRoleStateToStore: (role) => dispatch(addRoleStateToStore(role)),
   };
 };
 

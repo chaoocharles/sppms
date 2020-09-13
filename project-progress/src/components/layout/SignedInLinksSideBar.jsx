@@ -13,8 +13,8 @@ const SignedInLinksSideBar = ({
 }) => {
   if (superAdmin) {
     return (
-      <ul>
-        <li className="yellow-text">Logged in as Coordinator</li>
+      <>
+        <li><span className="account-level">Coordinator</span></li>
         <li>
           <Link to="/allocations" onClick={click}>
             Allocations
@@ -30,12 +30,12 @@ const SignedInLinksSideBar = ({
             {profile.initials}
           </NavLink>
         </li>
-      </ul>
+      </>
     );
   } else if (admin) {
     return (
       <ul>
-        <li className="yellow-text">Logged in as Supervisor</li>
+        <li><span className="account-level">Supervisor</span></li>
         <li>
           <Link to="/signin" onClick={signOut}>
             Log Out
@@ -51,7 +51,7 @@ const SignedInLinksSideBar = ({
   } else {
     return (
       <ul>
-        <li className="yellow-text">Logged in as Student</li>
+        <li><span className="account-level">Student</span></li>
         <li>
           <Link to="/signin" onClick={signOut}>
             Log Out

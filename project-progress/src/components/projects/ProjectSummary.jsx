@@ -9,7 +9,7 @@ const ProjectSummary = ({ project, uid, admin, superAdmin }) => {
   if (superAdmin) {
     return (
       <div>
-        <table className="projectTable">
+        <table className="custom-table-style">
           <thead>
             <tr>
               <th colSpan="3">{project.projectTitle}</th>
@@ -52,7 +52,7 @@ const ProjectSummary = ({ project, uid, admin, superAdmin }) => {
   } else if (admin) {
     return (
       <div>
-        <table className="projectTable">
+        <table className="custom-table-style">
           <thead>
             <tr>
               <th colSpan="3">{project.projectTitle}</th>
@@ -96,7 +96,7 @@ const ProjectSummary = ({ project, uid, admin, superAdmin }) => {
     if (uid === project.authorId) {
       return (
         <div>
-          <table className="projectTable">
+          <table className="custom-table-style">
             <thead>
               <tr>
                 <th colSpan="3">{project.projectTitle}</th>
@@ -140,11 +140,11 @@ const ProjectSummary = ({ project, uid, admin, superAdmin }) => {
   }
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     uid: state.firebase.auth.uid,
     admin: state.admin.admin,
-    superAdmin: state.admin.superAdmin
+    superAdmin: state.admin.superAdmin,
   };
 };
 

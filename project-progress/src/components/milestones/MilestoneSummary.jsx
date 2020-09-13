@@ -8,7 +8,7 @@ const milestoneSummary = ({ milestone, projectId }) => {
   if (projectId === milestone.projectId) {
     return (
       <div>
-        <table className="projectTable">
+        <table className="custom-table-style">
           <thead>
             <tr>
               <th colSpan="3">{milestone.milestoneTitle}</th>

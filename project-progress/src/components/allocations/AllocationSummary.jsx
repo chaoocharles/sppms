@@ -8,7 +8,7 @@ class AllocationSummary extends Component {
     const { allocation } = this.props;
     return (
       <div>
-        <table className="projectTable">
+        <table className="custom-table-style">
           <thead>
             <tr>
               <th colSpan="2">{allocation.allocationName}</th>
@@ -20,7 +20,7 @@ class AllocationSummary extends Component {
               <td colSpan="3">
                 <div className="gret lighten-4 grey-text custom-font-caps">
                   <div>
-                    Allocation Added On:{" "}
+                    Created On:{" "}
                     {moment(allocation.createdAt.toDate()).calendar()}
                   </div>
                 </div>

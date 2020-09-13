@@ -48,7 +48,7 @@ class MilestoneDetails extends Component {
       milestone,
       milestoneId,
       admin,
-      superAdmin
+      superAdmin,
     } = this.props;
     if (superAdmin) {
       if (milestone) {
@@ -166,11 +166,6 @@ class MilestoneDetails extends Component {
                 <div>
                   <Status status={milestone.status} />
                 </div>
-                <div>
-                  <Remove
-                    onClick={() => this.handleDelete(milestoneId, remarks)}
-                  />
-                </div>
               </div>
               <p>{milestone.milestoneDesc}</p>
             </div>
@@ -203,30 +198,30 @@ const mapStateToProps = (state, ownProps) => {
     milestone: milestone,
     remarks: remarks,
     admin: state.admin.admin,
-    superAdmin: state.admin.superAdmin
+    superAdmin: state.admin.superAdmin,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    deleteMilestone: milestoneId => dispatch(deleteMilestone(milestoneId)),
+    deleteMilestone: (milestoneId) => dispatch(deleteMilestone(milestoneId)),
     toggleMilestoneStatus: (milestone, milestoneId) =>
-      dispatch(toggleMilestoneStatus(milestone, milestoneId))
+      dispatch(toggleMilestoneStatus(milestone, milestoneId)),
   };
 };
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect(ownProps => [
+  firestoreConnect((ownProps) => [
     "milestones",
     {
       collection: "milestones",
       doc: ownProps.match.params.id,
       subcollections: [
-        { collection: "remarks", orderBy: ["createdAt", "desc"] }
+        { collection: "remarks", orderBy: ["createdAt", "desc"] },
       ],
-      storeAs: "remarks"
-    }
+      storeAs: "remarks",
+    },
   ]),
   withRouter
 )(MilestoneDetails);

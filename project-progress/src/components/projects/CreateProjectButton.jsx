@@ -5,7 +5,7 @@ export const CreateProjectButton = () => {
   return (
     <div className="createProjectBtn">
       <Link to="/createproject" className="btn cyan darken-2 z-depth-0">
-        ADD PROJECT
+        ADD A PROJECT
       </Link>
     </div>
   );

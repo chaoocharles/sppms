@@ -8,7 +8,7 @@ const SignedInLinks = ({ signOut, profile, admin, superAdmin }) => {
   if (superAdmin) {
     return (
       <ul id="nav-mobile" className="right hide-on-med-and-down">
-        <li className="yellow-text">Logged in as Coordinator</li>
+        <li><span className="account-level">Coordinator</span></li>
         <li>
           <Link to="/allocations">Allocations</Link>
         </li>
@@ -18,7 +18,7 @@ const SignedInLinks = ({ signOut, profile, admin, superAdmin }) => {
           </Link>
         </li>
         <li>
-          <NavLink to="/" className="btn btn-floating cyan darken-2">
+          <NavLink to="/" className="btn btn-floating cyan darken-2 profile-initials">
             {profile.initials}
           </NavLink>
         </li>
@@ -27,7 +27,7 @@ const SignedInLinks = ({ signOut, profile, admin, superAdmin }) => {
   } else if (admin) {
     return (
       <ul id="nav-mobile" className="right hide-on-med-and-down">
-        <li className="yellow-text">Logged in as Supervisor</li>
+        <li><span className="account-level">Supervisor</span></li>
         <li>
           <Link to="/signin" onClick={signOut}>
             Log Out
@@ -43,14 +43,14 @@ const SignedInLinks = ({ signOut, profile, admin, superAdmin }) => {
   } else {
     return (
       <ul id="nav-mobile" className="right hide-on-med-and-down">
-        <li className="yellow-text">Logged in as Student</li>
+        <li><span className="account-level">Student</span></li>
         <li>
           <Link to="/signin" onClick={signOut}>
             Log Out
           </Link>
         </li>
         <li>
-          <NavLink to="/" className="btn btn-floating cyan darken-2">
+          <NavLink to="/" className="btn btn-floating cyan darken-2 profile-initials">
             {profile.initials}
           </NavLink>
         </li>

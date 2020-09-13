@@ -3,7 +3,7 @@ import AllocationSummary from "./AllocationSummary";
 
 const AllocationList = ({ allocations }) => {
   return (
-    <div className="container section">
+    <div>
       {allocations &&
         allocations.map(allocation => {
           return (

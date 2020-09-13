@@ -17,7 +17,7 @@ class AllocationDetails extends Component {
     if (allocation) {
       return (
         <div className="container section">
-          <div className="card z-depth-o grey lighten-3 custom-content-top-margin">
+          <div className="card z-depth-o custom-content-top-margin">
             <div className="card-content">
               <span className="card-title">{allocation.allocationName}</span>
               <div>

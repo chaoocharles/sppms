@@ -21,7 +21,7 @@ const ShowAllocation = ({ allocations, auth }) => {
             <ShowMembers member={member} key={member.id} />
           ))}
       </div>
-      </div> : <p>Not allocated yet...</p>}
+      </div> : <p style = {{textAlign: "center"}}>Not allocated yet...</p>}
     </div>
   );
 };
