@@ -9,19 +9,27 @@ const SignedInLinksSideBar = ({
   profile,
   admin,
   superAdmin,
-  click
+  click,
 }) => {
   if (superAdmin) {
     return (
       <>
-        <li><span className="account-level">Coordinator</span></li>
+        <li>
+          <span className="account-level">Coordinator</span>
+        </li>
         <li>
           <Link to="/allocations" onClick={click}>
             Allocations
           </Link>
         </li>
         <li>
-          <Link to="/signin" onClick={signOut}>
+          <Link
+            to="/signin"
+            onClick={() => {
+              signOut();
+              click();
+            }}
+          >
             Log Out
           </Link>
         </li>
@@ -35,9 +43,17 @@ const SignedInLinksSideBar = ({
   } else if (admin) {
     return (
       <ul>
-        <li><span className="account-level">Supervisor</span></li>
         <li>
-          <Link to="/signin" onClick={signOut}>
+          <span className="account-level">Supervisor</span>
+        </li>
+        <li>
+          <Link
+            to="/signin"
+            onClick={() => {
+              signOut();
+              click();
+            }}
+          >
             Log Out
           </Link>
         </li>
@@ -51,9 +67,17 @@ const SignedInLinksSideBar = ({
   } else {
     return (
       <ul>
-        <li><span className="account-level">Student</span></li>
         <li>
-          <Link to="/signin" onClick={signOut}>
+          <span className="account-level">Student</span>
+        </li>
+        <li>
+          <Link
+            to="/signin"
+            onClick={() => {
+              signOut();
+              click();
+            }}
+          >
             Log Out
           </Link>
         </li>
@@ -67,9 +91,9 @@ const SignedInLinksSideBar = ({
   }
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    signOut: () => dispatch(signOut())
+    signOut: () => dispatch(signOut()),
   };
 };
 

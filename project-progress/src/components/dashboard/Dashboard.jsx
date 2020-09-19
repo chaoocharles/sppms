@@ -47,7 +47,11 @@ class Dashboard extends Component {
         <div className="container dashboard custom-content-top-margin">
           <div className="row">
             <div className="col s12 m7">
-              <ProjectList projects={projects} />
+              <ProjectList
+                projects={projects}
+                allocations={allocations}
+                auth={auth}
+              />
             </div>
             <div className="col s12 m4 offset-m1">
               <ShowAllocation allocations={allocations} auth={auth} />

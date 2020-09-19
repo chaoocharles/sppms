@@ -5,7 +5,12 @@ import moment from "moment";
 import { connect } from "react-redux";
 import Status from "../common/Status";
 
-const ProjectSummary = ({ project, uid, admin, superAdmin }) => {
+const ProjectSummary = ({
+  project,
+  uid,
+  admin,
+  superAdmin,
+}) => {
   if (superAdmin) {
     return (
       <div>

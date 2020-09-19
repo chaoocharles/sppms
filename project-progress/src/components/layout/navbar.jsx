@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import SignedInLinks from "./SignedInLinks";
 import SignOutLinks from "./SignedOutLinks";
 import { connect } from "react-redux";
-import logo from "../../logo.png";
+import logo from "../../images/logo.png";
 import "../../index.css";
 import firebase from "firebase/app";
 import { addRoleStateToStore } from "../../store/actions/adminActions";

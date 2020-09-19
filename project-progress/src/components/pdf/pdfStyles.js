@@ -2,31 +2,51 @@ import { StyleSheet } from "@react-pdf/renderer";
 
 // Create styles
 const styles = StyleSheet.create({
+  downloadBtn: {
+    padding: "4pt",
+    borderRadius: "5pt",
+    color: "white",
+    background: "linear-gradient(to Right, #2196F3, #0097a7)",
+    textTransform: "uppercase",
+    display: "inline-block",
+    marginBottom: "20pt",
+  },
   page: {
     flexDirection: "column",
-    backgroundColor: "#2e2e2e",
-    color: "#fafafa",
+  },
+  header: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  headerText: {
+    marginBottom: "20pt",
+  },
+  tukLogo: {
+    height: "90pt",
   },
   section: {
     margin: 10,
     padding: 10,
     flexGrow: 1,
   },
-  downloadBtn: {
-    padding: "4px",
-    borderRadius: "5px",
-    color: "white",
-    background: "linear-gradient(to Right, #2196F3, #0097a7)",
+  projectSummary: {
     textTransform: "uppercase",
-    display: "inline-block",
-    marginBottom: "20px"
-
+    marginBottom: "9pt",
+    paddingBottom: "9pt",
+    borderBottom:"2pt solid black",
+    fontSize: "14pt"
   },
   completeBg: {
-    backgroundColor: "green",
+    backgroundColor: "#00C853",
+    textTransform: "unset",
+    color: "white",
   },
   inProgressBg: {
-    backgroundColor: "blue",
+    backgroundColor: "#2196F3",
+    textTransform: "unset",
+    color: "white",
   },
 });
 
