@@ -15,7 +15,7 @@ const SignedInLinksSideBar = ({
     return (
       <>
         <li>
-          <span className="account-level">Coordinator</span>
+          <span className="coordinator-level">Coordinator</span>
         </li>
         <li>
           <Link to="/allocations" onClick={click}>
@@ -44,7 +44,7 @@ const SignedInLinksSideBar = ({
     return (
       <ul>
         <li>
-          <span className="account-level">Supervisor</span>
+          <span className="supervisor-level">Supervisor</span>
         </li>
         <li>
           <Link
@@ -68,7 +68,7 @@ const SignedInLinksSideBar = ({
     return (
       <ul>
         <li>
-          <span className="account-level">Student</span>
+          <span className="student-level">Student</span>
         </li>
         <li>
           <Link

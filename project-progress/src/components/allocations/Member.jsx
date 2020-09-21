@@ -8,11 +8,22 @@ class Member extends Component {
 
   handleRemove = (member, allocationId, allocation) => {
     this.props.removeMember(member, allocationId, allocation);
-    this.props._toggleAllocated(member)
+    this.props._toggleAllocated(member);
   };
 
   render() {
     const { member, allocationId, allocation } = this.props;
+
+    let roleClasses = "";
+
+    if (member && member.role === "coordinator") {
+      roleClasses = "coordinator-level";
+    } else if (member && member.role === "supervisor") {
+      roleClasses = "supervisor-level";
+    } else {
+      roleClasses = "";
+    }
+
     return (
       <>
         <label
@@ -22,11 +33,11 @@ class Member extends Component {
           <i className="material-icons custom-icon-margin light-blue-text">
             card_membership
           </i>
-          <span>
+          <span className="member">
             <span className="custom-font-caps">
               {member.firstName} {member.lastName}
             </span>
-            - {member.email} <span>{member.role}</span>
+            - {member.email} <span className={roleClasses}> {member.role}</span>
           </span>
         </label>
       </>
