@@ -14,6 +14,17 @@ class User extends Component {
   render() {
     const { user, allocationId, allocation } = this.props;
     if (user.allocated) return null;
+
+    let roleClasses = "";
+
+    if (user && user.role === "coordinator") {
+      roleClasses = "coordinator-level";
+    } else if (user && user.role === "supervisor") {
+      roleClasses = "supervisor-level";
+    } else {
+      roleClasses = "";
+    }
+
     return (
       <>
         <label
@@ -27,7 +38,7 @@ class User extends Component {
             <span className="custom-font-caps">
               {user.firstName} {user.lastName}
             </span>
-            - {user.email} - {user.role}
+            - {user.email} <span className={roleClasses}>{user.role}</span>
           </span>
         </label>
       </>

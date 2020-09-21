@@ -37,7 +37,7 @@ class Member extends Component {
             <span className="custom-font-caps">
               {member.firstName} {member.lastName}
             </span>
-            - {member.email} <span className={roleClasses}> {member.role}</span>
+            - {member.email} <span className={roleClasses}>{member.role}</span>
           </span>
         </label>
       </>
