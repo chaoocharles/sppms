@@ -11,8 +11,12 @@ class AllocationSummary extends Component {
         <table className="custom-table-style">
           <thead>
             <tr>
-              <th colSpan="2">{allocation.allocationName}</th>
-              <th></th>
+              <th colSpan="3">{allocation.allocationName}</th>
+              <th>
+                <span className="number-badge">
+                  <span>{allocation.members?.length}</span>
+                </span>
+              </th>
             </tr>
           </thead>
           <tbody>

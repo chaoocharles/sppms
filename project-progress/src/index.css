@@ -297,6 +297,20 @@ form h5 {
   background: rgb(4, 167, 118);
 }
 
+/* number badge */
+
+.number-badge{
+  padding: 5px;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: rgb(1, 212, 201);
+}
+
 /* Responsive */
 
 @media (min-width: 992px) {
