@@ -2,6 +2,7 @@ export const addAdminRole = (userEmail) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const functions = getFirebase().functions();
     const addAdmin = functions.httpsCallable("addAdminRole");
+    const firestore = getFirestore();
 
     addAdmin({ email: userEmail })
       .then((result) => {
@@ -9,6 +10,23 @@ export const addAdminRole = (userEmail) => {
       })
       .catch((err) => {
         dispatch({ type: "ADD_ADMIN_ERROR", err });
+      })
+      .then(() => {
+        firestore
+          .collection("users")
+          .get()
+          .then((querySnapshot) => {
+            const userDoc = querySnapshot?.docs.find(
+              (doc) => doc.data().email === userEmail
+            );
+            console.log(userDoc.data());
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 };

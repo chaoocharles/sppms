@@ -17,24 +17,30 @@ const ProjectList = ({ projects, allocations, auth, admin, superAdmin }) => {
     members?.some((member) => member.id === project.authorId)
   );
 
-  console.log(someProjects)
-
   if (admin) {
     return (
       <div>
-        { someProjects?.length > 0 ? someProjects &&
+        {someProjects?.length > 0 ? (
+          someProjects &&
           someProjects.map((project) => {
             return <ProjectSummary project={project} key={project.id} />;
-          }) : <p>No projects yet...</p> }
+          })
+        ) : (
+          <p>No projects yet...</p>
+        )}
       </div>
     );
   } else {
     return (
       <div>
-        { projects?.length > 0 ? projects &&
+        {projects?.length > 0 ? (
+          projects &&
           projects.map((project) => {
             return <ProjectSummary project={project} key={project.id} />;
-          }):  <p>No projects yet...</p> }
+          })
+        ) : (
+          <p>No projects yet...</p>
+        )}
       </div>
     );
   }
