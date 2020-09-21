@@ -23,10 +23,7 @@ export const signOut = () => {
       .signOut()
       .then(() => {
         dispatch({ type: "SIGNOUT_SUCCESS" });
-      })
-      // .then(() => {
-      //   window.location.reload();
-      // });
+      });
   };
 };
 
@@ -48,6 +45,7 @@ export const signUp = (newUser) => {
             lastName: newUser.lastName,
             allocated: false,
             initials: newUser.firstName[0] + newUser.lastName[0],
+            role: "",
           });
       })
       .then(() => {

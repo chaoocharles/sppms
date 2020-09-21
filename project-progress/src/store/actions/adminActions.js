@@ -19,13 +19,39 @@ export const addAdminRole = (userEmail) => {
             const userDoc = querySnapshot?.docs.find(
               (doc) => doc.data().email === userEmail
             );
-            console.log(userDoc.id);
+
+            const user = userDoc.data();
+
+            firestore
+              .collection("users")
+              .doc(user.id)
+              .set(
+                {
+                  ...user,
+                  role: "supervisor",
+                },
+                { merge: true }
+              )
+              .then(() => {
+                dispatch({
+                  type: "USER_ROLE_UPDATE",
+                  user,
+                });
+              })
+              .catch((err) => {
+                dispatch({
+                  type: "USER_ROLE_UPDATE_ERROR",
+                  err,
+                });
+              });
           })
           .catch((err) => {
+            alert("An error occurred. Try again with a valid user");
             console.log(err);
           });
       })
       .catch((err) => {
+        alert("An error occurred");
         console.log(err);
       });
   };

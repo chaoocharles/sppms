@@ -27,7 +27,7 @@ class User extends Component {
             <span className="custom-font-caps">
               {user.firstName} {user.lastName}
             </span>
-            - {user.email}
+            - {user.email} - {user.role}
           </span>
         </label>
       </>

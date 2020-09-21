@@ -26,7 +26,7 @@ class Member extends Component {
             <span className="custom-font-caps">
               {member.firstName} {member.lastName}
             </span>
-            - {member.email}
+            - {member.email} <span>{member.role}</span>
           </span>
         </label>
       </>
