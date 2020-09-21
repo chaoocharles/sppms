@@ -19,7 +19,7 @@ export const addAdminRole = (userEmail) => {
             const userDoc = querySnapshot?.docs.find(
               (doc) => doc.data().email === userEmail
             );
-            console.log(userDoc.data());
+            console.log(userDoc.id);
           })
           .catch((err) => {
             console.log(err);
