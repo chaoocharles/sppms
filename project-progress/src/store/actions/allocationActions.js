@@ -114,7 +114,6 @@ export const _toggleAllocated = (user) => {
       const firestore = getFirestore();
 
       firestore.collection('users').doc(user.id).set({
-          ...user,
           allocated: false
       }, { merge: true }).then(() => {
           dispatch({

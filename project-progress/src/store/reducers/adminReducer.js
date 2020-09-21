@@ -32,6 +32,10 @@ const adminReducer = (state = initState, action) => {
         admin: action.role.admin,
         superAdmin: action.role.superAdmin,
       };
+    case "SUPERVISOR_ROLE":
+      return state;
+    case "COORDINATOR_ROLE":
+      return state;
     default:
       return state;
   }
