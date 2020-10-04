@@ -13,6 +13,16 @@ import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import styles from "../pdf/pdfStyles";
 
 class Dashboard extends Component {
+  _isOpen = false;
+
+  componentDidMount() {
+    this._isOpen = true;
+  }
+
+  componentWillUnmount() {
+    this._isOpen = false;
+  }
+
   render() {
     const { allocations, projects, auth, admin, superAdmin } = this.props;
     if (!auth.uid) return <Redirect to="/signin" />;
@@ -24,15 +34,17 @@ class Dashboard extends Component {
               <ProjectList projects={projects} />
             </div>
             <div className="col s12 m4 offset-m1">
-              <PDFDownloadLink
-                document={<ProjectsDocument projects={projects} />}
-                fileName="projects.pdf"
-                style={styles.downloadBtn}
-              >
-                {({ blob, url, loading, error }) =>
-                  loading ? "Loading document..." : "Download Projects' PDF"
-                }
-              </PDFDownloadLink>
+              {this._isOpen && (
+                <PDFDownloadLink
+                  document={<ProjectsDocument projects={projects} />}
+                  fileName="projects.pdf"
+                  style={styles.downloadBtn}
+                >
+                  {({ blob, url, loading, error }) =>
+                    loading ? "Loading document..." : "Download Projects' PDF"
+                  }
+                </PDFDownloadLink>
+              )}
               {/* <PDFViewer>
                 <ProjectsDocument projects={projects} />
               </PDFViewer> */}

@@ -12,6 +12,8 @@ const ProjectStatus = ({ status }) => {
 };
 
 const ProjectsDocument = ({ projects }) => {
+  const completeProjects =
+    projects && projects.filter((project) => project.status === true);
   return (
     <Document>
       <Page size="A4" style={styles.header}>
@@ -26,8 +28,8 @@ const ProjectsDocument = ({ projects }) => {
       </Page>
       <Page size="A4" style={styles.page}>
         <View style={styles.section}>
-          {projects &&
-            projects.map((project) => {
+          {completeProjects &&
+            completeProjects.map((project) => {
               return (
                 <Text key={project.id} style={styles.projectSummary}>
                   {project.authorFirstName} {project.authorLastName} -{" "}

@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     marginBottom: "9pt",
     paddingBottom: "9pt",
     borderBottom:"2pt solid black",
-    fontSize: "14pt"
+    fontSize: "14pt",
   },
   completeBg: {
     backgroundColor: "#00C853",

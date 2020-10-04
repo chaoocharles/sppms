@@ -34,7 +34,7 @@ class User extends Component {
           <i className="material-icons custom-icon-margin cyan-text">
             account_box
           </i>
-          <span className = "user">
+          <span className="user">
             <span className="custom-font-caps">
               {user.firstName} {user.lastName}
             </span>

@@ -13,9 +13,9 @@ class MemberList extends Component {
 
     return (
       <div>
-        <h5>{allocation.members && allocation.members.length} Members</h5>
+        <h5>{allocation.members ? allocation.members.length : 0} Members</h5>
         <h6>
-          {allocation.members.length > 0 ? (
+          {allocation.members?.length > 0 ? (
             <span>Click members to remove them from this group... </span>
           ) : (
             <span>No members yet...</span>

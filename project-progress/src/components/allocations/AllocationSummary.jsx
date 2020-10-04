@@ -14,7 +14,9 @@ class AllocationSummary extends Component {
               <th colSpan="3">{allocation.allocationName}</th>
               <th>
                 <span className="number-badge">
-                  <span>{allocation.members?.length}</span>
+                  <span>
+                    {allocation.members ? allocation.members.length : 0}
+                  </span>
                 </span>
               </th>
             </tr>
