@@ -311,6 +311,19 @@ form h5 {
   background: rgb(1, 212, 201);
 }
 
+/* Project A */
+
+.projectA{
+  display: flex;
+  justify-content: space-between;
+  width: 113px;
+  font-size: 17px;
+}
+
+.projectA i {
+  cursor: pointer;
+}
+
 /* Responsive */
 
 @media (min-width: 992px) {

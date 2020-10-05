@@ -4,20 +4,22 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import { connect } from "react-redux";
 import Status from "../common/Status";
+import ProjectAStatus from "../common/ProjectAStatus";
 
-const ProjectSummary = ({
-  project,
-  uid,
-  admin,
-  superAdmin,
-}) => {
+const ProjectSummary = ({ project, uid, admin, superAdmin }) => {
   if (superAdmin) {
     return (
       <div>
         <table className="custom-table-style">
           <thead>
             <tr>
-              <th colSpan="3">{project.projectTitle}</th>
+              <th colSpan="2">{project.projectTitle}</th>
+              <th>
+                <p class="projectA">
+                  <span>Project A:</span>
+                  <ProjectAStatus projectA={project.projectA} />
+                </p>
+              </th>
               <th>
                 <Status status={project.status} />
               </th>
@@ -60,7 +62,13 @@ const ProjectSummary = ({
         <table className="custom-table-style">
           <thead>
             <tr>
-              <th colSpan="3">{project.projectTitle}</th>
+              <th colSpan="2">{project.projectTitle}</th>
+              <th>
+                <p class="projectA">
+                  <span>Project A:</span>
+                  <ProjectAStatus projectA={project.projectA} />
+                </p>
+              </th>
               <th>
                 <Status status={project.status} />
               </th>
@@ -104,7 +112,13 @@ const ProjectSummary = ({
           <table className="custom-table-style">
             <thead>
               <tr>
-                <th colSpan="3">{project.projectTitle}</th>
+                <th colSpan="2">{project.projectTitle}</th>
+                <th>
+                  <p class="projectA">
+                    <span>Project A:</span>
+                    <ProjectAStatus projectA={project.projectA} />
+                  </p>
+                </th>
                 <th>
                   <Status status={project.status} />
                 </th>

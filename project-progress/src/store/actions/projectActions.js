@@ -58,6 +58,35 @@ export const toggleProjectStatus = (project, projectId) => {
   };
 };
 
+export const toggleProjectAStatus = (project, projectId) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+
+    firestore
+      .collection("projects")
+      .doc(projectId)
+      .set(
+        {
+          ...project,
+          projectA: !project.projectA,
+        },
+        { merge: true }
+      )
+      .then(() => {
+        dispatch({
+          type: "TOGGLE_PROJECT_A_STATUS",
+          projectId,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: "TOGGLE_PROJECT_A_STATUS_ERROR",
+          err,
+        });
+      });
+  };
+};
+
 export const deleteProject = (projectId) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();

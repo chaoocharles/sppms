@@ -9,7 +9,8 @@ class CreateProject extends Component {
     regNumber: "",
     course: "",
     projectDesc: "",
-    status: ""
+    status: false,
+    projectA: false
   };
 
   handleChange = e => {

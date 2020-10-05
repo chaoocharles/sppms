@@ -12,7 +12,9 @@ import Remove from "../common/Remove";
 import Approve from "../common/Approve";
 import Status from "../common/Status";
 import { toggleProjectStatus } from "../../store/actions/projectActions";
+import { toggleProjectAStatus } from "../../store/actions/projectActions";
 import { deleteProject } from "../../store/actions/projectActions";
+import ProjectAStatus from "../common/ProjectAStatus";
 
 class ProjectDetails extends Component {
   handleApprove = (project, projectId) => {
@@ -22,6 +24,16 @@ class ProjectDetails extends Component {
     } else {
       if (window.confirm("Approve this project?"))
         this.props.toggleProjectStatus(project, projectId);
+    }
+  };
+
+  handleProjectAStatus = (project, projectId) => {
+    if (project.projectA === true) {
+      if (window.confirm("Mark Project A as InProgress?"))
+        this.props.toggleProjectAStatus(project, projectId);
+    } else {
+      if (window.confirm("Approve Project A?"))
+        this.props.toggleProjectAStatus(project, projectId);
     }
   };
 
@@ -74,6 +86,15 @@ class ProjectDetails extends Component {
                     <Remove onClick={() => this.handleDelete(projectId)} />
                   </div>
                 </div>
+                <p class="projectA">
+                  <span>Project A:</span>
+                  <ProjectAStatus
+                    onClick={() =>
+                      this.handleProjectAStatus(project, projectId)
+                    }
+                    projectA={project.projectA}
+                  />
+                </p>
                 <p>{project.projectDesc}</p>
               </div>
               <div className="card-action gret lighten-4 grey-text custom-font-caps">
@@ -127,6 +148,15 @@ class ProjectDetails extends Component {
                     <Remove onClick={() => this.handleDelete(projectId)} />
                   </div>
                 </div>
+                <p class="projectA">
+                  <span>Project A:</span>
+                  <ProjectAStatus
+                    onClick={() =>
+                      this.handleProjectAStatus(project, projectId)
+                    }
+                    projectA={project.projectA}
+                  />
+                </p>
                 <p>{project.projectDesc}</p>
               </div>
               <div className="card-action gret lighten-4 grey-text custom-font-caps">
@@ -168,6 +198,10 @@ class ProjectDetails extends Component {
                   <Status status={project.status} />
                 </div>
               </div>
+              <p class="projectA">
+                <span>Project A:</span>
+                <ProjectAStatus projectA={project.projectA} />
+              </p>
               <p>{project.projectDesc}</p>
             </div>
             <div className="card-action gret lighten-4 grey-text custom-font-caps">
@@ -201,6 +235,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(deleteProject(project, projectId)),
     toggleProjectStatus: (project, projectId) =>
       dispatch(toggleProjectStatus(project, projectId)),
+    toggleProjectAStatus: (project, projectId) =>
+      dispatch(toggleProjectAStatus(project, projectId)),
   };
 };
 
