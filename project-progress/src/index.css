@@ -299,7 +299,7 @@ form h5 {
 
 /* number badge */
 
-.number-badge{
+.number-badge {
   padding: 5px;
   border-radius: 50%;
   height: 25px;
@@ -313,15 +313,28 @@ form h5 {
 
 /* Project A */
 
-.projectA{
+.projectA {
   display: flex;
   justify-content: space-between;
   width: 113px;
+  border: 2px solid gray;
+  border-radius: 5px;
+  padding: 3px;
   font-size: 17px;
+}
+
+.projectASummary {
+  font-size: inherit;
+  padding: 0px;
+  border: none;
 }
 
 .projectA i {
   cursor: pointer;
+}
+
+.projectASummary i {
+  cursor: default;
 }
 
 /* Responsive */

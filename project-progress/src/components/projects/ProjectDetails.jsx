@@ -86,7 +86,7 @@ class ProjectDetails extends Component {
                     <Remove onClick={() => this.handleDelete(projectId)} />
                   </div>
                 </div>
-                <p class="projectA">
+                <p className="projectA">
                   <span>Project A:</span>
                   <ProjectAStatus
                     onClick={() =>
@@ -148,7 +148,7 @@ class ProjectDetails extends Component {
                     <Remove onClick={() => this.handleDelete(projectId)} />
                   </div>
                 </div>
-                <p class="projectA">
+                <p className="projectA">
                   <span>Project A:</span>
                   <ProjectAStatus
                     onClick={() =>
@@ -198,7 +198,7 @@ class ProjectDetails extends Component {
                   <Status status={project.status} />
                 </div>
               </div>
-              <p class="projectA">
+              <p className="projectA">
                 <span>Project A:</span>
                 <ProjectAStatus projectA={project.projectA} />
               </p>

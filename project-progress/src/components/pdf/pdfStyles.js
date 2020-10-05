@@ -11,6 +11,15 @@ const styles = StyleSheet.create({
     display: "inline-block",
     marginBottom: "20pt",
   },
+  projectADownloadBtn: {
+    padding: "4pt",
+    borderRadius: "5pt",
+    color: "white",
+    background: "linear-gradient(to Right, #5036F9, #5787a7)",
+    textTransform: "uppercase",
+    display: "inline-block",
+    marginBottom: "20pt",
+  },
   page: {
     flexDirection: "column",
   },
@@ -35,7 +44,7 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     marginBottom: "9pt",
     paddingBottom: "9pt",
-    borderBottom:"2pt solid black",
+    borderBottom: "2pt solid black",
     fontSize: "14pt",
   },
   completeBg: {

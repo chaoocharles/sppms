@@ -4,7 +4,7 @@ const ProjectAStatus = (props) => {
   const { projectA, onClick } = props;
   if (projectA === true) {
     return (
-      <i onClick={onClick} class="material-icons green-text">
+      <i onClick={onClick} className="material-icons green-text">
         check_box
       </i>
     );

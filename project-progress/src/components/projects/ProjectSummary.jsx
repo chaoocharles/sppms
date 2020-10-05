@@ -15,7 +15,7 @@ const ProjectSummary = ({ project, uid, admin, superAdmin }) => {
             <tr>
               <th colSpan="2">{project.projectTitle}</th>
               <th>
-                <p class="projectA">
+                <p className="projectA projectASummary">
                   <span>Project A:</span>
                   <ProjectAStatus projectA={project.projectA} />
                 </p>
@@ -64,7 +64,7 @@ const ProjectSummary = ({ project, uid, admin, superAdmin }) => {
             <tr>
               <th colSpan="2">{project.projectTitle}</th>
               <th>
-                <p class="projectA">
+                <p className="projectA projectASummary">
                   <span>Project A:</span>
                   <ProjectAStatus projectA={project.projectA} />
                 </p>
@@ -114,7 +114,7 @@ const ProjectSummary = ({ project, uid, admin, superAdmin }) => {
               <tr>
                 <th colSpan="2">{project.projectTitle}</th>
                 <th>
-                  <p class="projectA">
+                  <p className="projectA projectASummary">
                     <span>Project A:</span>
                     <ProjectAStatus projectA={project.projectA} />
                   </p>

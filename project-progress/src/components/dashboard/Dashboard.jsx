@@ -9,6 +9,7 @@ import AddSuperAdminRole from "../admin/AddSuperAdminRole";
 import { CreateProjectButton } from "../projects/CreateProjectButton";
 import ShowAllocation from "../allocations/dashboardAllocations/ShowAllocation";
 import ProjectsDocument from "../pdf/ProjectsDocument";
+import ProjectADocument from "../pdf/ProjectADocument";
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import styles from "../pdf/pdfStyles";
 
@@ -48,6 +49,17 @@ class Dashboard extends Component {
               {/* <PDFViewer>
                 <ProjectsDocument projects={projects} />
               </PDFViewer> */}
+              {this._isOpen && (
+                <PDFDownloadLink
+                  document={<ProjectADocument projects={projects} />}
+                  fileName="projectA.pdf"
+                  style={styles.projectADownloadBtn}
+                >
+                  {({ blob, url, loading, error }) =>
+                    loading ? "Loading document..." : "Download Project A PDF"
+                  }
+                </PDFDownloadLink>
+              )}
               <AddAdminRole />
               <AddSuperAdminRole />
             </div>
