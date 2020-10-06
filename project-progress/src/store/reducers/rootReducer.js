@@ -5,6 +5,7 @@ import projectReducer from "./projectReducer";
 import milestoneReducer from "./milestoneReducer";
 import adminReducer from "./adminReducer";
 import { combineReducers } from "redux";
+import allocationReducer from "./allocationReducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   milestone: milestoneReducer,
   firestore: firestoreReducer,
   firebase: firebaseReducer,
-  admin: adminReducer
+  admin: adminReducer,
+  allocation: allocationReducer,
 });
 
 export default rootReducer;

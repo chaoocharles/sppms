@@ -33,6 +33,7 @@ const projectReducer = (state = initState, action) => {
       toast.error("A project status error occured...", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
+      return state;
     case "TOGGLE_PROJECT_A_STATUS":
       toast.info("Project A status changed...", {
         position: toast.POSITION.BOTTOM_RIGHT,

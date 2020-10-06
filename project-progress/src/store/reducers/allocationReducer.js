@@ -17,6 +17,16 @@ const allocationReducer = (state = initState, action) => {
         ...state,
         addAllocationError: action.type.message,
       };
+    case "REMOVE_ALLOCATION":
+      toast.warn("An allocation was removed...", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+      return state;
+    case "REMOVE_ALLOCATION_ERROR":
+      toast.error(action.err.message, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+      return state;
     default:
       return state;
   }

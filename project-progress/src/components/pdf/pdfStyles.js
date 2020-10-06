@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     padding: "4pt",
     borderRadius: "5pt",
     color: "white",
-    background: "linear-gradient(to Right, #5036F9, #5787a7)",
+    background: "linear-gradient(to Right, #9036F9, #4036F9)",
     textTransform: "uppercase",
     display: "inline-block",
     marginBottom: "20pt",

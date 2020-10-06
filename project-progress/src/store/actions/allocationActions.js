@@ -40,7 +40,7 @@ export const addMember = (user, allocationId, allocation) => {
           lastName: user.lastName,
           email: user.email,
           role: user.role ? user.role : "",
-          id: user.id
+          id: user.id,
         }),
       })
       .then(() => {
@@ -86,46 +86,81 @@ export const removeMember = (member, allocationId, allocation) => {
   };
 };
 
-
 export const toggleAllocated = (user) => {
-  return (dispatch, getState, {getFirebase, getFirestore}) => {
-      const firestore = getFirestore();
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
 
-      firestore.collection('users').doc(user.id).set({
+    firestore
+      .collection("users")
+      .doc(user.id)
+      .set(
+        {
           ...user,
-          allocated: true
-      }, { merge: true }).then(() => {
-          dispatch({
-              type: 'TOGGLE_ALLOCATED',
-              user
-          })
-      }).catch((err) => {
-          dispatch({
-              type: 'TOGGLE_ALLOCATED_ERR',
-              err
-          })
+          allocated: true,
+        },
+        { merge: true }
+      )
+      .then(() => {
+        dispatch({
+          type: "TOGGLE_ALLOCATED",
+          user,
+        });
       })
-
-  }
-}
+      .catch((err) => {
+        dispatch({
+          type: "TOGGLE_ALLOCATED_ERR",
+          err,
+        });
+      });
+  };
+};
 
 export const _toggleAllocated = (user) => {
-  return (dispatch, getState, {getFirebase, getFirestore}) => {
-      const firestore = getFirestore();
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
 
-      firestore.collection('users').doc(user.id).set({
-          allocated: false
-      }, { merge: true }).then(() => {
-          dispatch({
-              type: '_TOGGLE_ALLOCATED',
-              user
-          })
-      }).catch((err) => {
-          dispatch({
-              type: '_TOGGLE_ALLOCATED_ERR',
-              err
-          })
+    firestore
+      .collection("users")
+      .doc(user.id)
+      .set(
+        {
+          allocated: false,
+        },
+        { merge: true }
+      )
+      .then(() => {
+        dispatch({
+          type: "_TOGGLE_ALLOCATED",
+          user,
+        });
       })
+      .catch((err) => {
+        dispatch({
+          type: "_TOGGLE_ALLOCATED_ERR",
+          err,
+        });
+      });
+  };
+};
 
-  }
-}
+export const deleteAllocation = (allocationId) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+
+    firestore
+      .collection("allocations")
+      .doc(allocationId)
+      .delete()
+      .then(() => {
+        dispatch({
+          type: "REMOVE_ALLOCATION",
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: "REMOVE_ALLOCATION_ERROR",
+          err,
+        });
+      });
+  };
+};
