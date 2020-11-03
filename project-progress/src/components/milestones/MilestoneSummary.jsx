@@ -4,6 +4,30 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import Status from "../common/Status";
 
+const Deadline = ({milestone}) => {
+  if(moment(milestone.endDate.toDate()).isAfter(new Date()) && milestone.status !== true){
+    return <div className="cyan-text">
+    deadline:{" "}
+    {moment(milestone.endDate.toDate()).calendar()} - still in progress
+  </div>
+  }else if(moment(milestone.endDate.toDate()).isAfter(new Date()) && milestone.status === true){
+    return <div className="green-text">
+    deadline:{" "}
+    {moment(milestone.endDate.toDate()).calendar()} - congraturations! completed before deadline
+  </div>
+  } else if(moment(milestone.endDate.toDate()).isBefore(new Date()) && milestone.status === true){
+    return <div className="grey-text">
+    deadline:{" "}
+    {moment(milestone.endDate.toDate()).calendar()} - completed
+  </div>
+  }else if(moment(milestone.endDate.toDate()).isBefore(new Date()) && milestone.status !== true){
+    return <div className="red-text">
+    deadline:{" "}
+    {moment(milestone.endDate.toDate()).calendar()} - hurry! you have no time.
+  </div>
+  }
+}
+
 const milestoneSummary = ({ milestone, projectId }) => {
   if (projectId === milestone.projectId) {
     return (
@@ -27,9 +51,10 @@ const milestoneSummary = ({ milestone, projectId }) => {
               <td colSpan="3">
                 <div className="gret lighten-4 grey-text custom-font-caps">
                   <div>
-                    milestone Added On:{" "}
+                    milestone added on:{" "}
                     {moment(milestone.createdAt.toDate()).calendar()}
                   </div>
+                  <Deadline milestone = {milestone}/>
                 </div>
               </td>
               <td>
