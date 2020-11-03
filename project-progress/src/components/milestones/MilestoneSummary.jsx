@@ -8,7 +8,7 @@ const Deadline = ({milestone}) => {
   if(moment(milestone.endDate.toDate()).isAfter(new Date()) && milestone.status !== true){
     return <div className="cyan-text">
     deadline:{" "}
-    {moment(milestone.endDate.toDate()).calendar()} - still in progress
+    {moment(milestone.endDate.toDate()).calendar()} - in progress
   </div>
   }else if(moment(milestone.endDate.toDate()).isAfter(new Date()) && milestone.status === true){
     return <div className="green-text">
@@ -23,7 +23,7 @@ const Deadline = ({milestone}) => {
   }else if(moment(milestone.endDate.toDate()).isBefore(new Date()) && milestone.status !== true){
     return <div className="red-text">
     deadline:{" "}
-    {moment(milestone.endDate.toDate()).calendar()} - hurry! you have no time.
+    {moment(milestone.endDate.toDate()).calendar()} - deadline missed.
   </div>
   }
 }

@@ -10,7 +10,7 @@ import { CreateProjectButton } from "../projects/CreateProjectButton";
 import ShowAllocation from "../allocations/dashboardAllocations/ShowAllocation";
 import ProjectsDocument from "../pdf/ProjectsDocument";
 import ProjectADocument from "../pdf/ProjectADocument";
-import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import styles from "../pdf/pdfStyles";
 
 class Dashboard extends Component {
@@ -46,9 +46,6 @@ class Dashboard extends Component {
                   }
                 </PDFDownloadLink>
               )}
-              {/* <PDFViewer>
-                <ProjectsDocument projects={projects} />
-              </PDFViewer> */}
               {this._isOpen && (
                 <PDFDownloadLink
                   document={<ProjectADocument projects={projects} />}

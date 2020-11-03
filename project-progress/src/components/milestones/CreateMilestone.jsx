@@ -46,13 +46,13 @@ class CreateMilestone extends Component {
                     <h5 className="grey-text text-darken-3">Add New Milestone</h5>
                     <div className='input-field'>
                         <label htmlFor="milestoneTitle">Milestone Title</label>
-                        <input type="text" id='milestoneTitle' onChange={this.handleChange}/>
+                        <input type="text" id='milestoneTitle' onChange={this.handleChange} required/>
                     </div>
                     <div className="input-field">
                         <label htmlFor="milestoneDesc">Milestone Description</label>
-                        <input type="text" id="milestoneDesc" onChange={this.handleChange}/>
+                        <input type="text" id="milestoneDesc" onChange={this.handleChange} required/>
                     </div>
-                    <div class= "grey-text">Estimated Completion Date:</div>
+                    <div className= "grey-text">Estimated Completion Date:</div>
                     <DatePicker
                         selected={ this.state.endDate }
                         onChange={ this.handleDate }
