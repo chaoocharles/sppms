@@ -39,7 +39,7 @@ const ProjectSummary = ({ project, uid, admin, superAdmin }) => {
                     {project.regNumber} {project.course}
                   </div>
                   <div>
-                    Project Added On:{" "}
+                    project added on:{" "}
                     {moment(project.createdAt.toDate()).calendar()}
                   </div>
                 </div>
@@ -88,7 +88,7 @@ const ProjectSummary = ({ project, uid, admin, superAdmin }) => {
                     {project.regNumber} {project.course}
                   </div>
                   <div>
-                    Project Added On:{" "}
+                    project added on:{" "}
                     {moment(project.createdAt.toDate()).calendar()}
                   </div>
                 </div>
@@ -138,7 +138,7 @@ const ProjectSummary = ({ project, uid, admin, superAdmin }) => {
                       {project.regNumber} {project.course}
                     </div>
                     <div>
-                      Project Added On:{" "}
+                      project added on:{" "}
                       {moment(project.createdAt.toDate()).calendar()}
                     </div>
                   </div>

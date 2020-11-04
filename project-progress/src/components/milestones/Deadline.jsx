@@ -13,7 +13,7 @@ const Deadline = ({milestone}) => {
             {moment(milestone.endDate.toDate()).calendar()} - congraturations! completed before deadline
           </div>
           } else if(moment(milestone.endDate.toDate()).isBefore(new Date()) && milestone.status === true){
-            return <div className="grey-text">
+            return <div className="green-text">
             deadline:{" "}
             {moment(milestone.endDate.toDate()).calendar()} - completed
           </div>

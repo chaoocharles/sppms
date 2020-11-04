@@ -103,7 +103,7 @@ class ProjectDetails extends Component {
                   {project.regNumber} {project.course}
                 </div>
                 <div>
-                  Project Added On:{" "}
+                  project added on:{" "}
                   {moment(project.createdAt.toDate()).calendar()}
                 </div>
               </div>
@@ -165,7 +165,7 @@ class ProjectDetails extends Component {
                   {project.regNumber} {project.course}
                 </div>
                 <div>
-                  Project Added On:{" "}
+                  project added on:{" "}
                   {moment(project.createdAt.toDate()).calendar()}
                 </div>
               </div>
@@ -210,7 +210,7 @@ class ProjectDetails extends Component {
                 {project.regNumber} {project.course}
               </div>
               <div>
-                Project Added On:{" "}
+                project added on:{" "}
                 {moment(project.createdAt.toDate()).calendar()}
               </div>
             </div>
