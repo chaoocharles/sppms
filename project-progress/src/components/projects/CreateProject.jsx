@@ -34,23 +34,24 @@ class CreateProject extends Component {
         <form
           onSubmit={this.handleSubmit}
           className="white custom-content-top-margin"
+          autoComplete= "off"
         >
           <h5 className="grey-text text-darken-3">Create New Project</h5>
           <div className="input-field">
             <label htmlFor="projectTitle">Project Title</label>
-            <input type="text" id="projectTitle" onChange={this.handleChange} />
+            <input type="text" id="projectTitle" onChange={this.handleChange} required/>
           </div>
           <div className="input-field">
             <label htmlFor="regNumber">Reg Number</label>
-            <input type="text" id="regNumber" onChange={this.handleChange} />
+            <input type="text" id="regNumber" onChange={this.handleChange} required/>
           </div>
           <div className="input-field">
             <label htmlFor="course">Course (e.g. BTECH I.T)</label>
-            <input type="text" id="course" onChange={this.handleChange} />
+            <input type="text" id="course" onChange={this.handleChange} required/>
           </div>
           <div className="input-field">
             <label htmlFor="projectDesc">Project's Short Description</label>
-            <input type="text" id="projectDesc" onChange={this.handleChange} />
+            <input type="text" id="projectDesc" onChange={this.handleChange} required/>
           </div>
           <div className="input-field">
             <button className="btn cyan darken-2 z-depth-0">ADD</button>

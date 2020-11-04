@@ -62,11 +62,14 @@ form h5 {
   margin-bottom: 20px;
 }
 
+.custom-milestone-style{
+  padding: 10px 20px;
+}
+
 .custom-table-style {
   margin-bottom: 30px;
-  border-radius: 0.5rem;
   background-color: #ffffff;
-  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.15);
+  border: 2px solid rgb(226, 226, 226);
 }
 
 .custom-table-style th,
@@ -317,7 +320,7 @@ form h5 {
   display: flex;
   justify-content: space-between;
   width: 113px;
-  border: 2px solid gray;
+  border: 2px solid rgb(169, 169, 169);
   border-radius: 5px;
   padding: 3px;
   font-size: 17px;

@@ -12,6 +12,7 @@ import Remove from "../common/Remove";
 import AddRemarks from "./AddRemarks";
 import RemarkList from "./RemarkList";
 import { withRouter } from "react-router-dom";
+import Deadline from "./Deadline";
 
 class MilestoneDetails extends Component {
   handleApprove = (milestone, milestoneId) => {
@@ -84,8 +85,9 @@ class MilestoneDetails extends Component {
                 <p>{milestone.milestoneDesc}</p>
               </div>
               <div className="card-action gret lighten-4 grey-text custom-font-caps">
-                Milestone Added On:{" "}
+                milestone added on:{" "}
                 {moment(milestone.createdAt.toDate()).calendar()}
+                <Deadline milestone = {milestone}/>
               </div>
               <AddRemarks milestoneId={milestoneId} />
               <RemarkList
@@ -133,8 +135,9 @@ class MilestoneDetails extends Component {
                 <p>{milestone.milestoneDesc}</p>
               </div>
               <div className="card-action gret lighten-4 grey-text custom-font-caps">
-                Milestone Added On:{" "}
+                milestone added on:{" "}
                 {moment(milestone.createdAt.toDate()).calendar()}
+                <Deadline milestone = {milestone}/>
               </div>
               <AddRemarks milestoneId={milestoneId} />
               <RemarkList
@@ -170,8 +173,9 @@ class MilestoneDetails extends Component {
               <p>{milestone.milestoneDesc}</p>
             </div>
             <div className="card-action gret lighten-4 grey-text custom-font-caps">
-              Milestone Added On:{" "}
+              milestone added on:{" "}
               {moment(milestone.createdAt.toDate()).calendar()}
+              <Deadline milestone = {milestone}/>
             </div>
             <RemarkList
               milestoneId={milestoneId}

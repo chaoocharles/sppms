@@ -3,35 +3,12 @@ import "../../index.css";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import Status from "../common/Status";
-
-const Deadline = ({milestone}) => {
-  if(moment(milestone.endDate.toDate()).isAfter(new Date()) && milestone.status !== true){
-    return <div className="cyan-text">
-    deadline:{" "}
-    {moment(milestone.endDate.toDate()).calendar()} - in progress
-  </div>
-  }else if(moment(milestone.endDate.toDate()).isAfter(new Date()) && milestone.status === true){
-    return <div className="green-text">
-    deadline:{" "}
-    {moment(milestone.endDate.toDate()).calendar()} - congraturations! completed before deadline
-  </div>
-  } else if(moment(milestone.endDate.toDate()).isBefore(new Date()) && milestone.status === true){
-    return <div className="grey-text">
-    deadline:{" "}
-    {moment(milestone.endDate.toDate()).calendar()} - completed
-  </div>
-  }else if(moment(milestone.endDate.toDate()).isBefore(new Date()) && milestone.status !== true){
-    return <div className="red-text">
-    deadline:{" "}
-    {moment(milestone.endDate.toDate()).calendar()} - deadline missed.
-  </div>
-  }
-}
+import Deadline from "./Deadline";
 
 const milestoneSummary = ({ milestone, projectId }) => {
   if (projectId === milestone.projectId) {
     return (
-      <div>
+      <div className= "custom-milestone-style">
         <table className="custom-table-style">
           <thead>
             <tr>
