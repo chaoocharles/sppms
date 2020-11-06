@@ -28,10 +28,16 @@ class SignUp extends Component {
 
     return (
       <div className="container">
+        <div className="custom-content-top-margin">
+        <div className = "hero-section">
+            <h5>SCIT Project Progress Management System</h5>
+            <p>Management of final year students' projects made easier!</p>
+          </div>
         <form
           onSubmit={this.handleSubmit}
-          className="white custom-content-top-margin"
+          className="white"
         >
+          <p>Are you new to the system?</p>
           <h5 className="grey-text text-darken-3">Sign Up</h5>
           <div className="input-field">
             <label htmlFor="firstName">First Name</label>
@@ -53,6 +59,7 @@ class SignUp extends Component {
             <button className="btn cyan darken-2 z-depth-0">SIGN Up</button>
           </div>
         </form>
+        </div>
       </div>
     );
   }

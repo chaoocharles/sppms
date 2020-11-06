@@ -26,7 +26,12 @@ class SignIn extends Component {
     return (
       <div className="container">
         <div className="custom-content-top-margin">
+          <div className = "hero-section">
+            <h5>SCIT Project Progress Management System</h5>
+            <p>Management of final year students' projects made easier!</p>
+          </div>
           <form onSubmit={this.handleSubmit} className="white">
+            <p>Already have an account?</p>
             <h5 className="grey-text text-darken-3">Sign In</h5>
             <div className="input-field">
               <label htmlFor="email">Email</label>
