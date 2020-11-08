@@ -35,6 +35,7 @@ class CreateProject extends Component {
           onSubmit={this.handleSubmit}
           className="white custom-content-top-margin"
           autoComplete= "off"
+          classname= "project-form"
         >
           <h5 className="grey-text text-darken-3">Create New Project</h5>
           <div className="input-field">

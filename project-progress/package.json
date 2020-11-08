@@ -19,6 +19,7 @@
     "react-toastify": "^6.0.5",
     "redux": "^4.0.5",
     "redux-firestore": "^0.13.0",
+    "redux-mock-store": "^1.5.4",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
@@ -41,5 +42,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
+    "jest-enzyme": "^7.1.2"
   }
 }
