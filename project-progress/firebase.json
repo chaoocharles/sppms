@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "scit-sppms",
     "public": "dist",
     "ignore": [
       "firebase.json",
