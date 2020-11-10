@@ -76,7 +76,7 @@ class Dashboard extends Component {
             </div>
             <div className="col s12 m4 offset-m1">
               <ShowAllocation allocations={allocations} auth={auth} /><br/>
-                Do you need help? Email the system admin on admin@sppms.com
+                Do you need help? Email the system coordinator on coordinator@sppms.com
             </div>
           </div>
         </div>
@@ -91,9 +91,9 @@ class Dashboard extends Component {
             <div className="col s12 m4 offset-m1">
               <CreateProjectButton />
               <ShowAllocation allocations={allocations} auth={auth} /><br/>
-              Do you need help? Email the system admin on admin@sppms.com <br/><br/>
+              Do you need help? Email the system coordinator on coordinator@sppms.com <br/><br/>
               Are you a supervisor but logged in with a student's level account?
-              Send a supervision request to admin@sppms.com.
+              Send a supervision request to coordinator@sppms.com.
               In the request, attach your national ID and your staff ID.
               Note that the system admin may schedule a zoom meeting with you to confirm your identity.
             </div>
