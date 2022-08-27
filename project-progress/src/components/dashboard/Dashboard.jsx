@@ -25,14 +25,30 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { allocations, projects, auth, admin, superAdmin } = this.props;
+    const { allocations, projects, auth, users } = this.props;
+
     if (!auth.uid) return <Redirect to="/signin" />;
+
+    const user = users?.find((u) => u.id === auth.uid);
+
+    let admin = false;
+    let superAdmin = false;
+
+    if (user) {
+      admin = user.admin;
+      superAdmin = user.superAdmin;
+    }
+
     if (superAdmin) {
       return (
         <div className="container dashboard custom-content-top-margin">
           <div className="row">
             <div className="col s12 m7">
-              <ProjectList projects={projects} />
+              <ProjectList
+                projects={projects}
+                allocations={allocations}
+                auth={auth}
+              />
             </div>
             <div className="col s12 m4 offset-m1">
               {this._isOpen && (
@@ -75,8 +91,10 @@ class Dashboard extends Component {
               />
             </div>
             <div className="col s12 m4 offset-m1">
-              <ShowAllocation allocations={allocations} auth={auth} /><br/>
-                Do you need help? Email the system coordinator on coordinator@sppms.com
+              <ShowAllocation allocations={allocations} auth={auth} />
+              <br />
+              Do you need help? Email the system coordinator on
+              coordinator@sppms.com
             </div>
           </div>
         </div>
@@ -90,12 +108,16 @@ class Dashboard extends Component {
             </div>
             <div className="col s12 m4 offset-m1">
               <CreateProjectButton />
-              <ShowAllocation allocations={allocations} auth={auth} /><br/>
-              Do you need help? Email the system coordinator on coordinator@sppms.com <br/><br/>
+              <ShowAllocation allocations={allocations} auth={auth} />
+              <br />
+              Do you need help? Email the system coordinator on
+              coordinator@sppms.com <br />
+              <br />
               Are you a supervisor but logged in with a student's level account?
-              Send a supervision request to coordinator@sppms.com.
-              In the request, attach your national ID and your staff ID.
-              Note that the system admin may schedule a zoom meeting with you to confirm your identity.
+              Send a supervision request to coordinator@sppms.com. In the
+              request, attach your national ID and your staff ID. Note that the
+              system admin may schedule a zoom meeting with you to confirm your
+              identity.
             </div>
           </div>
         </div>
@@ -108,9 +130,8 @@ const mapStateToProps = (state) => {
   return {
     projects: state.firestore.ordered.projects,
     allocations: state.firestore.ordered.allocations,
+    users: state.firestore.ordered.users,
     auth: state.firebase.auth,
-    admin: state.admin.admin,
-    superAdmin: state.admin.superAdmin,
   };
 };
 
@@ -124,6 +145,9 @@ export default compose(
     {
       collection: "allocations",
       orderBy: ["createdAt", "desc"],
+    },
+    {
+      collection: "users",
     },
   ])
 )(Dashboard);

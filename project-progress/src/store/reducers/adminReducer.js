@@ -7,7 +7,7 @@ const initState = {
 const adminReducer = (state = initState, action) => {
   switch (action.type) {
     case "ADD_ADMIN_SUCESS":
-      toast.success(action.result.data.message, {
+      toast.success("Supervisor Added", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
       return state;
@@ -17,7 +17,7 @@ const adminReducer = (state = initState, action) => {
       });
       return state;
     case "ADD_SUPER_ADMIN_SUCESS":
-      toast.success(action.result.data.message, {
+      toast.success("Coordinator Added", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
       return state;
@@ -26,12 +26,6 @@ const adminReducer = (state = initState, action) => {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
       return state;
-    case "ADD_ROLE_TO_STATE":
-      return {
-        ...state,
-        admin: action.role.admin,
-        superAdmin: action.role.superAdmin,
-      };
     case "SUPERVISOR_ROLE":
       return state;
     case "COORDINATOR_ROLE":

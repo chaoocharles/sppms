@@ -48,14 +48,18 @@ class ProjectDetails extends Component {
   };
 
   render() {
-    const {
-      projectId,
-      project,
-      auth,
-      milestones,
-      admin,
-      superAdmin,
-    } = this.props;
+    const { projectId, project, auth, milestones, users } = this.props;
+
+    const user = users?.find((u) => u.id === auth?.uid);
+
+    let admin = false;
+    let superAdmin = false;
+
+    if (user) {
+      admin = user.admin;
+      superAdmin = user.superAdmin;
+    }
+
     if (superAdmin) {
       if (!auth.uid) return <Redirect to="/signin" />;
 
@@ -250,8 +254,7 @@ const mapStateToProps = (state, ownProps) => {
     project: project,
     auth: state.firebase.auth,
     milestones: milestones,
-    admin: state.admin.admin,
-    superAdmin: state.admin.superAdmin,
+    users: state.firestore.ordered.users,
   };
 };
 
@@ -260,5 +263,8 @@ export default compose(
   firestoreConnect(() => [
     { collection: "projects" },
     { collection: "milestones", orderBy: ["createdAt", "desc"] },
+    {
+      collection: "users",
+    },
   ])
 )(ProjectDetails);

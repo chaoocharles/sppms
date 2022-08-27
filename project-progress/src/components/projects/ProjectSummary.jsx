@@ -5,8 +5,19 @@ import moment from "moment";
 import { connect } from "react-redux";
 import Status from "../common/Status";
 import ProjectAStatus from "../common/ProjectAStatus";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 
-const ProjectSummary = ({ project, uid, admin, superAdmin }) => {
+const ProjectSummary = ({ project, uid, auth, users }) => {
+  const user = users?.find((u) => u.id === auth?.uid);
+
+  let admin = false;
+  let superAdmin = false;
+
+  if (user) {
+    admin = user.admin;
+    superAdmin = user.superAdmin;
+  }
   if (superAdmin) {
     return (
       <div>
@@ -161,10 +172,17 @@ const ProjectSummary = ({ project, uid, admin, superAdmin }) => {
 
 const mapStateToProps = (state) => {
   return {
+    users: state.firestore.ordered.users,
+    auth: state.firebase.auth,
     uid: state.firebase.auth.uid,
-    admin: state.admin.admin,
-    superAdmin: state.admin.superAdmin,
   };
 };
 
-export default connect(mapStateToProps)(ProjectSummary);
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([
+    {
+      collection: "users",
+    },
+  ])
+)(ProjectSummary);

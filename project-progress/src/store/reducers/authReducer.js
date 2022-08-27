@@ -30,7 +30,7 @@ const authReducer = (state = initState, action) => {
       });
       return state;
     case "SIGNUP_ERROR":
-      toast.error("A signUp error occured...", {
+      toast.error(action.err.message, {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
       return state;

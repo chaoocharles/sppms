@@ -43,14 +43,18 @@ class MilestoneDetails extends Component {
   };
 
   render() {
-    const {
-      remarks,
-      auth,
-      milestone,
-      milestoneId,
-      admin,
-      superAdmin,
-    } = this.props;
+    const { remarks, auth, milestone, milestoneId, users } = this.props;
+
+    const user = users?.find((u) => u.id === auth?.uid);
+
+    let admin = false;
+    let superAdmin = false;
+
+    if (user) {
+      admin = user.admin;
+      superAdmin = user.superAdmin;
+    }
+
     if (superAdmin) {
       if (milestone) {
         return (
@@ -87,7 +91,7 @@ class MilestoneDetails extends Component {
               <div className="card-action gret lighten-4 grey-text custom-font-caps">
                 milestone added on:{" "}
                 {moment(milestone.createdAt.toDate()).calendar()}
-                <Deadline milestone = {milestone}/>
+                <Deadline milestone={milestone} />
               </div>
               <AddRemarks milestoneId={milestoneId} />
               <RemarkList
@@ -137,7 +141,7 @@ class MilestoneDetails extends Component {
               <div className="card-action gret lighten-4 grey-text custom-font-caps">
                 milestone added on:{" "}
                 {moment(milestone.createdAt.toDate()).calendar()}
-                <Deadline milestone = {milestone}/>
+                <Deadline milestone={milestone} />
               </div>
               <AddRemarks milestoneId={milestoneId} />
               <RemarkList
@@ -175,7 +179,7 @@ class MilestoneDetails extends Component {
             <div className="card-action gret lighten-4 grey-text custom-font-caps">
               milestone added on:{" "}
               {moment(milestone.createdAt.toDate()).calendar()}
-              <Deadline milestone = {milestone}/>
+              <Deadline milestone={milestone} />
             </div>
             <RemarkList
               milestoneId={milestoneId}
@@ -201,8 +205,7 @@ const mapStateToProps = (state, ownProps) => {
     auth: state.firebase.auth,
     milestone: milestone,
     remarks: remarks,
-    admin: state.admin.admin,
-    superAdmin: state.admin.superAdmin,
+    users: state.firestore.ordered.users,
   };
 };
 
@@ -225,6 +228,9 @@ export default compose(
         { collection: "remarks", orderBy: ["createdAt", "desc"] },
       ],
       storeAs: "remarks",
+    },
+    {
+      collection: "users",
     },
   ]),
   withRouter

@@ -45,13 +45,16 @@ export const signUp = (newUser) => {
             lastName: newUser.lastName,
             allocated: false,
             initials: newUser.firstName[0] + newUser.lastName[0],
-            role: "",
+            role: "student",
+            admin: false,
+            superAdmin: false,
           });
       })
       .then(() => {
         dispatch({ type: "SIGNUP_SUCCESS" });
       })
       .catch((err) => {
+        console.log("err", err);
         dispatch({ type: "SIGNUP_ERROR", err });
       });
   };
