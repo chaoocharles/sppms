@@ -10,7 +10,8 @@ Contact: chaoocharles@gmail.com
 
 ## How to get start
 
-- Clone the code and run npm install.
+- Clone the code and run `npm install`.
 - Create a firebase project(activate email/password authentication and firestore).
 - Create a firebase web project. You will get the config code to connect this project with your firebase project.
-- Add you firebase config details at src > config > fbConfig.js
+- Add you firebase config details at `src > config > fbConfig.js`
+- Run `npm start`
